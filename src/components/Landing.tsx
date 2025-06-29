@@ -443,7 +443,7 @@ export default function StudentSahayakLanding() {
                 icon: Phone,
                 title: "One-on-One Mentoring",
                 description:
-                  "Get personalized guidance from experienced mentors to solve discipline-related issues effectively.",
+                  "Get personalized guidance from mentors to solve discipline-related issues effectively.",
                 color: "from-purple-400 via-pink-500 to-purple-600",
               },
               {
