@@ -1,6 +1,5 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
-// @ts-expect-error "tailwind"
 import tailwindcss from "@tailwindcss/vite"
 import * as path from "path"
 
