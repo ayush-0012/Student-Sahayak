@@ -529,7 +529,7 @@ export default function StudentSahayakLanding() {
                 >
                   {plan.popular && (
                     <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-2 font-bold">
-                      MOST POPULAR
+                      RECOMMENDED
                     </div>
                   )}
                   <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 text-sm font-bold rounded-full">
