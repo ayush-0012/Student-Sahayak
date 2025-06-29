@@ -19,8 +19,12 @@ import {
   Compass,
   Shield,
   Zap,
+  DollarSign,
+  Gift,
+  Heart,
+  IndianRupee,
 } from "lucide-react"
-import { Link } from "react-router"
+import {Link} from "react-router"
 import { useEffect, useState } from "react"
 
 export default function StudentSahayakLanding() {
@@ -40,7 +44,7 @@ export default function StudentSahayakLanding() {
               <div className="p-2 bg-white/20 rounded-lg group-hover:bg-white/30 transition-all duration-300">
                 <BookOpen className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">STUDENT SAHAYAK</span>
+              <span className="text-2xl font-bold text-white font-mono tracking-wider">STUDENT SAHAYAK</span>
             </div>
             <div className="hidden md:flex space-x-8">
               <Link
@@ -154,9 +158,9 @@ export default function StudentSahayakLanding() {
 
             <div className="text-3xl md:text-5xl font-bold text-white mb-12 animate-bounce-slow">
               <div className="flex items-center justify-center space-x-3 mb-4">
-                <Star className="h-8 w-8 text-yellow-400 animate-spin-slow" />
+                <Zap className="h-8 w-8 text-yellow-400 animate-spin-slow" />
                 <span>BUILD HABITS,</span>
-                <Star className="h-8 w-8 text-yellow-400 animate-spin-slow" />
+                <Zap className="h-8 w-8 text-yellow-400 animate-spin-slow" />
               </div>
               <p>SHAPE FUTURE.</p>
             </div>
@@ -219,60 +223,58 @@ export default function StudentSahayakLanding() {
                 title: "Discipline & Consistency",
                 description:
                   "Maintain discipline and consistency in your study routine with our proven methods and daily accountability.",
-                color: "from-red-500 to-pink-500",
+                color: "from-red-400 via-pink-500 to-red-600",
               },
               {
                 icon: CheckCircle,
                 title: "Daily Target Tracking",
                 description:
                   "Track your daily goals and progress with our comprehensive monitoring system and detailed analytics.",
-                color: "from-orange-500 to-red-500",
+                color: "from-orange-400 via-red-500 to-orange-600",
               },
               {
                 icon: Phone,
                 title: "One-on-One Mentoring",
                 description:
                   "Get personalized guidance from experienced mentors to solve discipline-related issues effectively.",
-                color: "from-purple-500 to-red-500",
+                color: "from-purple-400 via-pink-500 to-purple-600",
               },
               {
                 icon: Smartphone,
                 title: "Social Media Detox",
                 description:
                   "Break free from social media and Instagram addiction with our proven strategies and support system.",
-                color: "from-blue-500 to-purple-500",
+                color: "from-blue-400 via-purple-500 to-blue-600",
               },
               {
                 icon: Wrench,
                 title: "Habit Building",
                 description:
                   "Build any positive habit with our structured approach, continuous support, and proven methodologies.",
-                color: "from-green-500 to-blue-500",
+                color: "from-green-400 via-blue-500 to-green-600",
               },
               {
                 icon: Star,
                 title: "Trusted Support",
                 description:
                   "We believe in building trust more than profit, with transparent refund policy and genuine care.",
-                color: "from-yellow-500 to-orange-500",
+                color: "from-yellow-400 via-orange-500 to-yellow-600",
               },
             ].map((service, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 shadow-lg"
+                className="group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 shadow-lg bg-white"
               >
-                <CardHeader className="text-center pb-4">
+                <CardHeader className="text-center pb-6 flex justify-center">
                   <div
-                    className={`inline-flex p-4 bg-gradient-to-r ${service.color} rounded-full mb-4 group-hover:scale-110 transition-transform duration-300`}
+                    className={`inline-flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r ${service.color} rounded-full mb-6 group-hover:scale-105 transition-transform duration-300 text-white font-bold text-lg max-w-fit`}
                   >
-                    <service.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <CardTitle className="text-xl text-gray-900 group-hover:text-red-600 transition-colors">
+                    <service.icon className="h-6 w-6 text-white" />
                     {service.title}
-                  </CardTitle>
+                  </div>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <CardContent className="px-6 pb-6">
+                  <p className="text-gray-600 leading-relaxed text-center">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -284,14 +286,17 @@ export default function StudentSahayakLanding() {
       <section id="pricing" className="bg-gray-50 py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">💰 Fee Structure</h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <DollarSign className="h-8 w-8 text-gray-900" />
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">Fee Structure</h2>
+            </div>
             <p className="text-xl text-gray-600">Choose the plan that works best for your academic journey</p>
           </div>
 
           {/* Special Offer */}
           <div className="mb-16">
-            <div className="text-center mb-12">
-              <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse">
+            <div className="text-center mb-12 flex justify-center">
+              <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2">
                 Limited Time: First 100 Students Only!
               </Badge>
             </div>
@@ -316,8 +321,9 @@ export default function StudentSahayakLanding() {
                   </div>
                   <CardHeader className={`text-center ${plan.popular ? "pt-12" : "pt-8"}`}>
                     <CardTitle className="text-3xl text-gray-900 mb-2">{plan.days} Days</CardTitle>
-                    <CardDescription className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
-                      ₹{plan.price}
+                    <CardDescription className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
+                      <IndianRupee className="h-8 w-8" />
+                      {plan.price}
                     </CardDescription>
                     <p className="text-gray-500 mt-2">Perfect for getting started</p>
                   </CardHeader>
@@ -335,8 +341,8 @@ export default function StudentSahayakLanding() {
 
           {/* Normal Plans */}
           <div className="mb-12">
-            <div className="text-center mb-12">
-              <Badge className="bg-gray-800 text-white text-lg px-6 py-3 rounded-full font-bold">
+            <div className="text-center mb-12 flex justify-center">
+              <Badge className="bg-gray-800 text-white text-lg px-6 py-3 rounded-full font-bold flex items-center gap-2">
                 Regular Pricing
               </Badge>
             </div>
@@ -353,7 +359,10 @@ export default function StudentSahayakLanding() {
                 >
                   <CardHeader className="text-center">
                     <CardTitle className="text-2xl text-gray-900 mb-2">{plan.days} Days</CardTitle>
-                    <CardDescription className="text-3xl font-bold text-gray-800">₹{plan.price}</CardDescription>
+                    <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
+                      <IndianRupee className="h-6 w-6" />
+                      {plan.price}
+                    </CardDescription>
                   </CardHeader>
                   <CardContent>
                     <Button className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300 transform group-hover:scale-105">
@@ -366,11 +375,17 @@ export default function StudentSahayakLanding() {
           </div>
 
           <div className="text-center bg-gradient-to-r from-red-500 to-orange-500 text-white p-8 rounded-2xl max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">100% Refund Policy Available</h3>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Shield className="h-8 w-8" />
+              <h3 className="text-2xl font-bold">100% Refund Policy Available</h3>
+            </div>
             <p className="text-lg mb-4">
               We believe in building trust more than profit. Your satisfaction is our priority.
             </p>
-            <p className="text-xl font-semibold">Customized Plans Also Available!</p>
+            <div className="flex items-center justify-center gap-2">
+              <Gift className="h-6 w-6" />
+              <p className="text-xl font-semibold">Customized Plans Also Available!</p>
+            </div>
           </div>
         </div>
       </section>
@@ -411,12 +426,14 @@ export default function StudentSahayakLanding() {
               <div className="p-2 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg">
                 <BookOpen className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-white">STUDENT SAHAYAK</span>
+              <span className="text-2xl font-bold text-white font-mono tracking-wider">STUDENT SAHAYAK</span>
             </div>
             <p className="text-gray-400 mb-6 text-lg">Build Habits, Shape Future</p>
             <div className="border-t border-gray-800 pt-6">
-              <p className="text-gray-500 text-sm">
-                © {new Date().getFullYear()} Student Sahayak. All rights reserved. Made with ❤️ for students.
+              <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
+                © {new Date().getFullYear()} Student Sahayak. All rights reserved. Made with
+                <Heart className="h-4 w-4 text-red-500 fill-current" />
+                for students.
               </p>
             </div>
           </div>
