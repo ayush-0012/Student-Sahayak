@@ -1,4 +1,4 @@
-"use client"
+
 
 import { ReactTyped } from "react-typed"
 import { Button } from "@/components/ui/button"
