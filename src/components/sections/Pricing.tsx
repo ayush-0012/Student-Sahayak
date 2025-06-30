@@ -1,14 +1,4 @@
-import {
-  // Users,
-  // Award,
-  // Clock,
-  Shield,
-
-  // DollarSign,
-  // Flame,
-  Gift,
-  IndianRupee,
-} from "lucide-react";
+import { IndianRupee } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -47,7 +37,7 @@ function Pricing() {
               {[
                 { days: "30", price: "250", popular: false },
                 { days: "45", price: "350", popular: true },
-                { days: "90", price: "800", popular: false },
+                { days: "90", price: "650", popular: false },
               ].map((plan, index) => (
                 <Card
                   key={index}
@@ -106,8 +96,8 @@ function Pricing() {
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
                 { days: "30", price: "275" },
-                { days: "45", price: "400" },
-                { days: "90", price: "900" },
+                { days: "45", price: "450" },
+                { days: "90", price: "800" },
               ].map((plan, index) => (
                 <Card
                   key={index}
@@ -132,7 +122,7 @@ function Pricing() {
             </div>
           </div>
 
-          <div className="text-center bg-gradient-to-r from-red-500 to-orange-500 text-white p-8 rounded-2xl max-w-4xl mx-auto">
+          {/* <div className="text-center bg-gradient-to-r from-red-500 to-orange-500 text-white p-8 rounded-2xl max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Shield className="h-8 w-8" />
               <h3 className="text-2xl font-bold">
@@ -149,7 +139,7 @@ function Pricing() {
                 Customized Plans Also Available!
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>

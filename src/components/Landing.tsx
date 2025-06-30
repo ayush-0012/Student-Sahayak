@@ -5,6 +5,8 @@ import Pricing from "./sections/Pricing";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
+import Mission from "./sections/Mission";
+import RefundPolicy from "./sections/RefundPolicy";
 
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -96,10 +98,10 @@ export default function StudentSahayakLanding() {
           </nav>
         </div>
       </header>
-
       {/* Hero Section */}
       <Hero />
-
+      {/* Our Purpose Section */}
+      <Mission />
       {/* Stats Section (we can use this in future)*/}
       {/* <section className="bg-gray-900 py-16">
         <div className="container mx-auto px-4">
@@ -120,16 +122,14 @@ export default function StudentSahayakLanding() {
           </div>
         </div>
       </section> */}
-
       {/* Services Section */}
       <Services />
-
       {/* Pricing Section */}
       <Pricing />
-
+      {/* Refund Policy section */}
+      <RefundPolicy />
       {/* Contact Section */}
       <Contact />
-
       {/* Footer */}
       <Footer />
     </div>
