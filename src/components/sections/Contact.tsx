@@ -1,0 +1,39 @@
+import { Button } from "../ui/button";
+import { MessageCircle } from "lucide-react";
+
+function Contact() {
+  return (
+    <>
+      <section id="contact" className="bg-gray-900 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Ready to Transform Your Future?
+          </h2>
+          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+            Join hundreds of successful students who have transformed their
+            study habits and achieved their academic goals with Student Sahayak.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
+            <Button
+              size="lg"
+              className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-4 rounded-full font-bold shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 w-full sm:w-auto"
+            >
+              <MessageCircle className="h-6 w-6" />
+              WhatsApp: 95885 33265
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 rounded-full font-bold shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto bg-transparent"
+            >
+              Get Custom Plan
+            </Button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export default Contact;
