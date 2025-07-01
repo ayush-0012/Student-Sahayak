@@ -90,7 +90,7 @@ function WhatsappContact() {
                   Trusted by 500+ Students
                 </span>
               </div> */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 ">
                 <Clock className="h-5 w-5" />
                 <span className="text-sm font-medium">Quick Response Time</span>
               </div>
