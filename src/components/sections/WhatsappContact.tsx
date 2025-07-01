@@ -52,13 +52,15 @@ function WhatsappContact() {
                     <div className="text-2xl font-bold text-white mb-4">
                       95885 33265
                     </div>
-                    <Button
-                      size="lg"
-                      className="bg-white text-green-600 hover:bg-gray-100 font-bold px-8 py-3 rounded-full shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto"
-                    >
-                      <MessageCircle className="h-5 w-5" />
-                      Message Now
-                    </Button>
+                    <a href="https://wa.me/9588533265" target="_blank">
+                      <Button
+                        size="lg"
+                        className="bg-white text-green-600 hover:bg-gray-100 font-bold px-8 py-3 rounded-full shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto"
+                      >
+                        <MessageCircle className="h-5 w-5" />
+                        Message Now
+                      </Button>
+                    </a>
                   </div>
                 </div>
               </div>

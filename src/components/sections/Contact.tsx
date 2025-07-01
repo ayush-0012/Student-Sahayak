@@ -15,13 +15,16 @@ function Contact() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
-            <Button
-              size="lg"
-              className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-4 rounded-full font-bold shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 w-full sm:w-auto"
-            >
-              <MessageCircle className="h-6 w-6" />
-              WhatsApp: 95885 33265
-            </Button>
+            <a href="https://wa.me/9588533265" target="_blank">
+              <Button
+                size="lg"
+                className="bg-green-500 hover:bg-green-600 text-white text-lg px-8 py-4 rounded-full font-bold shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 w-full sm:w-auto"
+              >
+                <MessageCircle className="h-6 w-6" />
+                WhatsApp: 95885 33265
+              </Button>
+            </a>
+
             <Button
               size="lg"
               variant="outline"
