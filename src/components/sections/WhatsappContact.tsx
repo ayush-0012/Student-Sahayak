@@ -84,12 +84,12 @@ function WhatsappContact() {
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap justify-center items-center gap-8 mt-8 text-white/80">
-              <div className="flex items-center gap-2">
-                {/* <Shield className="h-5 w-5" /> */}
-                {/* <span className="text-sm font-medium">
+              {/* <div className="flex items-center gap-2">
+                <Shield className="h-5 w-5" />
+                <span className="text-sm font-medium">
                   Trusted by 500+ Students
-                </span> */}
-              </div>
+                </span>
+              </div> */}
               <div className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
                 <span className="text-sm font-medium">Quick Response Time</span>
