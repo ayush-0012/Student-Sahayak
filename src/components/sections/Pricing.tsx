@@ -8,8 +8,68 @@ import {
 } from "../ui/card";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { useState } from "react";
+import axios from "axios";
+
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
 function Pricing() {
+  const [loading, setLoading] = useState(false);
+
+  async function handleChoosePlan(amount: number) {
+    try {
+      setLoading(true);
+
+      const response = await axios.post("http://localhost:9000/create-order", {
+        amount,
+        currency: "INR",
+        receipt: `receipt_${Date.now()}`,
+      });
+
+      const data = response.data;
+
+      console.log(response);
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY,
+        amount: data.amount,
+        currency: data.currency,
+        order_id: data.id,
+        name: "Your Company",
+        description: "Test Transaction",
+        handler: async function (response) {
+          await axios.post("http://localhost:9000/verify-payment", {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+          });
+
+          alert("Payment successful!");
+        },
+        prefill: {
+          name: "Customer Name",
+          email: "customer@example.com",
+          contact: "9999999999",
+        },
+        theme: {
+          color: "#3399cc",
+        },
+      };
+
+      // opening razorpay checkout
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <section id="pricing" className="bg-gray-50 py-20">
@@ -35,9 +95,9 @@ function Pricing() {
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {[
-                { days: "30", price: "250", popular: false },
-                { days: "45", price: "350", popular: true },
-                { days: "90", price: "650", popular: false },
+                { days: "30", price: 250, popular: false },
+                { days: "45", price: 350, popular: true },
+                { days: "90", price: 650, popular: false },
               ].map((plan, index) => (
                 <Card
                   key={index}
@@ -76,6 +136,9 @@ function Pricing() {
                           ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
                           : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
                       }`}
+                      onClick={() => {
+                        handleChoosePlan(plan.price);
+                      }}
                     >
                       Choose This Plan
                     </Button>
