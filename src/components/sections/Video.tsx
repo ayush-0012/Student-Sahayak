@@ -1,4 +1,4 @@
-import { Play, Youtube } from "lucide-react";
+import { Youtube } from "lucide-react";
 
 export default function VideoSection() {
   return (
@@ -10,13 +10,13 @@ export default function VideoSection() {
               <Youtube className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Watch Our Success Story
+              Watch our youtube video for more details
             </h2>
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          {/* <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             See how we help students crack any exam with daily target tracking
             and consistency building
-          </p>
+          </p> */}
         </div>
 
         <div className="max-w-4xl mx-auto">
