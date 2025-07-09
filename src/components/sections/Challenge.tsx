@@ -206,7 +206,7 @@ export default function ChallengeSection() {
                 </CardTitle>
                 <div className="text-3xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
                   <IndianRupee className="h-6 w-6" />
-                  1500
+                  500
                 </div>
 
                 {/* Reward Tree for 30 Days */}
@@ -306,7 +306,7 @@ export default function ChallengeSection() {
                 </CardTitle>
                 <div className="text-3xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
                   <IndianRupee className="h-6 w-6" />
-                  2000
+                  900
                 </div>
 
                 {/* Reward Tree for 45 Days */}
