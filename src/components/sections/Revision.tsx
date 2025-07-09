@@ -8,9 +8,10 @@ import {
   Video,
   Shield,
   IndianRupee,
+  Users,
 } from "lucide-react";
 
-export default function Revision() {
+export default function RevisionSection() {
   return (
     <section
       id="revision"
@@ -26,10 +27,16 @@ export default function Revision() {
               ACTIVE RECALL REVISION
             </h2>
           </div>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
             Master the most effective learning technique with our guided active
             recall sessions
           </p>
+          <div className="flex justify-center">
+            <Badge className="bg-gradient-to-r from-red-500 to-orange-500 text-white text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2">
+              <Users className="h-5 w-5" />
+              For Limited Students Only!
+            </Badge>
+          </div>
         </div>
 
         {/* What is Active Recall */}

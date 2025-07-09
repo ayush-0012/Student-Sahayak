@@ -10,6 +10,7 @@ import RefundPolicy from "./sections/RefundPolicy";
 import WhatsappContact from "./sections/WhatsappContact";
 import Challenge from "./sections/Challenge";
 import Revision from "./sections/Revision";
+import VideoSection from "./sections/Video";
 
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -164,6 +165,8 @@ export default function StudentSahayakLanding() {
       <RefundPolicy />
       {/* Contact Section */}
       <Contact />
+      {/* Video Section  */}
+      <VideoSection />
       {/* Footer */}
       <Footer />
     </div>
