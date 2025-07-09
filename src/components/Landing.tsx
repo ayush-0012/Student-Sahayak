@@ -8,6 +8,8 @@ import Hero from "./sections/Hero";
 import Mission from "./sections/Mission";
 import RefundPolicy from "./sections/RefundPolicy";
 import WhatsappContact from "./sections/WhatsappContact";
+import Challenge from "./sections/Challenge";
+import Revision from "./sections/Revision";
 
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -38,6 +40,18 @@ export default function StudentSahayakLanding() {
                 className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
               >
                 Pricing
+              </a>
+              <a
+                href="#challenge"
+                className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
+              >
+                Challenge
+              </a>
+              <a
+                href="#revision"
+                className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
+              >
+                Revision
               </a>
               <a
                 href="#contact"
@@ -128,6 +142,10 @@ export default function StudentSahayakLanding() {
       <WhatsappContact />
       {/* Pricing Section */}
       <Pricing />
+      {/* Challenge Section */}
+      <Challenge />
+      {/* Revison Section  */}
+      <Revision />
       {/* Our Purpose Section */}
       <Mission />
       {/* Refund Policy section */}
