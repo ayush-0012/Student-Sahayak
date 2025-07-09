@@ -101,6 +101,18 @@ export default function StudentSahayakLanding() {
                     Pricing
                   </a>
                   <a
+                    href="#challenge"
+                    className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
+                  >
+                    Challenge
+                  </a>
+                  <a
+                    href="#revision"
+                    className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
+                  >
+                    Revision
+                  </a>
+                  <a
                     href="#contact"
                     onClick={() => setIsMenuOpen(false)}
                     className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg transition-all duration-300 font-medium transform hover:translate-x-2"
