@@ -63,7 +63,8 @@ export default function ChallengeSection() {
                     <h4 className="font-bold text-lg">PENALTY</h4>
                   </div>
                   <p className="text-sm">
-                    ₹50 per day will be deducted if you miss your daily targets
+                    ₹50 per day will be deducted from your reward if you miss
+                    your daily targets
                   </p>
                 </div>
               </div>
@@ -150,7 +151,7 @@ export default function ChallengeSection() {
               {
                 title: "Forest App",
                 description:
-                  "Setup Forest app and send screenshots in WhatsApp group daily",
+                  "Setup Forest app and send screenshots on WhatsApp to mentor daily",
                 icon: Smartphone,
                 color: "from-green-400 to-green-600",
               },
@@ -164,7 +165,7 @@ export default function ChallengeSection() {
               {
                 title: "App Usage",
                 description:
-                  "Track your app usage through Stay Focused app (setup required)",
+                  "We will track your usage through Stay Focused App and you have to send screenshots of analytics",
                 icon: Eye,
                 color: "from-purple-400 to-purple-600",
               },
