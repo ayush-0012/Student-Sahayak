@@ -59,8 +59,7 @@ export default function VideoSection() {
                 Ready to Start Your Success Journey?
               </h3>
               <p className="text-lg mb-6">
-                Join thousands of students who have transformed their study
-                habits and achieved their dreams
+                Join us to transform your study habits and achieved your dreams
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <a
