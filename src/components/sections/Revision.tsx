@@ -231,7 +231,7 @@ export default function RevisionSection() {
                   </div>
                   <p className="text-gray-300 mt-2">{plan.sessions}</p>
                   {plan.isWeekly && (
-                    <p className="text-sm text-gray-400 mt-1">Sundays</p>
+                    <p className="text-sm text-gray-400 mt-1">Sundays Only</p>
                   )}
                 </CardHeader>
                 <CardContent className="pt-4 px-4">
