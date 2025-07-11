@@ -127,26 +127,26 @@ export default function RevisionSection() {
           <h3 className="text-3xl font-bold text-white text-center mb-12">
             Revision Program Pricing
           </h3>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             {[
               {
-                days: "15",
-                price: "500",
+                days: "10",
+                price: "900",
                 sessions: "45 mins/day",
                 popular: false,
               },
               {
-                days: "25",
-                price: "750",
+                days: "30",
+                price: "2500",
                 sessions: "45 mins/day",
                 popular: true,
               },
-              {
-                days: "60",
-                price: "1500",
-                sessions: "45 mins/day",
-                popular: false,
-              },
+              // {
+              //   days: "30",
+              //   price: "2500",
+              //   sessions: "45 mins/day",
+              //   popular: false,
+              // },
             ].map((plan, index) => (
               <Card
                 key={index}
@@ -191,7 +191,7 @@ export default function RevisionSection() {
           </div>
 
           {/* Revision Refund Policy */}
-          <div className="text-center bg-gradient-to-r from-purple-500 to-blue-500 text-white p-8 rounded-2xl">
+          {/* <div className="text-center bg-gradient-to-r from-purple-500 to-blue-500 text-white p-8 rounded-2xl">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Shield className="h-8 w-8" />
               <h3 className="text-2xl font-bold">90% Refund Policy</h3>
@@ -200,7 +200,7 @@ export default function RevisionSection() {
               After 2 days, if you don't like this revision program, we'll
               refund you 90% of your money.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
