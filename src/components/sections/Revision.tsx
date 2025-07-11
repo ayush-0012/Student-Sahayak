@@ -122,12 +122,56 @@ export default function RevisionSection() {
           </div>
         </div>
 
+        {/* Demo Revision */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <div className="text-center mb-8 flex justify-center">
+            <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2">
+              {/* <Brain className="h-5 w-5" /> */}
+              Try Our Demo Revision!
+            </Badge>
+          </div>
+
+          <Card className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black border-4 border-yellow-300">
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl font-bold mb-4 flex items-center justify-center gap-3">
+                <BookMarked className="h-8 w-8" />
+                Demo Revision Session
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              <div className="flex justify-center">
+                <div className="bg-white/20 rounded-lg p-6 max-w-sm">
+                  <h4 className="font-bold text-xl mb-3 flex items-center justify-center gap-2">
+                    <Video className="h-6 w-6" />
+                    Demo Session
+                  </h4>
+                  <div className="text-4xl font-bold mb-2 flex items-center justify-center gap-1">
+                    <IndianRupee className="h-8 w-8" />
+                    80
+                  </div>
+                  <p className="text-sm font-medium mb-3">
+                    45 minutes demo session
+                  </p>
+                  <p className="text-xs">Experience our active recall method</p>
+                </div>
+              </div>
+              <div className="mt-6 bg-white/20 rounded-lg p-4">
+                <p className="font-semibold text-lg mb-2">Try Before You Buy</p>
+                <p className="text-sm">
+                  Get a taste of our effective revision methodology with a
+                  single demo session
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
         {/* Revision Pricing */}
         <div className="max-w-5xl mx-auto">
           <h3 className="text-3xl font-bold text-white text-center mb-12">
             Revision Program Pricing
           </h3>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             {[
               {
                 days: "10",
@@ -141,12 +185,14 @@ export default function RevisionSection() {
                 sessions: "45 mins/day",
                 popular: true,
               },
-              // {
-              //   days: "30",
-              //   price: "2500",
-              //   sessions: "45 mins/day",
-              //   popular: false,
-              // },
+              {
+                days: "Weekly",
+                price: "800",
+                sessions: "Weekend 2.5hrs",
+                popular: false,
+                isWeekly: true,
+                subtitle: "Monthly Plan",
+              },
             ].map((plan, index) => (
               <Card
                 key={index}
@@ -161,29 +207,50 @@ export default function RevisionSection() {
                     MOST POPULAR
                   </div>
                 )}
+                {plan.isWeekly && (
+                  <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-green-400 to-blue-400 text-black text-center py-2 font-bold">
+                    WEEKEND SPECIAL
+                  </div>
+                )}
                 <CardHeader
                   className={`text-center text-white ${
-                    plan.popular ? "pt-12" : "pt-8"
+                    plan.popular || plan.isWeekly ? "pt-12" : "pt-8"
                   }`}
                 >
                   <CardTitle className="text-3xl mb-2">
-                    {plan.days} Days
+                    {plan.days} {plan.isWeekly ? "Revision" : "Days"}
                   </CardTitle>
+                  {plan.subtitle && (
+                    <p className="text-lg text-gray-300 mb-2">
+                      {plan.subtitle}
+                    </p>
+                  )}
                   <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1">
                     <IndianRupee className="h-8 w-8" />
                     {plan.price}
                   </div>
                   <p className="text-gray-300 mt-2">{plan.sessions}</p>
+                  {plan.isWeekly && (
+                    <p className="text-sm text-gray-400 mt-1">
+                      Saturdays & Sundays
+                    </p>
+                  )}
                 </CardHeader>
-                <CardContent className="pt-4">
+                <CardContent className="pt-4 px-4">
                   <Button
-                    className={`w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 ${
+                    className={`w-full py-3 px-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 transform group-hover:scale-105 ${
                       plan.popular
                         ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
+                        : plan.isWeekly
+                        ? "bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600"
                         : "bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600"
                     }`}
                   >
-                    Start Revision Program
+                    <span className="truncate">
+                      {plan.isWeekly
+                        ? "Join Weekly Program"
+                        : "Start Revision Program"}
+                    </span>
                   </Button>
                 </CardContent>
               </Card>
@@ -191,7 +258,7 @@ export default function RevisionSection() {
           </div>
 
           {/* Revision Refund Policy */}
-          {/* <div className="text-center bg-gradient-to-r from-purple-500 to-blue-500 text-white p-8 rounded-2xl">
+          <div className="text-center bg-gradient-to-r from-purple-500 to-blue-500 text-white p-8 rounded-2xl">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Shield className="h-8 w-8" />
               <h3 className="text-2xl font-bold">90% Refund Policy</h3>
@@ -200,7 +267,7 @@ export default function RevisionSection() {
               After 2 days, if you don't like this revision program, we'll
               refund you 90% of your money.
             </p>
-          </div> */}
+          </div>
         </div>
       </div>
     </section>
