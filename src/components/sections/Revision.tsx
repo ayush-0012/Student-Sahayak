@@ -187,7 +187,7 @@ export default function RevisionSection() {
               },
               {
                 days: "Weekly",
-                price: "800",
+                price: "1200",
                 sessions: "Weekend 2.5hrs",
                 popular: false,
                 isWeekly: true,
