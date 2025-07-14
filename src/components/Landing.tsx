@@ -11,6 +11,7 @@ import WhatsappContact from "./sections/WhatsappContact";
 import Challenge from "./sections/Challenge";
 import Revision from "./sections/Revision";
 import VideoSection from "./sections/Video";
+import UpscRevision from "./sections/UpscRevision";
 
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -159,6 +160,8 @@ export default function StudentSahayakLanding() {
       <Challenge />
       {/* Revison Section  */}
       <Revision />
+      {/* UPSC Revision Section  */}
+      <UpscRevision />
       {/* Our Purpose Section */}
       <Mission />
       {/* Refund Policy section */}

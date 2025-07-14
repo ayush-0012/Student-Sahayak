@@ -89,6 +89,13 @@ function Hero() {
                   </span>
                 </h1>
 
+                {/* Prominent Tagline - right after main title */}
+                <div className="mt-6 mb-8">
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-yellow-300 tracking-wide">
+                    WE LIVE FOR STUDENTS, WE DO IT FOR STUDENTS
+                  </p>
+                </div>
+
                 {/* Subtitle with Animation */}
                 <div className="mt-8 mb-12">
                   <p
