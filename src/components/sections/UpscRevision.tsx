@@ -39,7 +39,7 @@ export default function PlansOverviewSection() {
           </div>
 
           {/* Daily Pricing Cards */}
-          <div className="grid grid-cols-4 md:grid-cols-2 gap-8 mb-12">
+          <div className="grid  md:grid-cols-2    gap-8 mb-12">
             {/* 3 Months */}
             <Card className="relative overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-white/20 bg-white/10 backdrop-blur-md">
               <CardHeader className="text-center text-white pt-8">
@@ -175,7 +175,7 @@ export default function PlansOverviewSection() {
           </div>
 
           {/* Weekend Pricing Cards */}
-          <div className="grid grid-cols-4 md:grid-cols-2  gap-6 mb-12">
+          <div className="grid  md:grid-cols-2  gap-6 mb-12">
             {/* 3 Months Weekend */}
             <Card className="relative overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-green-400 bg-white/10 backdrop-blur-md">
               <CardHeader className="text-center text-white pt-8">
