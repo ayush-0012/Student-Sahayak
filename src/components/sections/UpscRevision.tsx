@@ -68,7 +68,7 @@ export default function UpscRevision() {
                 </div>
                 <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
                   <IndianRupee className="h-8 w-8" />
-                  3,300
+                  7,000
                 </div>
                 <p className="text-gray-300">Perfect for focused preparation</p>
               </CardHeader>
@@ -91,7 +91,7 @@ export default function UpscRevision() {
                 </div>
                 <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
                   <IndianRupee className="h-8 w-8" />
-                  7,000
+                  13,500
                 </div>
                 <p className="text-gray-300">Comprehensive preparation</p>
               </CardHeader>
@@ -113,7 +113,7 @@ export default function UpscRevision() {
                 </div>
                 <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
                   <IndianRupee className="h-8 w-8" />
-                  13,000
+                  24,000
                 </div>
                 <p className="text-gray-300">Complete UPSC journey</p>
               </CardHeader>
