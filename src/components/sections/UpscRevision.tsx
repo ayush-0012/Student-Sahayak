@@ -31,9 +31,11 @@ export default function PlansOverviewSection() {
 
             {/* Limited Slots Badge */}
             <div className="flex justify-center mb-8">
-              <Badge className="bg-gradient-to-r from-red-500 to-orange-500 text-white text-xl px-8 py-4 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-3">
-                <Users className="h-6 w-6" />
-                SLOTS AVAILABLE FOR ONLY FIRST 20 STUDENTS!
+              <Badge className="bg-gradient-to-r from-red-500 to-orange-500 text-white text-base sm:text-lg md:text-xl px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2 sm:gap-3 max-w-full">
+                <Users className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 flex-shrink-0" />
+                <span className="text-center leading-tight">
+                  SLOTS AVAILABLE FOR ONLY FIRST 20 STUDENTS!
+                </span>
               </Badge>
             </div>
           </div>
