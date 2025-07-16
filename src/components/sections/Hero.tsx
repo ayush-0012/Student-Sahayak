@@ -95,7 +95,7 @@ export default function HeroSection() {
               <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8 mb-8 max-w-3xl mx-auto">
                 <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
                   <img
-                    src="/public/images/savitribai.jpeg"
+                    src="/images/savitribai.jpeg"
                     alt="Savitribai Phule"
                     className="w-full h-full object-cover rounded-full border-4 border-yellow-400 shadow-2xl transform hover:scale-105 transition-transform duration-300"
                   />
