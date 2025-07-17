@@ -103,8 +103,8 @@ export default function HeroSection() {
                   <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-20 blur-xl"></div>
                 </div>
                 <p className="text-lg md:text-xl font-medium leading-relaxed text-white/90 text-center md:text-left">
-                  Savitri Bai Phule was India's first female teacher, paving the
-                  way for girl's education against all odds.
+                  Honoring Savitri Bai Phule's courage who fought against all
+                  odds to promote education.
                 </p>
               </div>
 
