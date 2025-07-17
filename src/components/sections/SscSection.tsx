@@ -17,9 +17,9 @@ export default function SSCRevisionSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="p-3 bg-gradient-to-r from-red-500 to-orange-500 rounded-full">
+            {/* <div className="p-3 bg-gradient-to-r from-red-500 to-orange-500 rounded-full">
               <BookOpen className="h-8 w-8 text-white" />
-            </div>
+            </div> */}
             <h2 className="text-4xl md:text-5xl font-bold text-white">
               DAILY & WEEKLY REVISION PLANS
             </h2>
@@ -37,40 +37,40 @@ export default function SSCRevisionSection() {
           <h3 className="text-3xl font-bold text-white text-center mb-12">
             How We Will Revise
           </h3>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className=" flex justify-center gap-8">
             {[
+              // {
+              //   step: "Step 1",
+              //   title: "Daily Target Setting",
+              //   description:
+              //     "We help you set achievable daily revision targets based on your syllabus.",
+              //   icon: Target,
+              //   color: "from-blue-400 to-blue-600",
+              // },
               {
-                step: "Step 1",
-                title: "Daily Target Setting",
-                description:
-                  "We help you set achievable daily revision targets based on your syllabus.",
-                icon: Target,
-                color: "from-blue-400 to-blue-600",
-              },
-              {
-                step: "Step 2",
+                step: "Process",
                 title: "Oral Test & GK",
                 description:
                   "Mentor will take your oral test of your static and GK daily.",
                 icon: Mic, // Using Mic icon for oral test
                 color: "from-orange-400 to-red-600", // New color for this step
               },
-              {
-                step: "Step 3",
-                title: "Guided Practice",
-                description:
-                  "Engage in structured practice sessions with our expert guidance.",
-                icon: CheckCircle,
-                color: "from-green-400 to-green-600",
-              },
-              {
-                step: "Step 4",
-                title: "Doubt Clearing",
-                description:
-                  "Get your doubts cleared instantly with dedicated mentor support.",
-                icon: Users,
-                color: "from-purple-400 to-purple-600",
-              },
+              // {
+              //   step: "Step 3",
+              //   title: "Guided Practice",
+              //   description:
+              //     "Engage in structured practice sessions with our expert guidance.",
+              //   icon: CheckCircle,
+              //   color: "from-green-400 to-green-600",
+              // },
+              // {
+              //   step: "Step 4",
+              //   title: "Doubt Clearing",
+              //   description:
+              //     "Get your doubts cleared instantly with dedicated mentor support.",
+              //   icon: Users,
+              //   color: "from-purple-400 to-purple-600",
+              // },
             ].map((process, index) => (
               <Card
                 key={index}
