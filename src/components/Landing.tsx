@@ -12,6 +12,7 @@ import Challenge from "./sections/Challenge";
 import Revision from "./sections/Revision";
 import VideoSection from "./sections/Video";
 import UpscRevision from "./sections/UpscRevision";
+import SSCRevisionSection from "./sections/SscSection";
 
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -162,6 +163,8 @@ export default function StudentSahayakLanding() {
       <Revision />
       {/* UPSC Revision Section  */}
       <UpscRevision />
+      {/* SSC Section  */}
+      <SSCRevisionSection />
       {/* Our Purpose Section */}
       <Mission />
       {/* Refund Policy section */}
