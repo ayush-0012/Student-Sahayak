@@ -157,6 +157,8 @@ export default function StudentSahayakLanding() {
       <WhatsappContact />
       {/* Pricing Section */}
       <Pricing />
+      {/* Refund Policy section */}
+      <RefundPolicy />
       {/* Challenge Section */}
       <Challenge />
       {/* Revison Section  */}
@@ -167,8 +169,7 @@ export default function StudentSahayakLanding() {
       <SSCRevisionSection />
       {/* Our Purpose Section */}
       <Mission />
-      {/* Refund Policy section */}
-      <RefundPolicy />
+
       {/* Contact Section */}
       <Contact />
       {/* Video Section  */}
