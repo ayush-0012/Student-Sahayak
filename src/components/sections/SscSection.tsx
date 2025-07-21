@@ -1,15 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  IndianRupee,
-  Calendar,
-  BookOpen,
-  Users,
-  Target,
-  CheckCircle,
-  Mic,
-} from "lucide-react"; // Added Mic icon
+import { IndianRupee, Calendar, Mic } from "lucide-react"; // Added Mic icon
 
 export default function SSCRevisionSection() {
   return (

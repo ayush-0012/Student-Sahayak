@@ -16,9 +16,12 @@ import {
   Clock,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
@@ -134,6 +137,35 @@ export default function HeroSection() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Enhanced CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-10">
+            <Button
+              size="lg"
+              className="relative bg-white text-red-600 hover:bg-gray-100 text-xl px-10 py-5 rounded-full font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 group overflow-hidden"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
+              <span className="relative flex items-center gap-3">
+                <Zap className="h-6 w-6" />
+                Start Your Journey Today
+                <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Button>
+
+            {/* New Register Button */}
+            <Button
+              size="lg"
+              // onClick={onRegisterClick} // Use the prop to open the modal
+              className="relative border-3 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 text-xl px-10 py-5 rounded-full font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 bg-transparent group overflow-hidden"
+              onClick={() => navigate("/register")}
+            >
+              <span className="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative flex items-center gap-3">
+                <Users className="h-6 w-6" />
+                Register Now
+              </span>
+            </Button>
           </div>
 
           {/* Enhanced Key Points Grid */}
