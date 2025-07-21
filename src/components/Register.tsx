@@ -71,7 +71,7 @@ export default function RegisterPage() {
             </div>
             <div>
               <Label htmlFor="photo" className="text-white block mb-2">
-                Upload Photo
+                Upload Your Photo
               </Label>
               <div className="relative">
                 <Input
@@ -86,7 +86,7 @@ export default function RegisterPage() {
                   className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-700 rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 cursor-pointer transition-all duration-200 transform hover:scale-[1.01]" // Changed gradient
                 >
                   <Upload className="h-4 w-4" /> {/* Added icon */}
-                  Choose a photo from your device
+                  Choose photo from your device
                 </Label>
               </div>
             </div>
