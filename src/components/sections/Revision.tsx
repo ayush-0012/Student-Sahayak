@@ -6,7 +6,7 @@ import {
   BookMarked,
   MessageCircle,
   Video,
-  Shield,
+  Clock,
   IndianRupee,
   Users,
 } from "lucide-react";
@@ -63,6 +63,65 @@ export default function RevisionSection() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* 3 Pillars Section */}
+        <div className="max-w-6xl mx-auto mb-16">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Our Revision Program is Based on These 3 Pillars
+            </h3>
+            <p className="text-xl text-gray-300">
+              Scientifically proven learning techniques for maximum retention
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Feynman Technique",
+                description:
+                  "Explain concepts in simple terms as if teaching someone else. This method reveals gaps in understanding and strengthens knowledge retention.",
+                icon: Users,
+                color: "from-yellow-400 to-orange-500",
+              },
+              {
+                title: "Active Recall",
+                description:
+                  "Actively retrieve information from memory instead of passive reading. This strengthens neural pathways and improves long-term retention.",
+                icon: Brain,
+                color: "from-purple-400 to-blue-500",
+              },
+              {
+                title: "Spaced Repetition",
+                description:
+                  "Review material at increasing intervals over time. This technique leverages the spacing effect to combat forgetting and enhance memory.",
+                icon: Clock,
+                color: "from-green-400 to-teal-500",
+              },
+            ].map((pillar, index) => (
+              <Card
+                key={index}
+                className="bg-white/10 backdrop-blur-md border border-white/20 text-white group hover:bg-white/20 transition-all duration-300"
+              >
+                <CardHeader className="text-center">
+                  <div
+                    className={`inline-flex items-center justify-center p-4 bg-gradient-to-r ${pillar.color} rounded-full mb-4 group-hover:scale-110 transition-transform duration-300`}
+                  >
+                    <pillar.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl font-bold">
+                    {pillar.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <p className="text-gray-300 leading-relaxed">
+                    {pillar.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         {/* Process */}
