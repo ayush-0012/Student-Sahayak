@@ -25,7 +25,7 @@ export default function VideoSection() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://youtube.com/watch?v=AuEMN3gE-Fo&feature=shared"
+                src="https://www.youtube.com/embed/AuEMN3gE-Fo"
                 title="CRACK ANY EXAM WITH US| DAILY TARGET TRACKING| BUILD CONSISTENCY WITH US."
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -36,8 +36,7 @@ export default function VideoSection() {
 
             <div className="mt-6 text-center">
               <h3 className="text-2xl font-bold text-white mb-3">
-                CRACK ANY EXAM WITH US | DAILY TARGET TRACKING | BUILD
-                CONSISTENCY WITH US
+                LAST THING A STUDENT NEED TO CRACK ANY EXAM
               </h3>
               {/* <div className="flex items-center justify-center gap-6 text-white/80">
                 <div className="flex items-center gap-2">
