@@ -17,7 +17,10 @@ import SSCRevisionSection from "./sections/SscSection";
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  console.log("prod backend url", import.meta.env.VITE_PROD_BACKEND_URL);
+  console.log(
+    "prod backend url in landing",
+    import.meta.env.VITE_PROD_BACKEND_URL
+  );
   console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
 
   return (

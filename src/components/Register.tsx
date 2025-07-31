@@ -160,7 +160,10 @@ export default function RegisterPage() {
       //   registrationData.append("image", formData.image);
       // }
 
-      console.log("prod backend url", import.meta.env.VITE_PROD_BACKEND_URL);
+      console.log(
+        "prod backend url in register",
+        import.meta.env.VITE_PROD_BACKEND_URL
+      );
       console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
 
       console.log("registration data", registrationData);
