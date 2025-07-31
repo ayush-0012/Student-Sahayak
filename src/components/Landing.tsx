@@ -13,6 +13,7 @@ import Revision from "./sections/Revision";
 import VideoSection from "./sections/Video";
 import UpscRevision from "./sections/UpscRevision";
 import SSCRevisionSection from "./sections/SscSection";
+import { axiosInstance } from "@/utils/axiosInstance";
 
 export default function StudentSahayakLanding() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,6 +23,20 @@ export default function StudentSahayakLanding() {
     import.meta.env.VITE_PROD_BACKEND_URL
   );
   console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
+
+  function keepServerAwake() {
+    axiosInstance
+      .get("/ping")
+      .then((res) => console.log("Ping sent!", res.status))
+      .catch((err) => console.error("Ping failed", err))
+      .finally(() => {
+        // Call again after 30 seconds
+        setTimeout(keepServerAwake, 30000);
+      });
+  }
+
+  // Start pinging
+  keepServerAwake();
 
   return (
     <div className="min-h-screen">
