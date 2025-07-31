@@ -160,6 +160,9 @@ export default function RegisterPage() {
       //   registrationData.append("image", formData.image);
       // }
 
+      console.log("prod backend url", import.meta.env.VITE_PROD_BACKEND_URL);
+      console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
+
       console.log("registration data", registrationData);
       const response = await axiosInstance.post(
         "/api/user/register",
