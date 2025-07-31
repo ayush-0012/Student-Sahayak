@@ -1,18 +1,18 @@
 import type React from "react";
-import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Link, useNavigate } from "react-router";
-import { Upload, X, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { axiosInstance } from "@/utils/axiosInstance";
 import { Bounce, toast } from "react-toastify";
+import { useState } from "react";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  // const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  // const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Form state
@@ -33,35 +33,35 @@ export default function RegisterPage() {
     }));
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    setSelectedFile(file || null);
-    setFormData((prev) => ({
-      ...prev,
-      image: file || null,
-    }));
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   setSelectedFile(file || null);
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     image: file || null,
+  //   }));
 
-    // Create preview URL
-    const url = file ? URL.createObjectURL(file) : null;
-    setPreviewUrl(url);
-  };
+  //   // Create preview URL
+  //   const url = file ? URL.createObjectURL(file) : null;
+  //   setPreviewUrl(url);
+  // };
 
-  const removeFile = () => {
-    setSelectedFile(null);
-    setFormData((prev) => ({
-      ...prev,
-      image: null,
-    }));
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-      setPreviewUrl(null);
-    }
-    // Reset the file input
-    const fileInput = document.getElementById("photo") as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = "";
-    }
-  };
+  // const removeFile = () => {
+  //   setSelectedFile(null);
+  //   setFormData((prev) => ({
+  //     ...prev,
+  //     image: null,
+  //   }));
+  //   if (previewUrl) {
+  //     URL.revokeObjectURL(previewUrl);
+  //     setPreviewUrl(null);
+  //   }
+  //   // Reset the file input
+  //   const fileInput = document.getElementById("photo") as HTMLInputElement;
+  //   if (fileInput) {
+  //     fileInput.value = "";
+  //   }
+  // };
 
   // Validation functions
   const validateForm = () => {
@@ -196,12 +196,10 @@ export default function RegisterPage() {
       setTimeout(() => {
         navigate("/login");
       }, 2000);
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
 
-      const errorMessage =
-        error.response?.data?.message ||
-        "Registration failed. Please try again.";
+      const errorMessage = "Registration failed. Please try again.";
       toast.error(errorMessage, {
         position: "top-center",
         autoClose: 5000,
@@ -224,13 +222,13 @@ export default function RegisterPage() {
   }
 
   // Cleanup preview URL on component unmount
-  useEffect(() => {
-    return () => {
-      if (previewUrl) {
-        URL.revokeObjectURL(previewUrl);
-      }
-    };
-  }, [previewUrl]);
+  // useEffect(() => {
+  //   return () => {
+  //     if (previewUrl) {
+  //       URL.revokeObjectURL(previewUrl);
+  //     }
+  //   };
+  // }, [previewUrl]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 py-12 px-4">
