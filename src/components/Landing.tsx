@@ -31,7 +31,7 @@ export default function StudentSahayakLanding() {
       .catch((err) => console.error("Ping failed", err))
       .finally(() => {
         // Call again after 30 seconds
-        setTimeout(keepServerAwake, 30000);
+        setTimeout(keepServerAwake, 48000);
       });
   }
 
