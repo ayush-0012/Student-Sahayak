@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import { useState } from "react";
 import axios from "axios";
+import { axiosInstance } from "@/utils/axiosInstance";
 
 declare global {
   interface Window {
@@ -24,7 +25,7 @@ function Pricing() {
     try {
       setLoading(true);
 
-      const response = await axios.post("http://localhost:9000/create-order", {
+      const response = await axiosInstance.post("/create-order", {
         amount,
         currency: "INR",
         receipt: `receipt_${Date.now()}`,
@@ -41,8 +42,8 @@ function Pricing() {
         order_id: data.id,
         name: "Your Company",
         description: "Test Transaction",
-        handler: async function (response) {
-          await axios.post("http://localhost:9000/verify-payment", {
+        handler: async function (response: any) {
+          await axiosInstance.post("/verify-payment", {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_signature: response.razorpay_signature,
