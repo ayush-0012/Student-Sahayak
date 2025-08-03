@@ -279,7 +279,7 @@ export default function HeroSection() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-white/70">
+          {/* <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-white/70">
             <div className="flex items-center gap-2">
               <Users className="h-5 w-5" />
               <span className="text-sm font-medium">500+ Students</span>
@@ -296,7 +296,7 @@ export default function HeroSection() {
               <Clock className="h-5 w-5" />
               <span className="text-sm font-medium">24/7 Support</span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
