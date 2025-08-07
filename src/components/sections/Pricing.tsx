@@ -9,9 +9,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { DollarSign, IndianRupee } from "lucide-react";
+import { IndianRupee } from "lucide-react";
 import { useState } from "react";
 import { axiosInstance } from "@/utils/axiosInstance";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 function Pricing() {
   const [loadingAmount, setLoadingAmount] = useState<number | null>(null);
@@ -56,6 +57,17 @@ function Pricing() {
       rzp.open();
     } catch (error) {
       console.log(error);
+      toast.error("Please register or login first", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     } finally {
       setLoadingAmount(null);
     }
@@ -74,227 +86,234 @@ function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="bg-gray-50 py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <DollarSign className="h-8 w-8 text-gray-900" />
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-              Fee Structure
-            </h2>
-          </div>
-          <p className="text-xl text-gray-600">
-            Choose the plan that works best for your academic journey
-          </p>
-        </div>
-
-        {/* Desktop View */}
-        <div className="hidden md:block">
-          {/* Special Offer */}
-          <div className="mb-16">
-            <div className="flex justify-center text-center mb-12">
-              <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2">
-                Limited Time: First 100 Students Only!
-              </Badge>
+    <>
+      <section id="pricing" className="bg-gray-50 py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              {/* <IndianRupee className="h-8 w-8 text-gray-900" /> */}
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+                Fee Structure
+              </h2>
             </div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {specialPlans.map((plan, index) => (
-                <Card
-                  key={index}
-                  className={`relative overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
-                    plan.popular
-                      ? "border-4 border-yellow-400 scale-105"
-                      : "border border-gray-200"
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-2 font-bold">
-                      MOST POPULAR
-                    </div>
-                  )}
-                  <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 text-sm font-bold rounded-full">
-                    SPECIAL
-                  </div>
-                  <CardHeader
-                    className={`text-center ${plan.popular ? "pt-12" : "pt-8"}`}
-                  >
-                    <CardTitle className="text-3xl text-gray-900 mb-2">
-                      {plan.days} Days
-                    </CardTitle>
-                    <CardDescription className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
-                      <IndianRupee className="h-8 w-8" />
-                      {plan.price}
-                    </CardDescription>
-                    <p className="text-gray-500 mt-2">
-                      Perfect for getting started
-                    </p>
-                  </CardHeader>
-                  <CardContent className="pt-4">
-                    <Button
-                      disabled={loadingAmount === plan.price}
-                      className={`w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 ${
-                        plan.popular
-                          ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
-                          : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
-                      }`}
-                      onClick={() => handleChoosePlan(plan.price)}
-                    >
-                      {loadingAmount === plan.price
-                        ? "Processing..."
-                        : "Choose This Plan"}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <p className="text-xl text-gray-600">
+              Choose the plan that works best for your academic journey
+            </p>
           </div>
 
-          {/* Regular Pricing */}
-          <div className="mb-12">
-            <div className="flex justify-center text-center mb-12">
-              <Badge className="bg-gray-800 text-white text-lg px-6 py-3 rounded-full font-bold flex items-center gap-2">
-                Regular Pricing
-              </Badge>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {regularPlans.map((plan, index) => (
-                <Card
-                  key={index}
-                  className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 bg-white border border-gray-200"
-                >
-                  <CardHeader className="text-center">
-                    <CardTitle className="text-2xl text-gray-900 mb-2">
-                      {plan.days} Days
-                    </CardTitle>
-                    <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
-                      <IndianRupee className="h-6 w-6" />
-                      {plan.price}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button
-                      disabled={loadingAmount === plan.price}
-                      className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300 transform group-hover:scale-105"
-                      onClick={() => handleChoosePlan(plan.price)}
-                    >
-                      {loadingAmount === plan.price
-                        ? "Processing..."
-                        : "Choose Plan"}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile View */}
-        <div className="md:hidden">
-          <Tabs defaultValue="special" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="special" className="text-sm">
-                Special Offers
-              </TabsTrigger>
-              <TabsTrigger value="regular" className="text-sm">
-                Regular Plans
-              </TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="special" className="space-y-6">
-              <div className="text-center mb-6">
-                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-sm px-4 py-2 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2 max-w-fit mx-auto">
+          {/* Desktop View */}
+          <div className="hidden md:block">
+            {/* Special Offer */}
+            <div className="mb-16">
+              <div className="flex justify-center text-center mb-12">
+                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2">
                   Limited Time: First 100 Students Only!
                 </Badge>
               </div>
 
-              {specialPlans.map((plan, index) => (
-                <Card
-                  key={index}
-                  className={`relative overflow-hidden ${
-                    plan.popular
-                      ? "border-2 border-yellow-400"
-                      : "border border-gray-200"
-                  }`}
-                >
-                  {plan.popular && (
-                    <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-1 font-bold text-sm">
-                      MOST POPULAR
-                    </div>
-                  )}
-                  <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded-full">
-                    SPECIAL
-                  </div>
-                  <CardHeader
-                    className={`text-center ${plan.popular ? "pt-8" : "pt-4"}`}
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {specialPlans.map((plan, index) => (
+                  <Card
+                    key={index}
+                    className={`relative overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
+                      plan.popular
+                        ? "border-4 border-yellow-400 scale-105"
+                        : "border border-gray-200"
+                    }`}
                   >
-                    <CardTitle className="text-2xl text-gray-900 mb-2">
-                      {plan.days} Days
-                    </CardTitle>
-                    <CardDescription className="text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
-                      <IndianRupee className="h-6 w-6" />
-                      {plan.price}
-                    </CardDescription>
-                    <p className="text-gray-500 mt-2 text-sm">
-                      Perfect for getting started
-                    </p>
-                  </CardHeader>
-                  <CardContent className="pt-4">
-                    <Button
-                      disabled={loadingAmount === plan.price}
-                      className={`w-full py-3 rounded-full font-bold transition-all duration-300 ${
-                        plan.popular
-                          ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
-                          : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
+                    {plan.popular && (
+                      <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-2 font-bold">
+                        MOST POPULAR
+                      </div>
+                    )}
+                    <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 text-sm font-bold rounded-full">
+                      SPECIAL
+                    </div>
+                    <CardHeader
+                      className={`text-center ${
+                        plan.popular ? "pt-12" : "pt-8"
                       }`}
-                      onClick={() => handleChoosePlan(plan.price)}
                     >
-                      {loadingAmount === plan.price
-                        ? "Processing..."
-                        : "Choose This Plan"}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
+                      <CardTitle className="text-3xl text-gray-900 mb-2">
+                        {plan.days} Days
+                      </CardTitle>
+                      <CardDescription className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
+                        <IndianRupee className="h-8 w-8" />
+                        {plan.price}
+                      </CardDescription>
+                      <p className="text-gray-500 mt-2">
+                        Perfect for getting started
+                      </p>
+                    </CardHeader>
+                    <CardContent className="pt-4">
+                      <Button
+                        disabled={loadingAmount === plan.price}
+                        className={`w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 ${
+                          plan.popular
+                            ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
+                            : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
+                        }`}
+                        onClick={() => handleChoosePlan(plan.price)}
+                      >
+                        {loadingAmount === plan.price
+                          ? "Processing..."
+                          : "Choose This Plan"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
 
-            <TabsContent value="regular" className="space-y-6">
-              <div className="text-center mb-6">
-                <Badge className="bg-gray-800 text-white text-sm px-4 py-2 rounded-full font-bold flex items-center gap-2 max-w-fit mx-auto">
+            {/* Regular Pricing */}
+            <div className="mb-12">
+              <div className="flex justify-center text-center mb-12">
+                <Badge className="bg-gray-800 text-white text-lg px-6 py-3 rounded-full font-bold flex items-center gap-2">
                   Regular Pricing
                 </Badge>
               </div>
 
-              {regularPlans.map((plan, index) => (
-                <Card key={index} className="border border-gray-200">
-                  <CardHeader className="text-center">
-                    <CardTitle className="text-2xl text-gray-900 mb-2">
-                      {plan.days} Days
-                    </CardTitle>
-                    <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
-                      <IndianRupee className="h-6 w-6" />
-                      {plan.price}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <Button
-                      disabled={loadingAmount === plan.price}
-                      className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300"
-                      onClick={() => handleChoosePlan(plan.price)}
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                {regularPlans.map((plan, index) => (
+                  <Card
+                    key={index}
+                    className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 bg-white border border-gray-200"
+                  >
+                    <CardHeader className="text-center">
+                      <CardTitle className="text-2xl text-gray-900 mb-2">
+                        {plan.days} Days
+                      </CardTitle>
+                      <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
+                        <IndianRupee className="h-6 w-6" />
+                        {plan.price}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button
+                        disabled={loadingAmount === plan.price}
+                        className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300 transform group-hover:scale-105"
+                        onClick={() => handleChoosePlan(plan.price)}
+                      >
+                        {loadingAmount === plan.price
+                          ? "Processing..."
+                          : "Choose Plan"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile View */}
+          <div className="md:hidden">
+            <Tabs defaultValue="special" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-8">
+                <TabsTrigger value="special" className="text-sm">
+                  Special Offers
+                </TabsTrigger>
+                <TabsTrigger value="regular" className="text-sm">
+                  Regular Plans
+                </TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="special" className="space-y-6">
+                <div className="text-center mb-6">
+                  <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-sm px-4 py-2 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2 max-w-fit mx-auto">
+                    Limited Time: First 100 Students Only!
+                  </Badge>
+                </div>
+
+                {specialPlans.map((plan, index) => (
+                  <Card
+                    key={index}
+                    className={`relative overflow-hidden ${
+                      plan.popular
+                        ? "border-2 border-yellow-400"
+                        : "border border-gray-200"
+                    }`}
+                  >
+                    {plan.popular && (
+                      <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-1 font-bold text-sm">
+                        MOST POPULAR
+                      </div>
+                    )}
+                    <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded-full">
+                      SPECIAL
+                    </div>
+                    <CardHeader
+                      className={`text-center ${
+                        plan.popular ? "pt-8" : "pt-4"
+                      }`}
                     >
-                      {loadingAmount === plan.price
-                        ? "Processing..."
-                        : "Choose Plan"}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </TabsContent>
-          </Tabs>
+                      <CardTitle className="text-2xl text-gray-900 mb-2">
+                        {plan.days} Days
+                      </CardTitle>
+                      <CardDescription className="text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
+                        <IndianRupee className="h-6 w-6" />
+                        {plan.price}
+                      </CardDescription>
+                      <p className="text-gray-500 mt-2 text-sm">
+                        Perfect for getting started
+                      </p>
+                    </CardHeader>
+                    <CardContent className="pt-4">
+                      <Button
+                        disabled={loadingAmount === plan.price}
+                        className={`w-full py-3 rounded-full font-bold transition-all duration-300 ${
+                          plan.popular
+                            ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
+                            : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
+                        }`}
+                        onClick={() => handleChoosePlan(plan.price)}
+                      >
+                        {loadingAmount === plan.price
+                          ? "Processing..."
+                          : "Choose This Plan"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </TabsContent>
+
+              <TabsContent value="regular" className="space-y-6">
+                <div className="text-center mb-6">
+                  <Badge className="bg-gray-800 text-white text-sm px-4 py-2 rounded-full font-bold flex items-center gap-2 max-w-fit mx-auto">
+                    Regular Pricing
+                  </Badge>
+                </div>
+
+                {regularPlans.map((plan, index) => (
+                  <Card key={index} className="border border-gray-200">
+                    <CardHeader className="text-center">
+                      <CardTitle className="text-2xl text-gray-900 mb-2">
+                        {plan.days} Days
+                      </CardTitle>
+                      <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
+                        <IndianRupee className="h-6 w-6" />
+                        {plan.price}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button
+                        disabled={loadingAmount === plan.price}
+                        className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300"
+                        onClick={() => handleChoosePlan(plan.price)}
+                      >
+                        {loadingAmount === plan.price
+                          ? "Processing..."
+                          : "Choose Plan"}
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+      <ToastContainer />
+    </>
   );
 }
 

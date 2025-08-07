@@ -174,6 +174,7 @@ export default function RegisterPage() {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
 
@@ -218,6 +219,7 @@ export default function RegisterPage() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    console.log("hit submit");
     await handleRegister();
   }
 
