@@ -20,7 +20,7 @@ export default function FooterSection() {
 
           {/* New: Terms and Conditions Link */}
           <div className="mb-6">
-            <a href="/terms-and-conditions">
+            <a href="/terms">
               <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm font-medium">
                 Terms and Conditions
               </span>
