@@ -16,10 +16,7 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/verify-email" element={<VerifyEmailPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route
-            path="/terms-and-conditions"
-            element={<TermsAndConditions />}
-          />
+          <Route path="/terms" element={<TermsAndConditions />} />
         </Routes>
       </BrowserRouter>
     </>
