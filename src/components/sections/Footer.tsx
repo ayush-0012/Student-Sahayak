@@ -1,4 +1,5 @@
 import { BookOpen, Heart } from "lucide-react";
+import { Link } from "react-router";
 // import Link from "next/link"; // Import Link
 
 export default function FooterSection() {
@@ -20,11 +21,11 @@ export default function FooterSection() {
 
           {/* New: Terms and Conditions Link */}
           <div className="mb-6">
-            <a href="/terms">
+            <Link to="/terms">
               <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm font-medium">
                 Terms and Conditions
               </span>
-            </a>
+            </Link>
           </div>
 
           <div className="border-t border-gray-800 pt-6">
