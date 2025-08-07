@@ -29,12 +29,12 @@ export default function FooterSection() {
           </div>
 
           <div className="border-t border-gray-800 pt-6">
-            <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
-              © {new Date().getFullYear()} Student Sahayak. All rights reserved.
-              Made with
-              <Heart className="h-4 w-4 text-red-500 fill-current" />
-              for students.
-            </p>
+            <div>
+              <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
+                © {new Date().getFullYear()} Student Sahayak. All rights
+                reserved.{" "}
+              </p>
+            </div>
           </div>
         </div>
       </div>
