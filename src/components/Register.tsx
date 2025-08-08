@@ -217,11 +217,11 @@ export default function RegisterPage() {
     }
   }
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    console.log("hit submit");
-    await handleRegister();
-  }
+  // async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  //   e.preventDefault();
+  //   console.log("hit submit");
+  //   await handleRegister();
+  // }
 
   // Cleanup preview URL on component unmount
   // useEffect(() => {
@@ -241,7 +241,7 @@ export default function RegisterPage() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-4">
             <div>
               <Label htmlFor="fullName" className="text-white">
                 Full Name
@@ -395,6 +395,7 @@ export default function RegisterPage() {
             <Button
               type="submit"
               disabled={isLoading}
+              onClick={handleRegister}
               className="w-full bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
