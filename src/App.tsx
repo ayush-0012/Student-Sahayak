@@ -5,6 +5,9 @@ import RegisterForm from "./components/Register.js";
 import VerifyEmailPage from "./components/Verification.js";
 import Dashboard from "./components/Dashboard.js";
 import TermsAndConditions from "./components/Terms.js";
+import PrivacyPolicyPage from "./components/PrivacyPolicy.js";
+import RefundPage from "./components/Refund.js";
+import AboutUsPage from "./components/About.js";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/verify-email" element={<VerifyEmailPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/refund-policy" element={<RefundPage />} />
+          <Route path="/about-us" element={<AboutUsPage />} />
         </Routes>
       </BrowserRouter>
     </>

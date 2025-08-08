@@ -1,6 +1,5 @@
-import { BookOpen, Heart } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { Link } from "react-router";
-// import Link from "next/link"; // Import Link
 
 export default function FooterSection() {
   return (
@@ -19,22 +18,34 @@ export default function FooterSection() {
             Build Habits, Shape Future
           </p>
 
-          {/* New: Terms and Conditions Link */}
-          <div className="mb-6">
+          {/* New: Policy Links */}
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
+            <Link to="/privacy-policy">
+              <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm font-medium">
+                Privacy Policy
+              </span>
+            </Link>
             <Link to="/terms">
               <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm font-medium">
-                Terms and Conditions
+                Terms & Conditions
+              </span>
+            </Link>
+            <Link to="/refund-policy">
+              <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm font-medium">
+                Refund Policy
+              </span>
+            </Link>
+            <Link to="/about-us">
+              <span className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer text-sm font-medium">
+                About Us
               </span>
             </Link>
           </div>
 
           <div className="border-t border-gray-800 pt-6">
-            <div>
-              <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
-                © {new Date().getFullYear()} Student Sahayak. All rights
-                reserved.{" "}
-              </p>
-            </div>
+            <p className="text-gray-500 text-sm flex items-center justify-center gap-1">
+              © {new Date().getFullYear()} Student Sahayak. All rights reserved.
+            </p>
           </div>
         </div>
       </div>
