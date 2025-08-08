@@ -24,19 +24,19 @@ export default function StudentSahayakLanding() {
   );
   console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
 
-  // function keepServerAwake() {
-  //   axiosInstance
-  //     .get("/ping")
-  //     .then((res) => console.log("Ping sent!", res.status))
-  //     .catch((err) => console.error("Ping failed", err))
-  //     .finally(() => {
-  //       // Call again after 30 seconds
-  //       setTimeout(keepServerAwake, 48000);
-  //     });
-  // }
+  function keepServerAwake() {
+    axiosInstance
+      .get("/ping")
+      .then((res) => console.log("Ping sent!", res.status))
+      .catch((err) => console.error("Ping failed", err))
+      .finally(() => {
+        // Call again after 30 seconds
+        setTimeout(keepServerAwake, 48000);
+      });
+  }
 
-  // // Start pinging
-  // keepServerAwake();
+  // Start pinging
+  keepServerAwake();
 
   return (
     <div className="min-h-screen">
