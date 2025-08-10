@@ -46,7 +46,8 @@ export default function RefundPage() {
           </p>
 
           <span className="font-bold">
-            sk7065717637@gmail.com/+91 95885 33265
+            sk7065717637@gmail.com/+91 95885 33265, Shyam lok colony, najafgarh,
+            New Delhi - 110072
           </span>
 
           {/* <h3 className="text-xl font-semibold text-gray-800 mb-2">Refunds</h3> */}
