@@ -19,7 +19,7 @@ export default function RefundPage() {
         </div>
 
         <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
-          Shipping & Refund Policy
+          Refund Policy
         </h1>
 
         <section className="mb-8">

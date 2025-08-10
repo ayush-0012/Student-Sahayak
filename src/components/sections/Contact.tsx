@@ -21,13 +21,13 @@ export default function ContactSection() {
             <MessageCircle className="h-6 w-6" />
             WhatsApp: 95885 33265
           </Button>
-          <Button
+          {/* <Button
             size="lg"
             variant="outline"
             className="border-2 border-white text-white hover:bg-white hover:text-gray-900 text-lg px-8 py-4 rounded-full font-bold shadow-xl transform hover:scale-105 transition-all duration-300 w-full sm:w-auto bg-transparent"
           >
             Get Custom Plan
-          </Button>
+          </Button> */}
         </div>
 
         <div className="mt-8 text-center">
@@ -38,6 +38,7 @@ export default function ContactSection() {
           >
             sahayakstudent4@gmail.com
           </a>
+          <p className="text-white text-xl mt-2"> Sachin, Student Sahayak</p>
         </div>
       </div>
     </section>
