@@ -13,6 +13,7 @@ import { IndianRupee } from "lucide-react";
 import { useState } from "react";
 import { axiosInstance } from "@/utils/axiosInstance";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import RefundPolicy from "./RefundPolicy";
 
 function Pricing() {
   const [loadingAmount, setLoadingAmount] = useState<number | null>(null);
@@ -311,6 +312,7 @@ function Pricing() {
             </Tabs>
           </div>
         </div>
+        <RefundPolicy />
       </section>
       <ToastContainer />
     </>

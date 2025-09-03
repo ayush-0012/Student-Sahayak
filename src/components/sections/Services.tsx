@@ -7,6 +7,7 @@ import {
   Star,
 } from "lucide-react";
 import { Card, CardContent, CardHeader } from "../ui/card";
+import WhatsappContact from "./WhatsappContact";
 
 function Services() {
   return (
@@ -89,6 +90,7 @@ function Services() {
             ))}
           </div>
         </div>
+        <WhatsappContact />
       </section>
     </>
   );

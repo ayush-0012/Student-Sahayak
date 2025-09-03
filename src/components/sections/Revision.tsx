@@ -10,6 +10,8 @@ import {
   IndianRupee,
   Users,
 } from "lucide-react";
+import PlansOverviewSection from "./UpscRevision";
+import SSCRevisionSection from "./SscSection";
 
 export default function RevisionSection() {
   return (
@@ -327,6 +329,10 @@ export default function RevisionSection() {
           </div> */}
         </div>
       </div>
+      {/* UPSC revision plans */}
+      <PlansOverviewSection />
+      {/* SSC revision plans  */}
+      <SSCRevisionSection />
     </section>
   );
 }
