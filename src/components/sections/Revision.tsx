@@ -17,7 +17,7 @@ export default function RevisionSection() {
   return (
     <section
       id="revision"
-      className="bg-gradient-to-br from-purple-900 via-blue-900 to-purple-900 py-20"
+      className="bg-gradient-to-br from-purple-900 via-blue-900 to-purple-900 pt-20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">

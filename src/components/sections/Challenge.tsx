@@ -18,7 +18,7 @@ export default function ChallengeSection() {
   return (
     <section
       id="challenge"
-      className="bg-gradient-to-br from-orange-900 via-red-900 to-orange-900 py-20"
+      className="bg-gradient-to-br from-orange-900 via-red-900 to-orange-900 pt-20"
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
@@ -511,7 +511,7 @@ export default function ChallengeSection() {
           </div>
 
           {/* Summary Section */}
-          <div className="mt-12 max-w-4xl mx-auto">
+          <div className="mt-12 max-w-4xl mx-auto pb-10">
             <Card className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black">
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl font-bold mb-4 flex items-center justify-center gap-3">
