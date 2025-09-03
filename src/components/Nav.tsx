@@ -81,27 +81,27 @@ function Nav() {
               <div className="md:hidden mt-4 pb-4 border-t border-red-700/50 animate-fade-in-up">
                 <div className="flex flex-col space-y-2 pt-4">
                   <a
-                    href="#services"
+                    href="/services"
                     onClick={() => setIsMenuOpen(false)}
                     className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg transition-all duration-300 font-medium transform hover:translate-x-2"
                   >
                     Services
                   </a>
                   <a
-                    href="#pricing"
+                    href="/pricing"
                     onClick={() => setIsMenuOpen(false)}
                     className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-3 rounded-lg transition-all duration-300 font-medium transform hover:translate-x-2"
                   >
                     Pricing
                   </a>
                   <a
-                    href="#challenge"
+                    href="/challenge"
                     className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
                   >
                     Challenge
                   </a>
                   <a
-                    href="#revision"
+                    href="/revision"
                     className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
                   >
                     Revision

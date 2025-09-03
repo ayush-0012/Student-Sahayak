@@ -1,13 +1,6 @@
 import { ReactTyped } from "react-typed";
 import { Button } from "@/components/ui/button";
-import {
-  Shield,
-  Zap,
-  Star,
-  ArrowRight,
-  Users,
-  MessageCircle,
-} from "lucide-react";
+import { Shield, Star, Users, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
@@ -86,7 +79,7 @@ export default function HeroSection({}: HeroSectionProps) {
                 <div className="flex items-start gap-3">
                   <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-300 shrink-0" />
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                    we provide our daily target tracking service for free to
+                    we provide our daily target tracking service for FREE to
                     students who are transgenders, victims of brutal assault,
                     orphans and Student from manual scavenger family
                   </p>
