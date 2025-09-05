@@ -79,9 +79,24 @@ export default function HeroSection({}: HeroSectionProps) {
                 <div className="flex items-start gap-3">
                   <Shield className="h-5 w-5 sm:h-6 sm:w-6 text-yellow-300 shrink-0" />
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                    we provide our daily target tracking service for FREE to
-                    students who are transgenders, victims of brutal assault,
-                    orphans and Student from manual scavenger family
+                    We provide our daily target tracking service for{" "}
+                    <span className="text-yellow-300 font-bold">FREE</span> to
+                    students who are{" "}
+                    <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
+                      Transgenders
+                    </span>
+                    ,{" "}
+                    <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
+                      Victims of Brutal Assault
+                    </span>
+                    ,{" "}
+                    <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
+                      Orphans
+                    </span>{" "}
+                    and Students from{" "}
+                    <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
+                      Manual Scavenger Family
+                    </span>
                   </p>
                 </div>
               </div>
