@@ -1,4 +1,4 @@
-import { BookOpen, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -24,12 +24,18 @@ function Nav() {
               aria-label="Student Sahayak - Home"
             >
               <div
-                className="p-2 bg-orange-500/20 rounded-lg group-hover:bg-orange-500/30 transition-all duration-300 cursor-pointer"
+                className="group-hover:scale-105 transition-all duration-300 cursor-pointer"
                 onClick={() => navigate("/")}
               >
-                <BookOpen className="h-6 w-6 text-white" aria-hidden="true" />
+                <img
+                  src="/images/sahayaklogo.jpeg"
+                  alt="Student Sahayak Logo"
+                  className="h-12 w-12 sm:h-14 sm:w-14 object-cover rounded-full border-2 border-white/30 shadow-lg"
+                  width="56"
+                  height="56"
+                />
               </div>
-              <span className="text-2xl font-bold text-white font-mono tracking-wider sr-only">
+              <span className="text-xl font-bold text-white tracking-wide hidden sm:inline">
                 Student Sahayak
               </span>
             </a>

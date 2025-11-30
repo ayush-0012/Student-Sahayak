@@ -1,0 +1,24 @@
+{
+  "name": "Student Sahayak",
+  "short_name": "StudentSahayak",
+  "description": "Best Online Revision & Mentorship for UPSC, SSC, GD, CHSL Exams",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/sahayaklogo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/sahayaklogo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

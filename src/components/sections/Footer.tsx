@@ -1,4 +1,3 @@
-import { BookOpen } from "lucide-react";
 import { Link } from "react-router";
 
 export default function FooterSection() {
@@ -7,9 +6,14 @@ export default function FooterSection() {
       <div className="container mx-auto px-4">
         <div className="text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
-            <div className="p-2 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg">
-              <BookOpen className="h-6 w-6 text-white" aria-hidden="true" />
-            </div>
+            <img
+              src="/images/sahayaklogo.jpeg"
+              alt="Student Sahayak Logo - We do it for the students"
+              className="h-14 w-14 object-cover rounded-full border-2 border-white/20 shadow-lg"
+              width="56"
+              height="56"
+              loading="lazy"
+            />
             <span className="text-2xl font-bold text-white font-mono tracking-wider">
               STUDENT SAHAYAK
             </span>
