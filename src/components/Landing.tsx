@@ -1,9 +1,9 @@
+import { axiosInstance } from "@/utils/axiosInstance";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
 import Mission from "./sections/Mission";
 import VideoSection from "./sections/Video";
-import { axiosInstance } from "@/utils/axiosInstance";
 
 export default function StudentSahayakLanding() {
   console.log(
@@ -27,7 +27,7 @@ export default function StudentSahayakLanding() {
   keepServerAwake();
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       {/* Hero Section */}
       <Hero />
 
@@ -61,6 +61,6 @@ export default function StudentSahayakLanding() {
       <VideoSection />
       {/* Footer */}
       <Footer />
-    </div>
+    </main>
   );
 }

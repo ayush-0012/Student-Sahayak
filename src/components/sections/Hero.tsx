@@ -1,8 +1,8 @@
-import { ReactTyped } from "react-typed";
 import { Button } from "@/components/ui/button";
-import { Shield, Star, Users, MessageCircle } from "lucide-react";
+import { MessageCircle, Shield, Star, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { ReactTyped } from "react-typed";
 
 type HeroSectionProps = {};
 
@@ -57,8 +57,11 @@ export default function HeroSection({}: HeroSectionProps) {
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex-shrink-0">
                 <img
                   src="/images/savitribai.jpeg"
-                  alt="Savitribai Phule"
+                  alt="Savitribai Phule - India's first female teacher and social reformer who inspired Student Sahayak's mission for education"
                   className="w-full h-full rounded-full border-3 sm:border-4 border-yellow-400 shadow-2xl object-cover"
+                  loading="eager"
+                  width="112"
+                  height="112"
                 />
                 <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-20 blur-xl animate-pulse"></div>
               </div>

@@ -8,18 +8,31 @@ function Nav() {
   return (
     <>
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-red-900/55 backdrop-blur-md border-b border-red-500/50 shadow-lg">
+      <header
+        className="fixed top-0 w-full z-50 bg-red-900/55 backdrop-blur-md border-b border-red-500/50 shadow-lg"
+        role="banner"
+      >
         <div className="container mx-auto px-4 py-4">
-          <nav className="flex items-center justify-between">
-            <div className="flex items-center space-x-3 group">
+          <nav
+            className="flex items-center justify-between"
+            role="navigation"
+            aria-label="Main navigation"
+          >
+            <a
+              href="/"
+              className="flex items-center space-x-3 group"
+              aria-label="Student Sahayak - Home"
+            >
               <div
                 className="p-2 bg-orange-500/20 rounded-lg group-hover:bg-orange-500/30 transition-all duration-300 cursor-pointer"
                 onClick={() => navigate("/")}
               >
-                <BookOpen className="h-6 w-6 text-white" />
+                <BookOpen className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
-              <span className="text-2xl font-bold text-white font-mono tracking-wider"></span>
-            </div>
+              <span className="text-2xl font-bold text-white font-mono tracking-wider sr-only">
+                Student Sahayak
+              </span>
+            </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
