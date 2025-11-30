@@ -1,14 +1,7 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  IndianRupee,
-  Calendar,
-  BookOpen,
-  Users,
-  Clock,
-  Target,
-} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calendar, Clock, IndianRupee, Users } from "lucide-react";
 
 export default function PlansOverviewSection() {
   return (
@@ -49,11 +42,17 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-8 w-8 text-blue-400" />
                   <CardTitle className="text-2xl font-bold">3 Months</CardTitle>
                 </div>
-                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-8 w-8" />
                   7,000
                 </div>
-                <p className="text-gray-300">Perfect for focused preparation</p>
+                <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  8,000
+                </p>
+                <p className="text-gray-300 mt-2">
+                  Perfect for focused preparation
+                </p>
               </CardHeader>
               <CardContent className="pt-4">
                 <Button className="w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600">
@@ -72,11 +71,15 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-8 w-8 text-blue-400" />
                   <CardTitle className="text-2xl font-bold">6 Months</CardTitle>
                 </div>
-                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-8 w-8" />
                   13,500
                 </div>
-                <p className="text-gray-300">Comprehensive preparation</p>
+                <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  14,500
+                </p>
+                <p className="text-gray-300 mt-2">Comprehensive preparation</p>
               </CardHeader>
               <CardContent className="pt-4">
                 <Button className="w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500">
@@ -92,15 +95,19 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-8 w-8 text-blue-400" />
                   <CardTitle className="text-2xl font-bold">9 Months</CardTitle>
                 </div>
-                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-8 w-8" />
                   20,000
                 </div>
-                <p className="text-gray-300">Complete UPSC journey</p>
+                <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  21,000
+                </p>
+                <p className="text-gray-300 mt-2">Complete UPSC journey</p>
               </CardHeader>
               <CardContent className="pt-4">
                 <Button className="w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600">
-                  Choose 12 Months
+                  Choose 9 Months
                 </Button>
               </CardContent>
             </Card>
@@ -114,11 +121,15 @@ export default function PlansOverviewSection() {
                     12 Months
                   </CardTitle>
                 </div>
-                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-4xl font-bold text-yellow-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-8 w-8" />
                   24,000
                 </div>
-                <p className="text-gray-300">Complete UPSC journey</p>
+                <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  25,000
+                </p>
+                <p className="text-gray-300 mt-2">Complete UPSC journey</p>
               </CardHeader>
               <CardContent className="pt-4">
                 <Button className="w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600">
@@ -185,11 +196,17 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-6 w-6 text-green-400" />
                   <CardTitle className="text-xl font-bold">3 Months</CardTitle>
                 </div>
-                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-6 w-6" />
                   3,300
                 </div>
-                <p className="text-gray-300 text-sm">Weekend focused prep</p>
+                <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  4,100
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
+                  Weekend focused prep
+                </p>
               </CardHeader>
               <CardContent className="pt-4">
                 <Button className="w-full py-3 rounded-full font-bold text-sm transition-all duration-300 transform group-hover:scale-105 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
@@ -205,11 +222,17 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-6 w-6 text-green-400" />
                   <CardTitle className="text-xl font-bold">6 Months</CardTitle>
                 </div>
-                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-6 w-6" />
                   7,000
                 </div>
-                <p className="text-gray-300 text-sm">Extended weekend prep</p>
+                <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  7,800
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
+                  Extended weekend prep
+                </p>
               </CardHeader>
               <CardContent className="pt-4">
                 <Button className="w-full py-3 rounded-full font-bold text-sm transition-all duration-300 transform group-hover:scale-105 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600">
@@ -228,11 +251,15 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-6 w-6 text-green-400" />
                   <CardTitle className="text-xl font-bold">9 Months</CardTitle>
                 </div>
-                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-6 w-6" />
                   9,400
                 </div>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  10,200
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
                   Comprehensive weekend prep
                 </p>
               </CardHeader>
@@ -250,11 +277,15 @@ export default function PlansOverviewSection() {
                   <Calendar className="h-6 w-6 text-green-400" />
                   <CardTitle className="text-xl font-bold">12 Months</CardTitle>
                 </div>
-                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1 mb-4">
+                <div className="text-3xl font-bold text-green-400 flex items-center justify-center gap-1">
                   <IndianRupee className="h-6 w-6" />
                   13,000
                 </div>
-                <p className="text-gray-300 text-sm">
+                <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
+                  <IndianRupee className="h-4 w-4" />
+                  13,800
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
                   Complete weekend journey
                 </p>
               </CardHeader>

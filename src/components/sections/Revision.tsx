@@ -1,17 +1,17 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
-  Brain,
   BookMarked,
-  MessageCircle,
-  Video,
+  Brain,
   Clock,
   IndianRupee,
+  MessageCircle,
   Users,
+  Video,
 } from "lucide-react";
-import PlansOverviewSection from "./UpscRevision";
 import SSCRevisionSection from "./SscSection";
+import PlansOverviewSection from "./UpscRevision";
 
 export default function RevisionSection() {
   return (
@@ -237,18 +237,21 @@ export default function RevisionSection() {
               {
                 days: "10",
                 price: "900",
+                originalPrice: "1400",
                 sessions: "45 mins/day",
                 popular: false,
               },
               {
                 days: "30",
                 price: "2500",
+                originalPrice: "3000",
                 sessions: "45 mins/day",
                 popular: true,
               },
               {
                 days: "Weekly",
                 price: "1200",
+                originalPrice: "1700",
                 sessions: "Weekend 2.5hrs",
                 popular: false,
                 isWeekly: true,
@@ -290,6 +293,10 @@ export default function RevisionSection() {
                     <IndianRupee className="h-8 w-8" />
                     {plan.price}
                   </div>
+                  <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                    <IndianRupee className="h-4 w-4" />
+                    {plan.originalPrice}
+                  </p>
                   <p className="text-gray-300 mt-2">{plan.sessions}</p>
                   {plan.isWeekly && (
                     <p className="text-sm text-gray-400 mt-1">Sundays Only</p>

@@ -1,4 +1,5 @@
 "use client";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -7,11 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { axiosInstance } from "@/utils/axiosInstance";
 import { IndianRupee } from "lucide-react";
 import { useState } from "react";
-import { axiosInstance } from "@/utils/axiosInstance";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import RefundPolicy from "./RefundPolicy";
 
@@ -75,15 +75,15 @@ function Pricing() {
   }
 
   const specialPlans = [
-    { days: "30", price: 250, popular: false },
-    { days: "45", price: 350, popular: true },
-    { days: "90", price: 650, popular: false },
+    { days: "30", price: 250, originalPrice: 350, popular: false },
+    { days: "45", price: 350, originalPrice: 450, popular: true },
+    { days: "90", price: 650, originalPrice: 750, popular: false },
   ];
 
   const regularPlans = [
-    { days: "30", price: 275 },
-    { days: "45", price: 450 },
-    { days: "90", price: 800 },
+    { days: "30", price: 275, originalPrice: 375 },
+    { days: "45", price: 450, originalPrice: 550 },
+    { days: "90", price: 800, originalPrice: 900 },
   ];
 
   return (
@@ -142,6 +142,10 @@ function Pricing() {
                         <IndianRupee className="h-8 w-8" />
                         {plan.price}
                       </CardDescription>
+                      <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                        <IndianRupee className="h-4 w-4" />
+                        {plan.originalPrice}
+                      </p>
                       <p className="text-gray-500 mt-2">
                         Perfect for getting started
                       </p>
@@ -188,6 +192,10 @@ function Pricing() {
                         <IndianRupee className="h-6 w-6" />
                         {plan.price}
                       </CardDescription>
+                      <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                        <IndianRupee className="h-4 w-4" />
+                        {plan.originalPrice}
+                      </p>
                     </CardHeader>
                     <CardContent>
                       <Button
@@ -254,6 +262,10 @@ function Pricing() {
                         <IndianRupee className="h-6 w-6" />
                         {plan.price}
                       </CardDescription>
+                      <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
+                        <IndianRupee className="h-4 w-4" />
+                        {plan.originalPrice}
+                      </p>
                       <p className="text-gray-500 mt-2 text-sm">
                         Perfect for getting started
                       </p>
@@ -294,6 +306,10 @@ function Pricing() {
                         <IndianRupee className="h-6 w-6" />
                         {plan.price}
                       </CardDescription>
+                      <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
+                        <IndianRupee className="h-4 w-4" />
+                        {plan.originalPrice}
+                      </p>
                     </CardHeader>
                     <CardContent>
                       <Button

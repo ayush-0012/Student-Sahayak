@@ -1,7 +1,7 @@
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { IndianRupee, Calendar, Mic } from "lucide-react"; // Added Mic icon
+import { Calendar, IndianRupee, Mic } from "lucide-react"; // Added Mic icon
 
 export default function SSCRevisionSection() {
   return (
@@ -96,9 +96,14 @@ export default function SSCRevisionSection() {
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { months: "1", price: "1650" },
-              { months: "2", price: "3000" },
-              { months: "3", price: "4500", popular: true },
+              { months: "1", price: "1650", originalPrice: "2150" },
+              { months: "2", price: "3000", originalPrice: "3500" },
+              {
+                months: "3",
+                price: "4500",
+                originalPrice: "5000",
+                popular: true,
+              },
             ].map((plan, index) => (
               <Card
                 key={index}
@@ -128,6 +133,10 @@ export default function SSCRevisionSection() {
                     <IndianRupee className="h-8 w-8" />
                     {plan.price}
                   </div>
+                  <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                    <IndianRupee className="h-4 w-4" />
+                    {plan.originalPrice}
+                  </p>
                   <p className="text-gray-300 mt-2">35 mins/day (Mon-Sat)</p>
                 </CardHeader>
                 <CardContent className="pt-4">
@@ -153,9 +162,14 @@ export default function SSCRevisionSection() {
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { months: "1", price: "700" },
-              { months: "2", price: "1200" },
-              { months: "3", price: "1600", popular: true },
+              { months: "1", price: "700", originalPrice: "1200" },
+              { months: "2", price: "1200", originalPrice: "1700" },
+              {
+                months: "3",
+                price: "1600",
+                originalPrice: "2100",
+                popular: true,
+              },
             ].map((plan, index) => (
               <Card
                 key={index}
@@ -185,6 +199,10 @@ export default function SSCRevisionSection() {
                     <IndianRupee className="h-8 w-8" />
                     {plan.price}
                   </div>
+                  <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
+                    <IndianRupee className="h-4 w-4" />
+                    {plan.originalPrice}
+                  </p>
                   <p className="text-gray-300 mt-2">
                     1 hour 30 mins/session (Sundays only)
                   </p>
