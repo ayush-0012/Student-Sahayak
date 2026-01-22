@@ -156,6 +156,18 @@ export default function HeroSection({}: HeroSectionProps) {
             </div>
           </a>
 
+          <Link to="/take-test" className="w-full sm:w-auto">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto relative border-3 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white text-lg sm:text-xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
+            >
+              <span className="absolute inset-0 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              <span className="relative flex items-center justify-center gap-2 sm:gap-3">
+                Take a Test
+              </span>
+            </Button>
+          </Link>
+
           <Link to="/register" className="w-full sm:w-auto">
             <Button
               size="lg"

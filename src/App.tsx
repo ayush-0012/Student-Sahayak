@@ -1,18 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AboutUsPage from "./components/About.js";
+import Dashboard from "./components/Dashboard.js";
 import Landing from "./components/Landing.js";
 import LoginForm from "./components/Login.js";
-import RegisterForm from "./components/Register.js";
-import VerifyEmailPage from "./components/Verification.js";
-import Dashboard from "./components/Dashboard.js";
-import TermsAndConditions from "./components/Terms.js";
+import Nav from "./components/Nav.js";
 import PrivacyPolicyPage from "./components/PrivacyPolicy.js";
+import PsychologicalTest from "./components/PsychologicalTest.js";
 import RefundPage from "./components/Refund.js";
-import AboutUsPage from "./components/About.js";
-import Pricing from "./components/sections/Pricing.js";
+import RegisterForm from "./components/Register.js";
 import ChallengeSection from "./components/sections/Challenge.js";
+import Pricing from "./components/sections/Pricing.js";
 import RevisionSection from "./components/sections/Revision.js";
 import Services from "./components/sections/Services.js";
-import Nav from "./components/Nav.js";
+import TermsAndConditions from "./components/Terms.js";
+import VerifyEmailPage from "./components/Verification.js";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/challenge" element={<ChallengeSection />} />
           <Route path="/revision" element={<RevisionSection />} />
           <Route path="/about-us" element={<AboutUsPage />} />
+          <Route path="/take-test" element={<PsychologicalTest />} />
           {/* <Route path="/contact" element={<ContactSection />} /> */}
         </Routes>
       </BrowserRouter>

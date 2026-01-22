@@ -5,8 +5,6 @@ const API_URL: string =
     ? import.meta.env.VITE_DEV_BACKEND_URL
     : import.meta.env.VITE_PROD_BACKEND_URL;
 
-console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
-
 export const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: { "Content-Type": "application/json" },

@@ -6,17 +6,11 @@ import Mission from "./sections/Mission";
 import VideoSection from "./sections/Video";
 
 export default function StudentSahayakLanding() {
-  console.log(
-    "prod backend url in landing",
-    import.meta.env.VITE_PROD_BACKEND_URL
-  );
-  console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
-
   function keepServerAwake() {
     axiosInstance
       .get("/ping")
-      .then((res) => console.log("Ping sent!", res.status))
-      .catch((err) => console.error("Ping failed", err))
+      .then(() => {})
+      .catch(() => {})
       .finally(() => {
         // Call again after 30 seconds
         setTimeout(keepServerAwake, 48000);

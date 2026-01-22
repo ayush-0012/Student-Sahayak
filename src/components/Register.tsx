@@ -1,13 +1,13 @@
-import type React from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link, useNavigate } from "react-router";
-import { Loader2 } from "lucide-react";
 import { axiosInstance } from "@/utils/axiosInstance";
-import { Bounce, toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
+import type React from "react";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { Bounce, toast } from "react-toastify";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -160,13 +160,6 @@ export default function RegisterPage() {
       //   registrationData.append("image", formData.image);
       // }
 
-      console.log(
-        "prod backend url in register",
-        import.meta.env.VITE_PROD_BACKEND_URL
-      );
-      console.log("dev backend url", import.meta.env.VITE_DEV_BACKEND_URL);
-
-      console.log("registration data", registrationData);
       const response = await axiosInstance.post(
         "/api/user/register",
         JSON.stringify(registrationData),
@@ -177,8 +170,6 @@ export default function RegisterPage() {
           withCredentials: true,
         }
       );
-
-      console.log(response);
 
       // Success toast
       toast.success("Registration successful! Please login to continue.", {
@@ -198,8 +189,6 @@ export default function RegisterPage() {
         navigate("/login");
       }, 2000);
     } catch (error) {
-      console.log(error);
-
       const errorMessage = "Registration failed. Please try again.";
       toast.error(errorMessage, {
         position: "top-center",
