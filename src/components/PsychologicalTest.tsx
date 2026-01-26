@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { axiosInstance } from "@/utils/axiosInstance";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -125,66 +126,40 @@ export default function PsychologicalTest() {
   const submitTest = async () => {
     setIsLoading(true);
     try {
-      // Prepare the data for Gemini API
+      // Prepare the data for backend API
       const questionsWithAnswers = questions.map((q) => ({
         question: q.text,
         phase: q.phase,
         answer: answers[q.id] || "Not answered",
       }));
 
-      // Call Gemini API
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${
-          import.meta.env.VITE_GEMINI_API_KEY
-        }`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                parts: [
-                  {
-                    text: `You are a brutally honest reality-check analyst. Your job is NOT to motivate or encourage. Your job is to hold up a mirror and show the student exactly where they are failing. Based on their answers, provide a RAW, UNFILTERED reality check that:
+      // Decide backend URL based on Vite mode (use dev URL during development)
+      // const baseUrl: string =
+      //   import.meta.env.MODE === "development"
+      //     ? import.meta.env.VITE_DEV_BACKEND_URL
+      //     : import.meta.env.VITE_PROD_BACKEND_URL;
 
-1. Points out EXACTLY what they're doing wrong based on their responses
-2. Compares them to successful students who are doing it RIGHT
-3. Makes them realize they are FALLING BEHIND while others are moving ahead
-4. Shows them the harsh truth: they are wasting their parents' money and time
-5. Uses phrases like "While you're..., your competitors are...", "You're not fooling anyone", "Let's be honest..."
-6. NO sugar-coating, NO motivational fluff, NO "you can do it" nonsense
-7. Make them feel the weight of their current situation
-8. End with: "The question isn't whether you need help. The question is whether you'll admit it before it's too late."
+      // const endpoint = `${baseUrl}/api/analyze-test`;
+      const payload = { answers: questionsWithAnswers };
 
-Here are the student's responses:
+      // Debug logs to help trace requests
+      // console.log("➡️ Submitting analyze-test to:", endpoint);
+      console.log("📦 Payload:", JSON.stringify(payload));
 
-${questionsWithAnswers
-  .map((qa) => `Phase: ${qa.phase}\nQ: ${qa.question}\nA: ${qa.answer}\n`)
-  .join("\n")}
+      // Call backend API
+      const response = await axiosInstance.post("/api/analyze-test", payload, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-Provide a harsh reality check in 3-4 paragraphs. Be direct. Be raw. Make them uncomfortable with the truth.`,
-                  },
-                ],
-              },
-            ],
-          }),
-        }
-      );
-
-      const data = await response.json();
-      const generatedText =
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Let's be honest here. You just spent time answering 17 questions about your study habits, and if you were truly confident in your system, you wouldn't have taken this test. The reality is simple: while you're scrolling through reels, sitting with books without actually studying, and creating backlogs, your competitors are executing a system that's making them winners. They're not hoping for results - they're engineering them.\n\nYou're 20+ years old, still dependent on your parents' money, and instead of building a future, you're building excuses. Every 'tomorrow I'll start' is another day your dreams die a little. Every time you say 'I'm trying my best' while procrastinating, you're lying to yourself and everyone who believes in you.\n\nThe harsh truth? You don't have a study problem. You have a system problem. And no amount of motivation videos or new notebooks will fix that. You need structure. You need accountability. You need to stop pretending and start performing. Student Sahayak offers that system for ₹275 - less than what you probably spend on food delivery in a week.\n\nThe question isn't whether you need help. The question is whether you'll admit it before it's too late.";
+      const data = response.data;
+      const generatedText = data.message || "Something went wrong.";
 
       setAiResponse(generatedText);
       setShowResults(true);
     } catch (error) {
-      console.error("Error calling Gemini API:", error);
-      setAiResponse(
-        "Let's be honest here. You just spent time answering 17 questions about your study habits, and if you were truly confident in your system, you wouldn't have taken this test. The reality is simple: while you're scrolling through reels, sitting with books without actually studying, and creating backlogs, your competitors are executing a system that's making them winners. They're not hoping for results - they're engineering them.\n\nYou're 20+ years old, still dependent on your parents' money, and instead of building a future, you're building excuses. Every 'tomorrow I'll start' is another day your dreams die a little. Every time you say 'I'm trying my best' while procrastinating, you're lying to yourself and everyone who believes in you.\n\nThe harsh truth? You don't have a study problem. You have a system problem. And no amount of motivation videos or new notebooks will fix that. You need structure. You need accountability. You need to stop pretending and start performing. Student Sahayak offers that system for ₹275 - less than what you probably spend on food delivery in a week.\n\nThe question isn't whether you need help. The question is whether you'll admit it before it's too late."
-      );
+      setAiResponse("Something went wrong.");
       setShowResults(true);
     } finally {
       setIsLoading(false);
