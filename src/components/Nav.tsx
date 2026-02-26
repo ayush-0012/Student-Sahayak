@@ -28,9 +28,9 @@ function Nav() {
                 onClick={() => navigate("/")}
               >
                 <img
-                  src="/images/sahayaklogo.jpeg"
+                  src="/images/ss-logo.jpeg"
                   alt="Student Sahayak Logo"
-                  className="h-12 w-12 sm:h-14 sm:w-14 object-cover rounded-full border-2 border-white/30 shadow-lg"
+                  className="h-12 w-12 sm:h-14 sm:w-14 object-cover items-center rounded-full border-2 border-white/30 shadow-lg"
                   width="56"
                   height="56"
                 />
