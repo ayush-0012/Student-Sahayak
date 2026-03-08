@@ -440,6 +440,26 @@ const questions = [
       { label: "No", value: "C", points: 0 },
     ],
   },
+  {
+    id: 24,
+    block: "General",
+    text: "How much you are confused about your sources?",
+    options: [
+      { label: "I stick to my sources.", value: "A", points: 5 },
+      { label: "I changes frequently.", value: "B", points: 2 },
+      { label: "I still do not know.", value: "C", points: 0 },
+    ],
+  },
+  {
+    id: 25,
+    block: "General",
+    text: "Do you give weekly test?",
+    options: [
+      { label: "Every week", value: "A", points: 5 },
+      { label: "Not regular.", value: "B", points: 2 },
+      { label: "Hardly any.", value: "C", points: 0 },
+    ],
+  },
 ];
 
 interface Answer {
@@ -495,9 +515,9 @@ export default function PsychologicalTest() {
   };
 
   const getScoreCategory = (score: number) => {
-    const percentage = (score / 115) * 100; // Max score is 23 questions × 5 = 115
+    const percentage = (score / 125) * 100; // Max score is 25 questions × 5 = 125
 
-    if (score >= 96) {
+    if (score >= 104) {
       // 83% - 100%
       return {
         status: "Elite Strategist",
@@ -505,7 +525,7 @@ export default function PsychologicalTest() {
           "You are in the top 1%. Your system is elite. You just need to maintain this 'Operational Excellence' until the final exam.",
         percentage: percentage.toFixed(0),
       };
-    } else if (score >= 58) {
+    } else if (score >= 63) {
       // 50% - 82%
       return {
         status: "Average Aspirant",
@@ -548,7 +568,7 @@ export default function PsychologicalTest() {
       const payload = {
         answers: questionsWithAnswers,
         totalScore: score,
-        maxScore: 115,
+        maxScore: 125,
         percentage: category.percentage,
         status: category.status,
       };
@@ -589,7 +609,7 @@ export default function PsychologicalTest() {
               Your Sahayak Score
             </h2>
             <div className="text-7xl font-extrabold text-red-600 my-6">
-              {totalScore}/115
+              {totalScore}/125
             </div>
             <div className="text-2xl font-semibold text-gray-700 mb-2">
               {percentage}% - {scoreCategory}
@@ -597,9 +617,9 @@ export default function PsychologicalTest() {
             <div className="w-full bg-gray-200 rounded-full h-4 mb-4">
               <div
                 className={`h-4 rounded-full transition-all duration-500 ${
-                  totalScore >= 96
+                  totalScore >= 104
                     ? "bg-green-600"
-                    : totalScore >= 58
+                    : totalScore >= 63
                       ? "bg-yellow-600"
                       : "bg-red-600"
                 }`}
@@ -725,9 +745,6 @@ export default function PsychologicalTest() {
                 <div className="flex justify-between items-start">
                   <span className="font-medium text-gray-800 flex-1">
                     {option.label}
-                  </span>
-                  <span className="ml-3 text-sm font-semibold text-gray-500">
-                    {option.points} pts
                   </span>
                 </div>
               </button>
