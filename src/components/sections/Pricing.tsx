@@ -1,22 +1,89 @@
-"use client";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { axiosInstance } from "@/utils/axiosInstance";
-import { IndianRupee } from "lucide-react";
+import { Check, Star } from "lucide-react";
 import { useState } from "react";
 import { Bounce, toast, ToastContainer } from "react-toastify";
 import RefundPolicy from "./RefundPolicy";
 
+const normalPlanFeatures = [
+  "Schedule system",
+  "Backlog Tracker",
+  "Revision Tracker",
+  "Rating System",
+  "Badges",
+  "Paid Internship Role",
+  "Deep Profile Analysis of Student",
+  "Syllabus Tracker",
+  "Academic Mentor",
+  "Accountability Mentor",
+  "Psychological Mentor( Related to Exam Stress)",
+  "Leaderboard",
+];
+
+const trackerPlanFeatures = [
+  "Schedule System",
+  "Revision Tracker",
+  "Syllabus Tracker",
+  "Backlog Tracker",
+];
+
+const normalPlans = [
+  {
+    days: "30",
+    price: 250,
+    originalPrice: 500,
+    popular: false,
+    discount: 50,
+  },
+  {
+    days: "90",
+    price: 700,
+    originalPrice: 1500,
+    popular: true,
+    discount: 53,
+  },
+  {
+    days: "180",
+    price: 1400,
+    originalPrice: 3000,
+    popular: false,
+    discount: 53,
+  },
+];
+
+const trackerPlans = [
+  { days: "7", price: 30, originalPrice: 50, popular: false, discount: 40 },
+  { days: "30", price: 99, originalPrice: 150, popular: true, discount: 34 },
+  {
+    days: "180",
+    price: 499,
+    originalPrice: 1000,
+    popular: false,
+    discount: 50,
+  },
+  {
+    days: "360",
+    price: 1000,
+    originalPrice: 2000,
+    popular: false,
+    discount: 50,
+  },
+];
+
 function Pricing() {
   const [loadingAmount, setLoadingAmount] = useState<number | null>(null);
+  const [selectedNormalDuration, setSelectedNormalDuration] =
+    useState<string>("90");
+  const [selectedTrackerDuration, setSelectedTrackerDuration] =
+    useState<string>("30");
+
+  const selectedPlanData = normalPlans.find(
+    (p) => p.days === selectedNormalDuration
+  );
+  const selectedTrackerData = trackerPlans.find(
+    (p) => p.days === selectedTrackerDuration
+  );
 
   async function handleChoosePlan(amount: number) {
     try {
@@ -34,23 +101,28 @@ function Pricing() {
         amount: data.amount,
         currency: data.currency,
         order_id: data.id,
-        name: "Your Company",
-        description: "Test Transaction",
+        name: "Student Sahayak",
+        description: "Plan Upgrade",
         handler: async (response: any) => {
-          await axiosInstance.post("/verify-payment", {
-            razorpay_order_id: response.razorpay_order_id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature,
-          });
-          alert("Payment successful!");
+          try {
+            await axiosInstance.post("/verify-payment", {
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
+            toast.success("Payment successful!");
+            window.location.reload();
+          } catch (error) {
+            toast.error("Payment verification failed");
+          }
         },
         prefill: {
-          name: "Customer Name",
-          email: "customer@example.com",
-          contact: "9999999999",
+          name: "",
+          email: "",
+          contact: "",
         },
         theme: {
-          color: "#3399cc",
+          color: "#ea580c",
         },
       };
 
@@ -58,14 +130,9 @@ function Pricing() {
       rzp.open();
     } catch (error) {
       console.log(error);
-      toast.error("Please register or login first", {
+      toast.error("An error occurred. Please try again later.", {
         position: "top-center",
         autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: "colored",
         transition: Bounce,
       });
@@ -74,259 +141,283 @@ function Pricing() {
     }
   }
 
-  const specialPlans = [
-    { days: "30", price: 250, originalPrice: 350, popular: false },
-    { days: "45", price: 350, originalPrice: 450, popular: true },
-    { days: "90", price: 650, originalPrice: 750, popular: false },
-  ];
-
-  const regularPlans = [
-    { days: "30", price: 275, originalPrice: 375 },
-    { days: "45", price: 450, originalPrice: 550 },
-    { days: "90", price: 800, originalPrice: 900 },
-  ];
-
   return (
     <>
-      <section id="pricing" className="bg-gray-50 pt-20">
+      <section id="pricing" className="bg-gray-50 pt-24 pb-20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              {/* <IndianRupee className="h-8 w-8 text-gray-900" /> */}
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Fee Structure
-              </h2>
-            </div>
-            <p className="text-xl text-gray-600">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Fee Structure
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Choose the plan that works best for your academic journey
             </p>
           </div>
 
-          {/* Desktop View */}
-          <div className="hidden md:block">
-            {/* Special Offer */}
-            <div className="mb-16">
-              <div className="flex justify-center text-center mb-12">
-                <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-lg px-6 py-3 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2">
-                  Limited Time: First 100 Students Only!
-                </Badge>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {specialPlans.map((plan, index) => (
-                  <Card
-                    key={index}
-                    className={`relative overflow-hidden group hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 ${
-                      plan.popular
-                        ? "border-4 border-yellow-400 scale-105"
-                        : "border border-gray-200"
-                    }`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-2 font-bold">
-                        MOST POPULAR
-                      </div>
-                    )}
-                    <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 text-sm font-bold rounded-full">
-                      SPECIAL
-                    </div>
-                    <CardHeader
-                      className={`text-center ${
-                        plan.popular ? "pt-12" : "pt-8"
-                      }`}
-                    >
-                      <CardTitle className="text-3xl text-gray-900 mb-2">
-                        {plan.days} Days
-                      </CardTitle>
-                      <CardDescription className="text-4xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
-                        <IndianRupee className="h-8 w-8" />
-                        {plan.price}
-                      </CardDescription>
-                      <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
-                        <IndianRupee className="h-4 w-4" />
-                        {plan.originalPrice}
-                      </p>
-                      <p className="text-gray-500 mt-2">
-                        Perfect for getting started
-                      </p>
-                    </CardHeader>
-                    <CardContent className="pt-4">
-                      <Button
-                        disabled={loadingAmount === plan.price}
-                        className={`w-full py-3 rounded-full font-bold text-lg transition-all duration-300 transform group-hover:scale-105 ${
-                          plan.popular
-                            ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
-                            : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
-                        }`}
-                        onClick={() => handleChoosePlan(plan.price)}
-                      >
-                        {loadingAmount === plan.price
-                          ? "Processing..."
-                          : "Choose This Plan"}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Regular Pricing */}
-            <div className="mb-12">
-              <div className="flex justify-center text-center mb-12">
-                <Badge className="bg-gray-800 text-white text-lg px-6 py-3 rounded-full font-bold flex items-center gap-2">
-                  Regular Pricing
-                </Badge>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                {regularPlans.map((plan, index) => (
-                  <Card
-                    key={index}
-                    className="group hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1 bg-white border border-gray-200"
-                  >
-                    <CardHeader className="text-center">
-                      <CardTitle className="text-2xl text-gray-900 mb-2">
-                        {plan.days} Days
-                      </CardTitle>
-                      <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
-                        <IndianRupee className="h-6 w-6" />
-                        {plan.price}
-                      </CardDescription>
-                      <p className="text-gray-400 line-through text-lg mt-1 flex items-center justify-center">
-                        <IndianRupee className="h-4 w-4" />
-                        {plan.originalPrice}
-                      </p>
-                    </CardHeader>
-                    <CardContent>
-                      <Button
-                        disabled={loadingAmount === plan.price}
-                        className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300 transform group-hover:scale-105"
-                        onClick={() => handleChoosePlan(plan.price)}
-                      >
-                        {loadingAmount === plan.price
-                          ? "Processing..."
-                          : "Choose Plan"}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile View */}
-          <div className="md:hidden">
-            <Tabs defaultValue="special" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-8">
-                <TabsTrigger value="special" className="text-sm">
-                  Special Offers
+          <Tabs defaultValue="normal" className="max-w-6xl mx-auto">
+            <div className="flex justify-center mb-12">
+              <TabsList className="grid w-full grid-cols-2 max-w-md bg-gray-100 rounded-full p-1">
+                <TabsTrigger value="normal" className="rounded-full font-bold">
+                  Normal Plan
                 </TabsTrigger>
-                <TabsTrigger value="regular" className="text-sm">
-                  Regular Plans
+                <TabsTrigger value="tracker" className="rounded-full font-bold">
+                  Tracker Plan
                 </TabsTrigger>
               </TabsList>
+            </div>
 
-              <TabsContent value="special" className="space-y-6">
-                <div className="text-center mb-6">
-                  <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-sm px-4 py-2 rounded-full font-bold shadow-lg animate-pulse flex items-center gap-2 max-w-fit mx-auto">
-                    Limited Time: First 100 Students Only!
-                  </Badge>
+            <TabsContent value="normal" className="outline-none">
+              <div className="mb-16">
+                <div className="flex flex-col items-center text-center mb-8">
+                  <span className="bg-orange-100 text-orange-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                    Premium Tier
+                  </span>
+                  <h2 className="text-5xl font-black text-gray-900 mb-2">
+                    Normal Plan
+                  </h2>
+                  <p className="text-gray-500 text-lg">
+                    Full Access to All Features
+                  </p>
                 </div>
 
-                {specialPlans.map((plan, index) => (
-                  <Card
-                    key={index}
-                    className={`relative overflow-hidden ${
-                      plan.popular
-                        ? "border-2 border-yellow-400"
-                        : "border border-gray-200"
-                    }`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-yellow-400 to-orange-400 text-black text-center py-1 font-bold text-sm">
-                        MOST POPULAR
+                <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 max-w-5xl mx-auto flex flex-col md:flex-row">
+                  {/* Left: Features List */}
+                  <div className="flex-1 p-8 md:p-12 bg-gray-50/50">
+                    <div className="flex items-center gap-3 mb-8">
+                      <div className="p-2 bg-orange-100 rounded-lg">
+                        <Star className="h-5 w-5 text-orange-600 fill-orange-600" />
                       </div>
-                    )}
-                    <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded-full">
-                      SPECIAL
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Core Modules
+                      </h3>
                     </div>
-                    <CardHeader
-                      className={`text-center ${
-                        plan.popular ? "pt-8" : "pt-4"
-                      }`}
-                    >
-                      <CardTitle className="text-2xl text-gray-900 mb-2">
-                        {plan.days} Days
-                      </CardTitle>
-                      <CardDescription className="text-3xl font-bold bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent flex items-center justify-center gap-1">
-                        <IndianRupee className="h-6 w-6" />
-                        {plan.price}
-                      </CardDescription>
-                      <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
-                        <IndianRupee className="h-4 w-4" />
-                        {plan.originalPrice}
-                      </p>
-                      <p className="text-gray-500 mt-2 text-sm">
-                        Perfect for getting started
-                      </p>
-                    </CardHeader>
-                    <CardContent className="pt-4">
-                      <Button
-                        disabled={loadingAmount === plan.price}
-                        className={`w-full py-3 rounded-full font-bold transition-all duration-300 ${
-                          plan.popular
-                            ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:from-yellow-500 hover:to-orange-500"
-                            : "bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600"
-                        }`}
-                        onClick={() => handleChoosePlan(plan.price)}
-                      >
-                        {loadingAmount === plan.price
-                          ? "Processing..."
-                          : "Choose This Plan"}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </TabsContent>
+                    <div className="space-y-4">
+                      {normalPlanFeatures.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-3">
+                          <div className="bg-orange-600 rounded-full p-0.5">
+                            <Check
+                              className="h-3 w-3 text-white"
+                              strokeWidth={4}
+                            />
+                          </div>
+                          <span className="text-gray-700 font-medium">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
 
-              <TabsContent value="regular" className="space-y-6">
-                <div className="text-center mb-6">
-                  <Badge className="bg-gray-800 text-white text-sm px-4 py-2 rounded-full font-bold flex items-center gap-2 max-w-fit mx-auto">
-                    Regular Pricing
-                  </Badge>
+                  {/* Right: Selection Area */}
+                  <div className="flex-1 p-8 md:p-12 flex flex-col justify-center border-l border-gray-100">
+                    <h4 className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">
+                      Choose Duration
+                    </h4>
+                    <div className="space-y-4 mb-10">
+                      {normalPlans.map((plan) => (
+                        <div
+                          key={plan.days}
+                          onClick={() => setSelectedNormalDuration(plan.days)}
+                          className={`relative cursor-pointer group rounded-2xl p-5 border-2 transition-all duration-300 ${
+                            selectedNormalDuration === plan.days
+                              ? "border-orange-500 bg-orange-50/30 ring-4 ring-orange-500/5"
+                              : "border-gray-200 hover:border-gray-300"
+                          }`}
+                        >
+                          {plan.popular && (
+                            <div className="absolute -top-3 left-6 bg-orange-600 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg">
+                              MOST POPULAR
+                            </div>
+                          )}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div
+                                className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
+                                  selectedNormalDuration === plan.days
+                                    ? "border-orange-500 bg-orange-500"
+                                    : "border-gray-300 group-hover:border-gray-400"
+                                }`}
+                              >
+                                {selectedNormalDuration === plan.days && (
+                                  <div className="w-2 h-2 bg-white rounded-full" />
+                                )}
+                              </div>
+                              <span
+                                className={`text-lg font-bold ${selectedNormalDuration === plan.days ? "text-gray-900" : "text-gray-600"}`}
+                              >
+                                {plan.days} Days
+                              </span>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-2xl font-black text-gray-900">
+                                ₹{plan.price}
+                              </div>
+                              {plan.originalPrice && (
+                                <div className="text-xs text-gray-400 line-through">
+                                  ₹{plan.originalPrice}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Button
+                      onClick={() =>
+                        selectedPlanData &&
+                        handleChoosePlan(selectedPlanData.price)
+                      }
+                      disabled={
+                        loadingAmount === selectedPlanData?.price ||
+                        !selectedPlanData
+                      }
+                      className="w-full py-8 rounded-2xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xl shadow-xl shadow-orange-500/20 transition-all hover:-translate-y-1"
+                    >
+                      {loadingAmount === selectedPlanData?.price
+                        ? "..."
+                        : "Activate Normal Plan"}
+                    </Button>
+                    <p className="text-center text-[10px] text-gray-400 mt-4 leading-relaxed">
+                      Includes 7-day money-back guarantee. Secure SSL encrypted
+                      payment gateway.
+                    </p>
+                  </div>
                 </div>
 
-                {regularPlans.map((plan, index) => (
-                  <Card key={index} className="border border-gray-200">
-                    <CardHeader className="text-center">
-                      <CardTitle className="text-2xl text-gray-900 mb-2">
-                        {plan.days} Days
-                      </CardTitle>
-                      <CardDescription className="text-3xl font-bold text-gray-800 flex items-center justify-center gap-1">
-                        <IndianRupee className="h-6 w-6" />
-                        {plan.price}
-                      </CardDescription>
-                      <p className="text-gray-400 line-through text-base mt-1 flex items-center justify-center">
-                        <IndianRupee className="h-4 w-4" />
-                        {plan.originalPrice}
+                {/* Grayscale Scholars Banner */}
+                <div className="mt-16 max-w-5xl mx-auto rounded-3xl overflow-hidden relative group h-80">
+                  <img
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+                    alt="Success"
+                    className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900/40 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-12 left-12">
+                    <h3 className="text-4xl font-black text-gray-900 mb-2">
+                      Join 50,000+ scholars
+                    </h3>
+                    <p className="text-gray-700 text-lg font-medium max-w-md">
+                      Accelerate your growth with the Normal Plan's
+                      comprehensive ecosystem.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="tracker" className="outline-none">
+              <div className="mb-16">
+                <div className="flex flex-col items-center text-center mb-8">
+                  <span className="bg-emerald-100 text-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
+                    Premium Subscription
+                  </span>
+                  <h2 className="text-5xl font-black text-gray-900 mb-2">
+                    Elevate Your Progress
+                  </h2>
+                  <p className="text-gray-500 text-lg max-w-xl">
+                    Focus on what matters most with a precision-engineered
+                    tracking environment designed for high-performance students.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 max-w-5xl mx-auto flex flex-col md:flex-row">
+                  {/* Left: Features List */}
+                  <div className="flex-1 p-8 md:p-12 border-r border-gray-100">
+                    <div className="mb-8">
+                      <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
+                        <Star className="h-8 w-8 text-emerald-600 fill-emerald-600/20" />
+                      </div>
+                      <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                        Tracker Plan
+                      </h3>
+                      <p className="text-gray-600 text-base leading-relaxed mb-8">
+                        A plan to track your each move in student journey.
+                        Master your time and syllabus with surgical precision.
                       </p>
-                    </CardHeader>
-                    <CardContent>
-                      <Button
-                        disabled={loadingAmount === plan.price}
-                        className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3 rounded-full font-bold transition-all duration-300"
-                        onClick={() => handleChoosePlan(plan.price)}
-                      >
-                        {loadingAmount === plan.price
-                          ? "Processing..."
-                          : "Choose Plan"}
-                      </Button>
-                    </CardContent>
-                  </Card>
-                ))}
-              </TabsContent>
-            </Tabs>
-          </div>
+                    </div>
+                    <div className="space-y-4">
+                      {trackerPlanFeatures.map((feature, i) => (
+                        <div key={i} className="flex items-center gap-4">
+                          <div className="bg-emerald-100 rounded-full p-1.5">
+                            <Check
+                              className="h-4 w-4 text-emerald-600"
+                              strokeWidth={4}
+                            />
+                          </div>
+                          <span className="text-gray-800 font-semibold text-lg">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right: Selection Area */}
+                  <div className="flex-1 p-8 md:p-12 bg-gray-50/30 flex flex-col justify-center">
+                    <h4 className="text-center text-xs font-bold text-gray-400 uppercase tracking-widest mb-8">
+                      Choose Duration
+                    </h4>
+                    <div className="space-y-3 mb-10">
+                      {trackerPlans.map((plan) => (
+                        <div
+                          key={plan.days}
+                          onClick={() => setSelectedTrackerDuration(plan.days)}
+                          className={`relative cursor-pointer group rounded-2xl p-4 border-2 transition-all duration-300 ${
+                            selectedTrackerDuration === plan.days
+                              ? "border-emerald-500 bg-white ring-4 ring-emerald-500/5"
+                              : "bg-gray-100/50 border-transparent hover:bg-gray-200/50"
+                          }`}
+                        >
+                          {plan.popular && (
+                            <div className="absolute -top-3 right-6 bg-emerald-700 text-white text-[10px] font-bold px-3 py-1 rounded-full shadow-lg">
+                              BEST VALUE
+                            </div>
+                          )}
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <span
+                                className={`text-xl font-bold ${selectedTrackerDuration === plan.days ? "text-emerald-700" : "text-gray-600"}`}
+                              >
+                                {plan.days}{" "}
+                                <span className="text-sm font-medium ml-1">
+                                  Days
+                                </span>
+                              </span>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-2xl font-black text-gray-900">
+                                ₹{plan.price}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <Button
+                      onClick={() =>
+                        selectedTrackerData &&
+                        handleChoosePlan(selectedTrackerData.price)
+                      }
+                      disabled={
+                        loadingAmount === selectedTrackerData?.price ||
+                        !selectedTrackerData
+                      }
+                      className="w-full py-8 rounded-2xl bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-xl shadow-xl shadow-emerald-900/10 transition-all hover:-translate-y-1"
+                    >
+                      {loadingAmount === selectedTrackerData?.price
+                        ? "..."
+                        : "Activate Tracker Plan"}
+                    </Button>
+                    <p className="text-center text-[10px] text-gray-400 italic mt-4 transition-all hover:text-gray-600 cursor-default">
+                      Secure checkout. Cancel anytime.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
         <RefundPolicy />
       </section>

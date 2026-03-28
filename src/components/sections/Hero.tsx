@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ReactTyped } from "react-typed";
 
-type HeroSectionProps = {};
-
-export default function HeroSection({}: HeroSectionProps) {
+export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -74,7 +72,7 @@ export default function HeroSection({}: HeroSectionProps) {
           </div>
 
           {/* RIGHT: WhatsApp contact + inclusive highlight - responsive */}
-          <div className="flex flex-col items-stretch gap-4 sm:gap-5 md:gap-6 lg:ml-36 mt-6 sm:mt-8 md:mt-0">
+          <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6 lg:ml-36 mt-6 sm:mt-8 md:mt-0">
             {/* Inclusive highlight (above registration) - responsive */}
             <div className="relative">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 rounded-xl sm:rounded-2xl blur opacity-60"></div>
@@ -84,8 +82,8 @@ export default function HeroSection({}: HeroSectionProps) {
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                     We provide our daily target tracking service for{" "}
                     <span className="text-yellow-300 font-bold">FREE</span> to
-                    students who are{" "}
-                    <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
+                    students from vulnerable sections.
+                    {/* <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
                       Transgenders
                     </span>
                     ,{" "}
@@ -99,7 +97,7 @@ export default function HeroSection({}: HeroSectionProps) {
                     and Students from{" "}
                     <span className="text-red-300 font-bold bg-red-900/30 px-2 py-1 rounded border border-red-400/50 shadow-lg">
                       Manual Scavenger Family
-                    </span>
+                    </span> */}
                   </p>
                 </div>
               </div>

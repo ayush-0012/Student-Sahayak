@@ -1,17 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  Trophy,
-  Gift,
-  Timer,
-  Smartphone,
-  Star,
   Apple,
   Dumbbell,
-  Users,
-  Video,
   Eye,
+  Gift,
   IndianRupee,
+  Smartphone,
+  Star,
+  Timer,
+  Trophy,
+  Video,
 } from "lucide-react";
 
 export default function ChallengeSection() {
@@ -80,42 +79,45 @@ export default function ChallengeSection() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: "Study Time",
+                title: "Academic Baseline (7-Hour Rule)",
                 description:
-                  "Minimum 7 hours per day study (tracking via Forest app)",
+                  "Goal: 7 hours focused study daily (Mon-Sat). Window 12:00AM-11:30PM. Track via Forest app and upload screenshot to Sahayak App before 11:30PM.",
                 icon: Timer,
                 color: "from-blue-400 to-blue-600",
               },
               {
-                title: "No Entertainment",
+                title: "Physical Vitality (4000-Step Sprint)",
                 description:
-                  "On weekdays no entertainment content (YouTube, Instagram, etc.)",
-                icon: Smartphone,
-                color: "from-red-400 to-red-600",
+                  "Goal: 4,000 steps within 40 minutes, 4 days/week. Record on Google Fit and upload steps+duration screenshot.",
+                icon: Dumbbell,
+                color: "from-green-400 to-teal-500",
               },
               {
-                title: "Sunday Freedom",
-                description: "On Sundays you are free to do whatever you want",
-                icon: Star,
-                color: "from-green-400 to-green-600",
-              },
-              {
-                title: "Healthy Diet",
-                description: "Keep a healthy diet and proper water intake",
+                title: "Clean Fuel Policy",
+                description:
+                  "Zero packaged/junk food. Healthy homemade meals breakfast, lunch, dinner (3x/day). Upload dated meal photo with handwritten date.",
                 icon: Apple,
                 color: "from-yellow-400 to-orange-500",
               },
               {
-                title: "Exercise",
-                description: "Exercise 4 days a week for physical fitness",
-                icon: Dumbbell,
+                title: "Digital Detox (Zero Entertainment)",
+                description:
+                  "No brain-rot apps Mon-Sat; Sunday limit 2h. Upload daily screen-time proof for entertainment usage.",
+                icon: Smartphone,
+                color: "from-red-400 to-red-600",
+              },
+              {
+                title: "Sunday: Revision Reset",
+                description:
+                  "2-3 hours mandatory weekly revision. Reward: limited phone/leisure after 3h logged. Submit one Yes/No Sunday night response.",
+                icon: Star,
                 color: "from-purple-400 to-purple-600",
               },
               {
-                title: "Guidance",
+                title: "Gemini Quiz Process",
                 description:
-                  "We will guide and mentor you throughout the journey",
-                icon: Users,
+                  "Wed & Sat: create and solve 2x10 questions (20 total) on Gemini. Upload 5s screen recording with analysis and final score.",
+                icon: Video,
                 color: "from-indigo-400 to-blue-500",
               },
             ].map((rule, index) => (
@@ -407,8 +409,7 @@ export default function ChallengeSection() {
                   90 Days Challenge
                 </CardTitle>
                 <div className="text-3xl font-bold text-yellow-400 flex items-center justify-center gap-1 mb-4">
-                  <IndianRupee className="h-6 w-6" />
-                  2000
+                  ₹ 2000
                 </div>
 
                 {/* Reward Tree for 90 Days */}
@@ -429,8 +430,7 @@ export default function ChallengeSection() {
                       Study every day (Sundays free)
                     </p>
                     <div className="text-xl font-bold text-green-400 flex items-center justify-center gap-1">
-                      <IndianRupee className="h-5 w-5" />
-                      1400 REWARD
+                      ₹ 1400 REWARD
                     </div>
                   </div>
 
@@ -444,28 +444,8 @@ export default function ChallengeSection() {
                     </div>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between items-center">
-                        <span className="text-white/90">Miss 1 day:</span>
-                        <span className="text-red-400 font-bold">-₹50</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/90">Miss 2 days:</span>
-                        <span className="text-red-400 font-bold">-₹100</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/90">Miss 3 days:</span>
-                        <span className="text-red-400 font-bold">-₹150</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/90">Miss 4 days:</span>
-                        <span className="text-red-400 font-bold">-₹200</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/90">Miss 5 days:</span>
-                        <span className="text-red-400 font-bold">-₹250</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-white/90">Miss 6 days:</span>
-                        <span className="text-red-400 font-bold">-₹300</span>
+                        <span className="text-white/90">Miss 1-6 days:</span>
+                        <span className="text-red-400 font-bold">-₹50/day</span>
                       </div>
                       <div className="flex justify-between items-center border-t border-red-400/30 pt-2">
                         <span className="text-white/90 font-bold">
@@ -510,7 +490,6 @@ export default function ChallengeSection() {
             </Card>
           </div>
 
-          {/* Summary Section */}
           <div className="mt-12 max-w-4xl mx-auto pb-10">
             <Card className="bg-gradient-to-r from-yellow-500 to-orange-500 text-black">
               <CardHeader className="text-center">

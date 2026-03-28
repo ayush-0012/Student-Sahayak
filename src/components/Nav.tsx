@@ -60,12 +60,12 @@ function Nav() {
               >
                 Challenge
               </a>
-              <a
+              {/* <a
                 href="/revision"
                 className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
               >
                 Revision
-              </a>
+              </a> */}
               {/* <a
                 href="/contact"
                 className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"

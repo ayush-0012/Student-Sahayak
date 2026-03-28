@@ -10,7 +10,6 @@ import RefundPage from "./components/Refund.js";
 import RegisterForm from "./components/Register.js";
 import ChallengeSection from "./components/sections/Challenge.js";
 import Pricing from "./components/sections/Pricing.js";
-import RevisionSection from "./components/sections/Revision.js";
 import Services from "./components/sections/Services.js";
 import TermsAndConditions from "./components/Terms.js";
 import VerifyEmailPage from "./components/Verification.js";
@@ -33,7 +32,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/challenge" element={<ChallengeSection />} />
-          <Route path="/revision" element={<RevisionSection />} />
+          {/* <Route path="/revision" element={<RevisionSection />} /> */}
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/take-test" element={<PsychologicalTest />} />
           {/* <Route path="/contact" element={<ContactSection />} /> */}
