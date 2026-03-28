@@ -183,11 +183,11 @@ function Pricing() {
                 <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 max-w-5xl mx-auto flex flex-col md:flex-row">
                   {/* Left: Features List */}
                   <div className="flex-1 p-8 md:p-12 bg-gray-50/50">
-                    <div className="flex items-center gap-3 mb-8">
-                      <div className="p-2 bg-orange-100 rounded-lg">
-                        <Star className="h-5 w-5 text-orange-600 fill-orange-600" />
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
+                        <Star className="h-6 w-6 text-orange-600 fill-orange-600" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900">
+                      <h3 className="text-3xl font-bold text-gray-900">
                         Core Modules
                       </h3>
                     </div>
@@ -325,12 +325,14 @@ function Pricing() {
                   {/* Left: Features List */}
                   <div className="flex-1 p-8 md:p-12 border-r border-gray-100">
                     <div className="mb-8">
-                      <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mb-6">
-                        <Star className="h-8 w-8 text-emerald-600 fill-emerald-600/20" />
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center">
+                          <Star className="h-6 w-6 text-emerald-600 fill-emerald-600/20" />
+                        </div>
+                        <h3 className="text-3xl font-bold text-gray-900">
+                          Tracker Plan
+                        </h3>
                       </div>
-                      <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                        Tracker Plan
-                      </h3>
                       <p className="text-gray-600 text-base leading-relaxed mb-8">
                         A plan to track your each move in student journey.
                         Master your time and syllabus with surgical precision.
