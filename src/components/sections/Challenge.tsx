@@ -79,44 +79,44 @@ export default function ChallengeSection() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: "Academic Baseline (7-Hour Rule)",
+                title: "Academic Baseline",
                 description:
-                  "Goal: 7 hours focused study daily (Mon-Sat). Window 12:00AM-11:30PM. Track via Forest app and upload screenshot to Sahayak App before 11:30PM.",
+                  "Goal: 7h focused study daily (Mon-Sat, 12AM-11:30PM). Proof: Upload Forest app screenshot to Sahayak App daily.",
                 icon: Timer,
                 color: "from-blue-400 to-blue-600",
               },
               {
-                title: "Physical Vitality (4000-Step Sprint)",
+                title: "Physical Vitality",
                 description:
-                  "Goal: 4,000 steps within 40 minutes, 4 days/week. Record on Google Fit and upload steps+duration screenshot.",
+                  "Goal: 4,000 steps in 40 mins (Min 4 days/week). Proof: Record on Google Fit; upload steps + duration screenshot.",
                 icon: Dumbbell,
                 color: "from-green-400 to-teal-500",
               },
               {
                 title: "Clean Fuel Policy",
                 description:
-                  "Zero packaged/junk food. Healthy homemade meals breakfast, lunch, dinner (3x/day). Upload dated meal photo with handwritten date.",
+                  "Goal: Zero junk. 3 healthy meals daily. Proof: Photo of meal with handwritten date on paper beside the plate.",
                 icon: Apple,
                 color: "from-yellow-400 to-orange-500",
               },
               {
-                title: "Digital Detox (Zero Entertainment)",
+                title: "Digital Detox",
                 description:
-                  "No brain-rot apps Mon-Sat; Sunday limit 2h. Upload daily screen-time proof for entertainment usage.",
+                  "Goal: No brain-rot apps Mon-Sat; Sunday <2h. Proof: Daily upload of Phone Screen Time settings.",
                 icon: Smartphone,
                 color: "from-red-400 to-red-600",
               },
               {
-                title: "Sunday: Revision Reset",
+                title: "Sunday Revision",
                 description:
-                  "2-3 hours mandatory weekly revision. Reward: limited phone/leisure after 3h logged. Submit one Yes/No Sunday night response.",
+                  "Goal: 2-3h mandatory revision. Proof: Mandatory log and one Yes/No accountability response on Sunday nights.",
                 icon: Star,
                 color: "from-purple-400 to-purple-600",
               },
               {
-                title: "Gemini Quiz Process",
+                title: "Gemini Quiz",
                 description:
-                  "Wed & Sat: create and solve 2x10 questions (20 total) on Gemini. Upload 5s screen recording with analysis and final score.",
+                  "Goal: 3 days/week (Wed, Sat). Proof: 5s screen recording showing test analysis and final score.",
                 icon: Video,
                 color: "from-indigo-400 to-blue-500",
               },
@@ -143,33 +143,54 @@ export default function ChallengeSection() {
           </div>
         </div>
 
-        {/* Tracking Methods */}
-        <div className="max-w-4xl mx-auto mb-16">
+        {/* How We Track You */}
+        <div className="max-w-6xl mx-auto mb-16">
           <h3 className="text-3xl font-bold text-white text-center mb-12">
             How We Track You
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
                 title: "Forest App",
                 description:
-                  "Setup Forest app and send screenshots on WhatsApp to mentor daily",
+                  "Upload screenshot of your 7-hour daily total study time to the Sahayak App before 11:30 PM.",
                 icon: Smartphone,
                 color: "from-green-400 to-green-600",
               },
               {
-                title: "Video Calls",
+                title: "Google Fit",
                 description:
-                  "Random video calls depending upon your schedule for accountability",
-                icon: Video,
+                  "Upload activity screenshot showing 4,000 steps completed within 40 minutes for physical vitality.",
+                icon: Dumbbell,
                 color: "from-blue-400 to-blue-600",
               },
               {
-                title: "App Usage",
+                title: "Meal Authenticity",
                 description:
-                  "We will track your usage through Stay Focused App and you have to send screenshots of analytics",
+                  "Upload photos of your 3 meals daily with a handwritten date on a paper placed beside your plate.",
+                icon: Apple,
+                color: "from-orange-400 to-orange-600",
+              },
+              {
+                title: "Screen Time",
+                description:
+                  "Upload Phone 'Screen Time' settings daily to prove zero usage of entertainment apps (Mon-Sat).",
                 icon: Eye,
                 color: "from-purple-400 to-purple-600",
+              },
+              {
+                title: "Sunday Log",
+                description:
+                  "Mandatory 2-3 hours revision log followed by a single Yes/No accountability response on Sunday night.",
+                icon: Star,
+                color: "from-yellow-400 to-yellow-600",
+              },
+              {
+                title: "Quiz Analysis",
+                description:
+                  "Upload a 5-second screen recording showing your Gemini quiz analysis and final score sheet.",
+                icon: Video,
+                color: "from-indigo-400 to-indigo-600",
               },
             ].map((method, index) => (
               <Card
