@@ -278,29 +278,6 @@ function Pricing() {
                         ? "..."
                         : "Activate Normal Plan"}
                     </Button>
-                    <p className="text-center text-[10px] text-gray-400 mt-4 leading-relaxed">
-                      Includes 7-day money-back guarantee. Secure SSL encrypted
-                      payment gateway.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Grayscale Scholars Banner */}
-                <div className="mt-16 max-w-5xl mx-auto rounded-3xl overflow-hidden relative group h-80">
-                  <img
-                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
-                    alt="Success"
-                    className="absolute inset-0 w-full h-full object-cover grayscale opacity-40 group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900/40 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-12 left-12">
-                    <h3 className="text-4xl font-black text-gray-900 mb-2">
-                      Join 50,000+ scholars
-                    </h3>
-                    <p className="text-gray-700 text-lg font-medium max-w-md">
-                      Accelerate your growth with the Normal Plan's
-                      comprehensive ecosystem.
-                    </p>
                   </div>
                 </div>
               </div>
