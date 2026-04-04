@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Shield, Star, Users } from "lucide-react";
+import { MessageCircle, Shield, Star, Users, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ReactTyped } from "react-typed";
@@ -157,24 +157,26 @@ export default function HeroSection() {
           <Link to="/take-test" className="w-full sm:w-auto">
             <Button
               size="lg"
-              className="w-full sm:w-auto relative border-3 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white text-lg sm:text-xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
+              className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xl sm:text-2xl px-10 sm:px-12 py-4 sm:py-6 rounded-full font-black shadow-[0_10px_40px_-10px_rgba(219,39,119,0.5)] hover:shadow-[0_20px_50px_-10px_rgba(219,39,119,0.7)] transform hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-white/20 animate-pulse-subtle min-h-[56px]"
             >
-              <span className="absolute inset-0 bg-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative flex items-center justify-center gap-2 sm:gap-3">
+              <span className="relative flex items-center justify-center gap-3">
+                <Zap className="h-7 w-7 fill-yellow-300 text-yellow-300 animate-pulse" />
                 Take a Test
               </span>
             </Button>
           </Link>
 
-          <Link to="/register" className="w-full sm:w-auto">
+          <Link
+            to="/register"
+            className="w-full sm:w-auto opacity-90 hover:opacity-100 transition-opacity"
+          >
             <Button
               size="lg"
-              className="w-full sm:w-auto relative border-3 border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-gray-900 text-lg sm:text-xl px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 rounded-full font-bold shadow-2xl transform hover:scale-105 transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
+              className="w-full sm:w-auto relative border-2 border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/10 text-lg sm:text-xl px-6 sm:px-8 py-3 rounded-full font-bold transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
             >
-              <span className="absolute inset-0 bg-yellow-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-              <span className="relative flex items-center justify-center gap-2 sm:gap-3">
-                <Users className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
-                Register Now
+              <span className="relative flex items-center justify-center gap-2">
+                <Users className="h-5 w-5 shrink-0" />
+                Register
               </span>
             </Button>
           </Link>
@@ -222,6 +224,21 @@ export default function HeroSection() {
           a {
             min-height: 44px;
           }
+        }
+
+        @keyframes pulse-subtle {
+          0%,
+          100% {
+            transform: scale(1);
+            box-shadow: 0 10px 40px -10px rgba(219, 39, 119, 0.5);
+          }
+          50% {
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px -10px rgba(219, 39, 119, 0.8);
+          }
+        }
+        .animate-pulse-subtle {
+          animation: pulse-subtle 2s ease-in-out infinite;
         }
 
         @keyframes spin {

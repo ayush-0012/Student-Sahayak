@@ -835,7 +835,7 @@ export default function PsychologicalTest() {
             Back to Home
           </Button>
           <h1 className="text-3xl font-bold text-center mb-2 text-gray-800">
-            SS METER: Preparation DNA Test
+            SS Journey METER: Preparation का DNA Test
           </h1>
           <p className="text-center text-gray-600 mb-4">
             Block:{" "}

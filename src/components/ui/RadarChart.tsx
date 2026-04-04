@@ -11,10 +11,11 @@ interface RadarChartProps {
 }
 
 export const RadarChart: React.FC<RadarChartProps> = ({ data, size = 400 }) => {
-  const padding = 80; // Increased padding for labels
-  const radius = (size - padding * 2) / 2;
-  const centerX = size / 2;
-  const centerY = size / 2;
+  const padding = 100; // Original padding
+  const chartSize = size;
+  const radius = (chartSize - padding * 2) / 2;
+  const centerX = chartSize / 2;
+  const centerY = chartSize / 2;
 
   // Number of axes
   const numAxes = data.length;
@@ -47,13 +48,13 @@ export const RadarChart: React.FC<RadarChartProps> = ({ data, size = 400 }) => {
   // Axis lines and labels
   const axes = data.map((d, i) => {
     const { x, y } = getCoordinates(i, 100);
-    // Position labels slightly further out (120% of radius)
-    const labelPos = getCoordinates(i, 120);
+    // Position labels slightly further out (125% of radius for better gap)
+    const labelPos = getCoordinates(i, 125);
 
     // Adjust label alignment based on position
     let textAnchor = "middle";
-    if (labelPos.x < centerX - 20) textAnchor = "end";
-    else if (labelPos.x > centerX + 20) textAnchor = "start";
+    if (labelPos.x < centerX - 10) textAnchor = "end";
+    else if (labelPos.x > centerX + 10) textAnchor = "start";
 
     // Split labels into max 2-3 words per line for better vertical alignment
     const words = d.block.split(" ");
@@ -92,14 +93,17 @@ export const RadarChart: React.FC<RadarChartProps> = ({ data, size = 400 }) => {
     );
   });
 
+  // Add extra room for labels in viewBox
+  const margin = 60;
+  const viewBoxSize = size + margin * 2;
   return (
     <div className="flex justify-center items-center w-full my-4 overflow-visible">
       <svg
         width="100%"
         height="100%"
-        viewBox={`0 0 ${size} ${size}`}
+        viewBox={`-${margin} -${margin} ${viewBoxSize} ${viewBoxSize}`}
         className="max-w-full h-auto overflow-visible"
-        style={{ maxWidth: size }}
+        style={{ maxWidth: size + margin * 2 }}
       >
         {/* Grid levels */}
         {gridLines.map((points, i) => (
