@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { RadarChart } from "@/components/ui/RadarChart";
 import { axiosInstance } from "@/utils/axiosInstance";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 
 // Define the questions based on the SS METER document
@@ -477,6 +479,7 @@ export default function PsychologicalTest() {
   const [showResults, setShowResults] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
   const [scoreCategory, setScoreCategory] = useState("");
+  const [blockAnalysis, setBlockAnalysis] = useState<any[]>([]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
@@ -586,11 +589,32 @@ export default function PsychologicalTest() {
       const generatedText = data.message || "Something went wrong.";
 
       setAiResponse(generatedText);
+      if (data.blockAnalysis) {
+        setBlockAnalysis(data.blockAnalysis);
+      }
       setShowResults(true);
     } catch (error) {
       console.error("Error submitting test:", error);
       // Even if AI fails, show the score
       setAiResponse(category.message);
+
+      // Calculate local block analysis as fallback
+      const localAnalysis = Object.values(
+        questions.reduce((acc: any, q) => {
+          if (!acc[q.block]) {
+            acc[q.block] = { block: q.block, scored: 0, total: 0 };
+          }
+          const answer = answers[q.id];
+          acc[q.block].scored += answer ? answer.points : 0;
+          acc[q.block].total += 5; // Each question is 5 pts max
+          return acc;
+        }, {})
+      ).map((item: any) => ({
+        ...item,
+        percentage: ((item.scored / item.total) * 100).toFixed(0),
+      }));
+      setBlockAnalysis(localAnalysis);
+
       setShowResults(true);
     } finally {
       setIsLoading(false);
@@ -602,90 +626,195 @@ export default function PsychologicalTest() {
     const percentage = category.percentage;
 
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-600 via-red-500 to-orange-500 flex items-center justify-center py-12 px-4 pt-24 md:pt-32">
-        <Card className="max-w-3xl w-full bg-white/95 backdrop-blur-sm p-8 shadow-2xl">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-2 text-gray-800">
-              Your Sahayak Score
-            </h2>
-            <div className="text-7xl font-extrabold text-red-600 my-6">
-              {totalScore}/125
+      <div className="min-h-screen bg-gradient-to-br from-red-600 via-red-500 to-orange-500 flex items-start md:items-center justify-center py-16 px-2 md:px-6 md:py-24 pt-24 md:pt-32">
+        <Card className="w-full max-w-[1400px] bg-white/95 backdrop-blur-sm p-6 md:p-10 shadow-2xl relative">
+          <div className="flex flex-col lg:flex-row gap-8 items-start">
+            <div className="w-full lg:w-1/2 flex flex-col items-center text-center">
+              <div className="w-full mb-8">
+                <h2 className="text-3xl font-bold mb-2 text-gray-800 tracking-tight">
+                  Your Sahayak Score
+                </h2>
+                <div className="text-7xl font-black text-red-600 my-4 drop-shadow-sm">
+                  {totalScore}/125
+                </div>
+                <div className="text-xl font-bold text-gray-600 mb-2">
+                  {percentage}% - {scoreCategory}
+                </div>
+                <div className="w-64 mx-auto bg-gray-200 rounded-full h-3 mb-6 overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all duration-1000 ease-out ${
+                      totalScore >= 104
+                        ? "bg-green-600"
+                        : totalScore >= 63
+                          ? "bg-orange-500"
+                          : "bg-red-600"
+                    }`}
+                    style={{ width: `${percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              {blockAnalysis && blockAnalysis.length > 0 && (
+                <div className="w-full flex flex-col items-center">
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800 flex items-center gap-2">
+                    <span className="w-8 h-px bg-gray-300"></span>
+                    Your Preparation DNA Web
+                    <span className="w-8 h-px bg-gray-300"></span>
+                  </h3>
+                  <div className="w-full max-w-2xl flex justify-center">
+                    <RadarChart data={blockAnalysis} size={520} />
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="text-2xl font-semibold text-gray-700 mb-2">
-              {percentage}% - {scoreCategory}
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-4 mb-4">
-              <div
-                className={`h-4 rounded-full transition-all duration-500 ${
-                  totalScore >= 104
-                    ? "bg-green-600"
-                    : totalScore >= 63
-                      ? "bg-yellow-600"
-                      : "bg-red-600"
-                }`}
-                style={{ width: `${percentage}%` }}
-              ></div>
+
+            {/* Right Column: Reality Hit and Gaps */}
+            <div className="w-full lg:w-1/2 space-y-6">
+              <div className="p-6 rounded-xl bg-red-50 border border-red-100 shadow-sm relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-1 h-full bg-red-600"></div>
+                <h3 className="font-bold text-xl mb-2 text-gray-900">
+                  The Reality Hit
+                </h3>
+                <p className="text-sm text-gray-700 leading-relaxed italic">
+                  "{getScoreCategory(totalScore).message}"
+                </p>
+              </div>
+
+              {blockAnalysis && blockAnalysis.length > 0 && (
+                <div className="grid grid-cols-1 gap-4">
+                  <div className="p-5 rounded-xl bg-emerald-50 border border-emerald-100 shadow-sm">
+                    <h4 className="font-bold text-emerald-800 mb-3 flex items-center text-base">
+                      <span className="mr-2 text-xl">🔥</span> Top Strengths
+                    </h4>
+                    <ul className="space-y-2 text-sm text-emerald-700">
+                      {blockAnalysis
+                        .filter((b) => Number(b.percentage) >= 70)
+                        .map((b, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                            <span>
+                              {b.block}{" "}
+                              <span className="font-bold">
+                                ({b.percentage}%)
+                              </span>
+                            </span>
+                          </li>
+                        ))}
+                      {blockAnalysis.filter((b) => Number(b.percentage) >= 70)
+                        .length === 0 && (
+                        <li className="italic text-gray-500">
+                          Keep grinding to build your first major strength!
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                  <div className="p-5 rounded-xl bg-red-50 border border-red-100 shadow-sm">
+                    <h4 className="font-bold text-red-800 mb-3 flex items-center text-base">
+                      <span className="mr-2 text-xl">⚠️</span> Critical Gaps
+                    </h4>
+                    <ul className="space-y-2 text-sm text-red-700">
+                      {blockAnalysis
+                        .filter((b) => Number(b.percentage) < 50)
+                        .map((b, i) => (
+                          <li key={i} className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                            <span>
+                              {b.block}{" "}
+                              <span className="font-bold">
+                                ({b.percentage}%)
+                              </span>
+                            </span>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
+
+              <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-orange-100 p-6 rounded-xl shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-orange-200/20 rounded-full -mr-12 -mt-12"></div>
+                <h3 className="font-bold text-orange-900 mb-2 text-lg">
+                  Ready to Transform?
+                </h3>
+                <p className="text-sm text-orange-800 mb-5 leading-relaxed">
+                  Hard work without a system is just exhaustion. Get a
+                  <span className="font-bold"> Challenge Plan</span> that tracks
+                  your backlogs and fixes your consistency.
+                </p>
+                <Button
+                  onClick={() => navigate("/register")}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold h-12 rounded-lg shadow-lg shadow-red-200 transition-all hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  Start Your Transformation
+                </Button>
+              </div>
             </div>
           </div>
 
-          <div className="mb-8 p-6 rounded-lg bg-gray-50 border-l-4 border-red-600">
-            <h3 className="font-bold text-xl mb-3 text-gray-800">
-              The Reality Hit
-            </h3>
-            <p className="text-gray-700 leading-relaxed">
-              {getScoreCategory(totalScore).message}
-            </p>
-          </div>
+          <hr className="mt-2 mb-8 border-gray-200" />
 
           {aiResponse &&
             aiResponse !== getScoreCategory(totalScore).message && (
-              <div className="prose prose-lg max-w-none mb-8">
-                <h3 className="text-xl font-bold mb-4 text-gray-800">
-                  Personalized Analysis
+              <div className="mb-6">
+                <h3 className="text-xl font-bold mb-3 text-gray-800 flex items-center">
+                  <span className="mr-2">🧬</span> Personalized DNA Analysis
                 </h3>
-                <div className="text-gray-700 whitespace-pre-line leading-relaxed">
-                  {aiResponse}
+                <div className="bg-white rounded-xl p-5 border border-gray-100 shadow-inner">
+                  <div className="prose prose-sm md:prose-base max-w-none text-gray-700 leading-relaxed">
+                    <ReactMarkdown
+                      components={{
+                        h1: ({ ...props }) => (
+                          <h1
+                            className="text-2xl font-bold mb-4 text-gray-900"
+                            {...props}
+                          />
+                        ),
+                        h2: ({ ...props }) => (
+                          <h2
+                            className="text-xl font-bold mb-3 text-gray-800"
+                            {...props}
+                          />
+                        ),
+                        h3: ({ ...props }) => (
+                          <h3
+                            className="text-lg font-bold mb-2 text-gray-800"
+                            {...props}
+                          />
+                        ),
+                        p: ({ ...props }) => (
+                          <p className="mb-4 last:mb-0" {...props} />
+                        ),
+                        ul: ({ ...props }) => (
+                          <ul
+                            className="list-disc pl-5 mb-4 space-y-2"
+                            {...props}
+                          />
+                        ),
+                        li: ({ ...props }) => <li className="" {...props} />,
+                        strong: ({ ...props }) => (
+                          <strong
+                            className="font-bold text-red-600"
+                            {...props}
+                          />
+                        ),
+                      }}
+                    >
+                      {aiResponse}
+                    </ReactMarkdown>
+                  </div>
                 </div>
               </div>
             )}
 
-          <div className="mt-8 space-y-4">
-            <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
-              <h3 className="font-bold text-yellow-800 mb-2">
-                Share Your Score!
-              </h3>
-              <p className="text-yellow-700 mb-3">
-                "Mera Sahayak Score {totalScore} hai, tera kya hai?" Share your
-                score with friends and challenge them to improve their
-                preparation DNA.
-              </p>
-              <h3 className="font-bold text-yellow-800 mb-2 mt-4">
-                Ready to Transform Your Journey?
-              </h3>
-              <p className="text-yellow-700">
-                Hard work without a system is just exhaustion. For ₹275, get a
-                Challenge Plan that tracks your backlogs, fixes your
-                consistency, and gives you a path to earn your own money so you
-                can stop being a burden on your parents.
-              </p>
-            </div>
-            <div className="flex gap-4 flex-col sm:flex-row">
-              <Button
-                onClick={() => navigate("/register")}
-                className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                size="lg"
-              >
-                Start Your Transformation - Register Now
-              </Button>
-              <Button
-                onClick={() => navigate("/")}
-                variant="outline"
-                className="flex-1"
-                size="lg"
-              >
-                Back to Home
-              </Button>
-            </div>
+          <div className="flex justify-center mt-12 mb-2">
+            <Button
+              onClick={() => navigate("/")}
+              variant="ghost"
+              className="text-gray-500 hover:text-red-600 hover:bg-red-50 flex items-center gap-2 group transition-all px-8 rounded-full"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <span className="font-bold">Back to Home</span>
+            </Button>
           </div>
         </Card>
       </div>
