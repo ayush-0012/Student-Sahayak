@@ -1,5 +1,5 @@
+import { Award, Compass, Heart, Shield, Star, Users, Zap } from "lucide-react";
 import { Button } from "../ui/button";
-import { Heart, Zap, Award, Compass, Users, Shield, Star } from "lucide-react";
 
 function Mission() {
   return (

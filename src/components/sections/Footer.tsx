@@ -7,7 +7,7 @@ export default function FooterSection() {
         <div className="text-center">
           <div className="flex items-center justify-center space-x-3 mb-6">
             <img
-              src="/images/sahayaklogo.jpeg"
+              src="/images/ss-logo.jpeg"
               alt="Student Sahayak Logo - We do it for the students"
               className="h-14 w-14 object-cover rounded-full border-2 border-white/20 shadow-lg"
               width="56"

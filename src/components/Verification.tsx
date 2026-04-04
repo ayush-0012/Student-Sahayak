@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, CheckCircle, XCircle } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosInstance } from "@/utils/axiosInstance";
+import { CheckCircle, Loader2, XCircle } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function VerifyEmailPage() {

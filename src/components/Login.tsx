@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Link } from "react-router";
-import { useState } from "react";
 import { axiosInstance } from "@/utils/axiosInstance";
 import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router";
 import { Bounce, toast, ToastContainer } from "react-toastify"; // or your preferred toast library
 
 export default function LoginPage() {
