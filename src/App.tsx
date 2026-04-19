@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AboutUsPage from "./components/About.js";
-import Dashboard from "./components/Dashboard.js";
 import Landing from "./components/Landing.js";
 import LoginForm from "./components/Login.js";
 import Nav from "./components/Nav.js";
@@ -24,7 +23,6 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/verify-email" element={<VerifyEmailPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           <Route path="/refund-policy" element={<RefundPage />} />

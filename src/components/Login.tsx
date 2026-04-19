@@ -2,25 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { axiosInstance } from "@/utils/axiosInstance";
+import { auth } from "@/lib/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
-import { Bounce, toast, ToastContainer } from "react-toastify"; // or your preferred toast library
+import { Link, useNavigate } from "react-router";
+import { Bounce, toast, ToastContainer } from "react-toastify";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function verifyEmail() {
-    setIsLoading(true);
-    try {
-      const response = await axiosInstance.post("/api/user/login", {
-        email,
-      });
-      console.log(response);
-
-      toast.success("Verification email sent!", {
+  async function handleLogin() {
+    if (!email || !password) {
+      toast.error("Please fill in all fields", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -31,10 +28,69 @@ export default function LoginPage() {
         theme: "colored",
         transition: Bounce,
       });
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      // Sign in with Firebase
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const idToken = await userCredential.user.getIdToken();
+
+      // Get backend URL
+      const backendUrl =
+        import.meta.env.MODE === "development"
+          ? import.meta.env.VITE_DEV_BACKEND_URL
+          : import.meta.env.VITE_PROD_BACKEND_URL;
+
+      // Send token to backend to sync user data
+      await fetch(backendUrl + "/api/user/firebase-login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify({ uid: userCredential.user.uid }),
+      });
+
+      toast.success("Login successful!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+
+      // Store token in localStorage
+      localStorage.setItem("firebaseToken", idToken);
+      localStorage.setItem("firebaseUid", userCredential.user.uid);
+
+      // Redirect to home
+      navigate("/");
     } catch (error) {
       console.log(error);
+      let errorMessage = "Login failed";
 
-      toast.error("Failed to send verification email", {
+      if (error instanceof Error && "code" in error) {
+        const fbError = error as { code: string };
+        if (fbError.code === "auth/user-not-found") {
+          errorMessage = "User not found. Please register first.";
+        } else if (fbError.code === "auth/wrong-password") {
+          errorMessage = "Incorrect password";
+        } else if (fbError.code === "auth/invalid-email") {
+          errorMessage = "Invalid email address";
+        }
+      }
+
+      toast.error(errorMessage, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -52,7 +108,7 @@ export default function LoginPage() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    await verifyEmail();
+    await handleLogin();
   }
 
   return (
@@ -83,6 +139,22 @@ export default function LoginPage() {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
+                <div>
+                  <Label htmlFor="password" className="text-white">
+                    Password
+                  </Label>
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    required
+                    disabled={isLoading}
+                    value={password}
+                    className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
                 <Button
                   type="submit"
                   disabled={isLoading}
@@ -91,10 +163,10 @@ export default function LoginPage() {
                   {isLoading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Sending...
+                      Logging in...
                     </>
                   ) : (
-                    "Verify Email"
+                    "Login"
                   )}
                 </Button>
               </form>

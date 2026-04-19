@@ -1,10 +1,28 @@
+import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import UserProfile from "./UserProfile";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem("firebaseToken");
+    setIsAuthenticated(!!token);
+
+    // Listen for storage changes to update auth state
+    const handleStorageChange = () => {
+      const newToken = localStorage.getItem("firebaseToken");
+      setIsAuthenticated(!!newToken);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
   return (
     <>
       {/* Header */}
@@ -41,7 +59,7 @@ function Nav() {
             </a>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex items-center space-x-8">
               <a
                 href="/services"
                 className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
@@ -72,6 +90,18 @@ function Nav() {
               >
                 Contact
               </a> */}
+              {isAuthenticated ? (
+                <div className="ml-4">
+                  <UserProfile />
+                </div>
+              ) : (
+                <Button
+                  onClick={() => navigate("/login")}
+                  className="ml-4 bg-yellow-400 text-black hover:bg-yellow-500 font-bold"
+                >
+                  Login
+                </Button>
+              )}
             </div>
 
             {/* Mobile Hamburger Menu */}

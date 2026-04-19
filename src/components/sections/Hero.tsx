@@ -1,14 +1,48 @@
 import { Button } from "@/components/ui/button";
+import { getTestAttemptsRemaining } from "@/lib/test-helpers";
 import { MessageCircle, Shield, Star, Users, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
+import { toast } from "react-toastify";
 import { ReactTyped } from "react-typed";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [testAttempts, setTestAttempts] = useState<{
+    remaining: number;
+    testsToday: number;
+    canTakeTest: boolean;
+  } | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
+
+    // Check if user is authenticated
+    const token = localStorage.getItem("firebaseToken");
+    setIsAuthenticated(!!token);
+
+    // Fetch test attempts if authenticated
+    if (token) {
+      const fetchAttempts = async () => {
+        const attempts = await getTestAttemptsRemaining();
+        if (attempts) {
+          setTestAttempts(attempts);
+          if (!attempts.canTakeTest) {
+            toast.error("Daily test limit reached (2/2). Come back tomorrow!", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              theme: "colored",
+            });
+          }
+        }
+      };
+      fetchAttempts();
+    }
   }, []);
 
   return (
@@ -157,33 +191,44 @@ export default function HeroSection() {
           <Link to="/take-test" className="w-full sm:w-auto">
             <Button
               size="lg"
-              className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xl sm:text-2xl px-10 sm:px-12 py-4 sm:py-6 rounded-full font-black shadow-[0_10px_40px_-10px_rgba(219,39,119,0.5)] hover:shadow-[0_20px_50px_-10px_rgba(219,39,119,0.7)] transform hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-white/20 animate-pulse-subtle min-h-[56px]"
+              disabled={
+                isAuthenticated && testAttempts && testAttempts.remaining === 0
+              }
+              className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xl sm:text-2xl px-10 sm:px-12 py-4 sm:py-6 rounded-full font-black shadow-[0_10px_40px_-10px_rgba(219,39,119,0.5)] hover:shadow-[0_20px_50px_-10px_rgba(219,39,119,0.7)] transform hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-white/20 animate-pulse-subtle min-h-[56px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <span className="relative flex items-center justify-center gap-3">
                 <Zap className="h-7 w-7 fill-yellow-300 text-yellow-300 animate-pulse" />
                 Take a Test
+                {isAuthenticated && testAttempts && (
+                  <span className="ml-2 text-lg font-bold">
+                    ({2 - testAttempts.remaining}/2)
+                  </span>
+                )}
               </span>
             </Button>
           </Link>
 
-          <Link
-            to="/register"
-            className="w-full sm:w-auto opacity-90 hover:opacity-100 transition-opacity"
-          >
-            <Button
-              size="lg"
-              className="w-full sm:w-auto relative border-2 border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/10 text-lg sm:text-xl px-6 sm:px-8 py-3 rounded-full font-bold transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
+          {!isAuthenticated && (
+            <Link
+              to="/register"
+              className="w-full sm:w-auto opacity-90 hover:opacity-100 transition-opacity"
             >
-              <span className="relative flex items-center justify-center gap-2">
-                <Users className="h-5 w-5 shrink-0" />
-                Register
-              </span>
-            </Button>
-          </Link>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto relative border-2 border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/10 text-lg sm:text-xl px-6 sm:px-8 py-3 rounded-full font-bold transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
+              >
+                <span className="relative flex items-center justify-center gap-2">
+                  <Users className="h-5 w-5 shrink-0" />
+                  Register
+                </span>
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
 
       {/* Responsive styles */}
+      {/* @ts-expect-error styled-jsx types */}
       <style jsx>{`
         /* Extra small screens */
         @media (max-width: 320px) {

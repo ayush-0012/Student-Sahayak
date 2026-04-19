@@ -38,7 +38,7 @@ export default function VerifyEmailPage() {
 
         // Redirect to login after 3 seconds
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/");
         }, 3000);
       } else {
         setStatus("error");
@@ -57,8 +57,8 @@ export default function VerifyEmailPage() {
     verifyEmailToken();
   };
 
-  const handleGoToDashboard = () => {
-    navigate("/dashboard");
+  const handleGoToHome = () => {
+    navigate("/");
   };
 
   const handleGoToLogin = () => {
@@ -87,14 +87,14 @@ export default function VerifyEmailPage() {
               <div className="space-y-2">
                 <p className="text-green-400 font-semibold">{message}</p>
                 {/* <p className="text-gray-400 text-sm">
-                  Redirecting to dashboard in 3 seconds...
+                  Redirecting to home in 3 seconds...
                 </p> */}
               </div>
               <Button
-                onClick={handleGoToDashboard}
+                onClick={handleGoToHome}
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold"
               >
-                Go to Dashboard
+                Go to Home
               </Button>
             </div>
           )}

@@ -1,4 +1,4 @@
-import { axiosInstance } from "@/utils/axiosInstance";
+import { ToastContainer } from "react-toastify";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
@@ -6,20 +6,6 @@ import Mission from "./sections/Mission";
 import VideoSection from "./sections/Video";
 
 export default function StudentSahayakLanding() {
-  function keepServerAwake() {
-    axiosInstance
-      .get("/ping")
-      .then(() => {})
-      .catch(() => {})
-      .finally(() => {
-        // Call again after 30 seconds
-        setTimeout(keepServerAwake, 48000);
-      });
-  }
-
-  // Start pinging
-  keepServerAwake();
-
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
@@ -55,6 +41,7 @@ export default function StudentSahayakLanding() {
       <VideoSection />
       {/* Footer */}
       <Footer />
+      <ToastContainer />
     </main>
   );
 }

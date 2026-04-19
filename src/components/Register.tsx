@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { axiosInstance } from "@/utils/axiosInstance";
+import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Loader2 } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
@@ -11,18 +12,14 @@ import { Bounce, toast } from "react-toastify";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
-  // const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  // const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Form state
   const [formData, setFormData] = useState({
     fullName: "",
-    phoneNumber: "",
     email: "",
-    age: "",
-    exam: "",
-    // image: null as File | null,
+    password: "",
+    confirmPassword: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,36 +29,6 @@ export default function RegisterPage() {
       [name]: value,
     }));
   };
-
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   setSelectedFile(file || null);
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     image: file || null,
-  //   }));
-
-  //   // Create preview URL
-  //   const url = file ? URL.createObjectURL(file) : null;
-  //   setPreviewUrl(url);
-  // };
-
-  // const removeFile = () => {
-  //   setSelectedFile(null);
-  //   setFormData((prev) => ({
-  //     ...prev,
-  //     image: null,
-  //   }));
-  //   if (previewUrl) {
-  //     URL.revokeObjectURL(previewUrl);
-  //     setPreviewUrl(null);
-  //   }
-  //   // Reset the file input
-  //   const fileInput = document.getElementById("photo") as HTMLInputElement;
-  //   if (fileInput) {
-  //     fileInput.value = "";
-  //   }
-  // };
 
   // Validation functions
   const validateForm = () => {
@@ -75,65 +42,32 @@ export default function RegisterPage() {
       return false;
     }
 
-    // Phone Number validation
-    if (!formData.phoneNumber.trim()) {
-      toast.error("Please enter your phone number");
-      return false;
-    }
-    const phoneRegex = /^[0-9]{10}$/;
-    if (!phoneRegex.test(formData.phoneNumber.trim())) {
-      toast.error("Phone number must be exactly 10 digits");
-      return false;
-    }
-
     // Email validation
     if (!formData.email.trim()) {
       toast.error("Please enter your email address");
       return false;
     }
-    const emailRegex =
-      /^[^\s@]+@(gmail\.com|yahoo\.com|hotmail\.com|outlook\.com)$/i;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
-      toast.error(
-        "Email must end with @gmail.com, @yahoo.com, @hotmail.com, or @outlook.com"
-      );
+      toast.error("Please enter a valid email address");
       return false;
     }
 
-    // Age validation
-    if (!formData.age.trim()) {
-      toast.error("Please enter your age");
+    // Password validation
+    if (!formData.password.trim()) {
+      toast.error("Please enter a password");
       return false;
     }
-    const ageNum = parseInt(formData.age);
-    if (isNaN(ageNum)) {
-      toast.error("Age must be a valid number");
-      return false;
-    }
-    if (ageNum < 1) {
-      toast.error("Age cannot be negative or zero");
-      return false;
-    }
-    if (ageNum > 120) {
-      toast.error("Please enter a valid age");
+    if (formData.password.length < 6) {
+      toast.error("Password must be at least 6 characters long");
       return false;
     }
 
-    // Exam validation
-    if (!formData.exam.trim()) {
-      toast.error("Please enter the exam you're preparing for");
+    // Confirm password validation
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords do not match");
       return false;
     }
-    if (formData.exam.trim().length < 2) {
-      toast.error("Exam name must be at least 2 characters long");
-      return false;
-    }
-
-    // Image validation
-    // if (!formData.image) {
-    //   toast.error("Please upload your photo");
-    //   return false;
-    // }
 
     return true;
   };
@@ -147,32 +81,49 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      // Create FormData for multipart/form-data
-      const registrationData = {
-        fullName: formData.fullName.trim(),
-        phoneNumber: formData.phoneNumber.trim(),
-        email: formData.email.trim().toLowerCase(),
-        age: formData.age.trim(),
-        exam: formData.exam.trim(),
-      };
-
-      // if (formData.image) {
-      //   registrationData.append("image", formData.image);
-      // }
-
-      const response = await axiosInstance.post(
-        "/api/user/register",
-        JSON.stringify(registrationData),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
+      // Create user in Firebase
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        formData.email.trim().toLowerCase(),
+        formData.password
       );
 
+      // Update user profile with display name
+      await updateProfile(userCredential.user, {
+        displayName: formData.fullName.trim(),
+      });
+
+      const idToken = await userCredential.user.getIdToken();
+
+      // Send user data to backend to create Firestore profile
+      const registrationData = {
+        uid: userCredential.user.uid,
+        fullName: formData.fullName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        emailVerified: false,
+      };
+
+      // Get backend URL
+      const backendUrl =
+        import.meta.env.MODE === "development"
+          ? import.meta.env.VITE_DEV_BACKEND_URL
+          : import.meta.env.VITE_PROD_BACKEND_URL;
+
+      const response = await fetch(backendUrl + "/api/user/firebase-register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${idToken}`,
+        },
+        body: JSON.stringify(registrationData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save user profile");
+      }
+
       // Success toast
-      toast.success("Registration successful! Please login to continue.", {
+      toast.success("Registration successful! You can now login.", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -184,12 +135,34 @@ export default function RegisterPage() {
         transition: Bounce,
       });
 
-      // Redirect to login page after successful registration
+      // Store token in localStorage
+      localStorage.setItem("firebaseToken", idToken);
+      localStorage.setItem("firebaseUid", userCredential.user.uid);
+
+      // Redirect to home after successful registration
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 2000);
     } catch (error) {
-      const errorMessage = "Registration failed. Please try again.";
+      console.log(error);
+      let errorMessage = "Registration failed. Please try again.";
+
+      if (error instanceof Error && "code" in error) {
+        const fbError = error as { code: string; message: string };
+        if (fbError.code === "auth/email-already-in-use") {
+          errorMessage = "This email is already registered.";
+        } else if (fbError.code === "auth/invalid-email") {
+          errorMessage = "Invalid email address.";
+        } else if (fbError.code === "auth/weak-password") {
+          errorMessage =
+            "Password is too weak. Please use a stronger password.";
+        } else if (fbError.message) {
+          errorMessage = fbError.message;
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+
       toast.error(errorMessage, {
         position: "top-center",
         autoClose: 5000,
@@ -248,26 +221,6 @@ export default function RegisterPage() {
               />
             </div>
             <div>
-              <Label htmlFor="phoneNumber" className="text-white">
-                Phone Number
-              </Label>
-              <Input
-                id="phoneNumber"
-                name="phoneNumber"
-                type="tel"
-                placeholder="e.g., 9876543210"
-                required
-                disabled={isLoading}
-                value={formData.phoneNumber}
-                onChange={handleInputChange}
-                maxLength={10}
-                className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
-              />
-              <p className="text-xs text-gray-400 mt-1">
-                Must be exactly 10 digits
-              </p>
-            </div>
-            <div>
               <Label htmlFor="email" className="text-white">
                 Email
               </Label>
@@ -282,43 +235,38 @@ export default function RegisterPage() {
                 onChange={handleInputChange}
                 className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
               />
+            </div>
+            <div>
+              <Label htmlFor="password" className="text-white">
+                Password
+              </Label>
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="At least 6 characters"
+                required
+                disabled={isLoading}
+                value={formData.password}
+                onChange={handleInputChange}
+                className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
+              />
               <p className="text-xs text-gray-400 mt-1">
-                Must end with @gmail.com
+                Must be at least 6 characters
               </p>
             </div>
             <div>
-              <Label htmlFor="age" className="text-white">
-                Age
+              <Label htmlFor="confirmPassword" className="text-white">
+                Confirm Password
               </Label>
               <Input
-                id="age"
-                name="age"
-                type="number"
-                placeholder="Your Age"
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                placeholder="Re-enter your password"
                 required
                 disabled={isLoading}
-                value={formData.age}
-                onChange={handleInputChange}
-                min="1"
-                max="120"
-                className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
-              />
-              {/* <p className="text-xs text-gray-400 mt-1">
-                Must be between 1 and 120
-              </p> */}
-            </div>
-            <div>
-              <Label htmlFor="exam" className="text-white">
-                Exam Preparing For
-              </Label>
-              <Input
-                id="exam"
-                name="exam"
-                type="text"
-                placeholder="e.g., UPSC, SSC GD"
-                required
-                disabled={isLoading}
-                value={formData.exam}
+                value={formData.confirmPassword}
                 onChange={handleInputChange}
                 className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
               />
