@@ -100,14 +100,24 @@ export default function LoginPage() {
       console.log(error);
       let errorMessage = "Login failed";
 
-      if (error instanceof Error && "code" in error) {
-        const fbError = error as { code: string };
-        if (fbError.code === "auth/user-not-found") {
-          errorMessage = "User not found. Please register first.";
-        } else if (fbError.code === "auth/wrong-password") {
-          errorMessage = "Incorrect password";
-        } else if (fbError.code === "auth/invalid-email") {
-          errorMessage = "Invalid email address";
+      if (error instanceof Error) {
+        // Check for backend error message first (from 404 response)
+        if (error.message.includes("Please register")) {
+          errorMessage = error.message;
+        } else if ("code" in error) {
+          // Check for Firebase-specific errors
+          const fbError = error as { code: string };
+          if (fbError.code === "auth/user-not-found") {
+            errorMessage = "User not found. Please register first.";
+          } else if (fbError.code === "auth/wrong-password") {
+            errorMessage = "Incorrect password";
+          } else if (fbError.code === "auth/invalid-email") {
+            errorMessage = "Invalid email address";
+          } else {
+            errorMessage = error.message;
+          }
+        } else {
+          errorMessage = error.message;
         }
       }
 

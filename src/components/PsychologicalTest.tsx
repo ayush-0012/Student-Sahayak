@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { RadarChart } from "@/components/ui/RadarChart";
+import { getPlanDescription, getRecommendedPlans } from "@/lib/plans";
 import {
   getTestAttemptsRemaining,
   saveTestScoreToFirebase,
@@ -142,6 +143,12 @@ export default function PsychologicalTest() {
         percentage: percentage.toFixed(0),
       };
     }
+  };
+
+  const getSuggestedPlans = (category: string) => {
+    const planData = getPlanDescription(category);
+    const plans = getRecommendedPlans(category, totalScore);
+    return { ...planData, plans };
   };
 
   const submitTest = async () => {
@@ -482,6 +489,66 @@ export default function PsychologicalTest() {
                   </div>
                 </div>
               )}
+
+              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-100 p-6 rounded-xl shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-blue-200/20 rounded-full -mr-12 -mt-12"></div>
+                <h3 className="font-bold text-blue-900 mb-3 text-lg flex items-center gap-2">
+                  <span className="text-2xl">
+                    {getSuggestedPlans(scoreCategory).icon}
+                  </span>
+                  {getSuggestedPlans(scoreCategory).title}
+                </h3>
+                <p className="text-sm text-blue-800 mb-6 leading-relaxed">
+                  {getSuggestedPlans(scoreCategory).description}
+                </p>
+
+                {/* Display recommended plans in grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  {getSuggestedPlans(scoreCategory).plans.map((plan) => (
+                    <div
+                      key={plan.id}
+                      className="bg-white/90 p-4 rounded-lg border border-blue-100 hover:border-blue-300 hover:shadow-md transition-all"
+                    >
+                      <div className="mb-3">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="font-semibold text-blue-900 text-sm">
+                            {plan.name}
+                          </p>
+                          <span className="text-base font-bold text-blue-600">
+                            ₹{plan.price}
+                          </span>
+                        </div>
+                        <p className="text-xs text-gray-600 line-clamp-1">
+                          {plan.besFor}
+                        </p>
+                      </div>
+                      <p className="text-xs text-gray-700 mb-3 line-clamp-2">
+                        {plan.description}
+                      </p>
+                      <div className="text-xs text-gray-600">
+                        <ul className="list-disc list-inside space-y-0.5">
+                          {plan.features.slice(0, 3).map((feature, i) => (
+                            <li key={i} className="line-clamp-1">
+                              {feature}
+                            </li>
+                          ))}
+                          {plan.features.length > 3 && (
+                            <li>+ {plan.features.length - 3} more</li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Explore Plans Button */}
+                <button
+                  onClick={() => navigate("/pricing")}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm"
+                >
+                  Explore All Plans
+                </button>
+              </div>
 
               <div className="bg-gradient-to-br from-amber-50 to-orange-50 border border-orange-100 p-6 rounded-xl shadow-sm relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-24 h-24 bg-orange-200/20 rounded-full -mr-12 -mt-12"></div>

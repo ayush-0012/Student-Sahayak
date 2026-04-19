@@ -201,7 +201,7 @@ export default function HeroSection() {
                 Take a Test
                 {isAuthenticated && testAttempts && (
                   <span className="ml-2 text-lg font-bold">
-                    ({2 - testAttempts.remaining}/2)
+                    ({testAttempts.remaining}/2)
                   </span>
                 )}
               </span>
