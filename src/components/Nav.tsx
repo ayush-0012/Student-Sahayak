@@ -1,28 +1,41 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import UserProfile from "./UserProfile";
 
 function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     // Check if user is authenticated
-    const token = localStorage.getItem("firebaseToken");
-    setIsAuthenticated(!!token);
+    const checkAuth = () => {
+      const token = localStorage.getItem("firebaseToken");
+      setIsAuthenticated(!!token);
+    };
+
+    checkAuth();
 
     // Listen for storage changes to update auth state
     const handleStorageChange = () => {
-      const newToken = localStorage.getItem("firebaseToken");
-      setIsAuthenticated(!!newToken);
+      checkAuth();
+    };
+
+    // Listen for custom auth state changes
+    const handleAuthStateChanged = () => {
+      checkAuth();
     };
 
     window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+    window.addEventListener("authStateChanged", handleAuthStateChanged);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("authStateChanged", handleAuthStateChanged);
+    };
+  }, [location]); // Re-check auth state when location changes
   return (
     <>
       {/* Header */}

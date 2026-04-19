@@ -139,6 +139,11 @@ export default function RegisterPage() {
       localStorage.setItem("firebaseToken", idToken);
       localStorage.setItem("firebaseUid", userCredential.user.uid);
 
+      // Dispatch custom auth event to notify other components
+      window.dispatchEvent(
+        new CustomEvent("authStateChanged", { detail: { authenticated: true } })
+      );
+
       // Redirect to home after successful registration
       setTimeout(() => {
         navigate("/");

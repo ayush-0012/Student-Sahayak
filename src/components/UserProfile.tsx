@@ -53,6 +53,13 @@ export default function UserProfile() {
         setSessionExpired(true);
         setUserData(null);
         toast.error("Session expired. Please login again.");
+      } else if (response.status === 404) {
+        // User not found in database - need to register
+        localStorage.removeItem("firebaseToken");
+        localStorage.removeItem("firebaseUid");
+        setSessionExpired(true);
+        setUserData(null);
+        toast.error("Please register your account first");
       }
     } catch (error) {
       console.error("Failed to fetch session:", error);
@@ -94,6 +101,12 @@ export default function UserProfile() {
     localStorage.removeItem("firebaseToken");
     localStorage.removeItem("firebaseUid");
     setUserData(null);
+
+    // Dispatch custom auth event to notify other components
+    window.dispatchEvent(
+      new CustomEvent("authStateChanged", { detail: { authenticated: false } })
+    );
+
     toast.success("Logged out successfully");
     navigate("/login");
   };

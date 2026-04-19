@@ -48,14 +48,30 @@ export default function LoginPage() {
           : import.meta.env.VITE_PROD_BACKEND_URL;
 
       // Send token to backend to sync user data
-      await fetch(backendUrl + "/api/user/firebase-login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${idToken}`,
-        },
-        body: JSON.stringify({ uid: userCredential.user.uid }),
-      });
+      const loginResponse = await fetch(
+        backendUrl + "/api/user/firebase-login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${idToken}`,
+          },
+          body: JSON.stringify({ uid: userCredential.user.uid }),
+        }
+      );
+
+      // Check if user exists in database
+      if (loginResponse.status === 404) {
+        const errorData = await loginResponse.json();
+        throw new Error(
+          errorData.error || "Please register your account first"
+        );
+      }
+
+      if (!loginResponse.ok) {
+        const errorData = await loginResponse.json();
+        throw new Error(errorData.error || "Login failed");
+      }
 
       toast.success("Login successful!", {
         position: "top-center",
@@ -72,6 +88,11 @@ export default function LoginPage() {
       // Store token in localStorage
       localStorage.setItem("firebaseToken", idToken);
       localStorage.setItem("firebaseUid", userCredential.user.uid);
+
+      // Dispatch custom auth event to notify other components
+      window.dispatchEvent(
+        new CustomEvent("authStateChanged", { detail: { authenticated: true } })
+      );
 
       // Redirect to home
       navigate("/");
