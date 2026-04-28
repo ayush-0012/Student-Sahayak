@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { getTestAttemptsRemaining } from "@/lib/test-helpers";
-import { MessageCircle, Shield, Star, Users, Zap } from "lucide-react";
+import { AlertCircle, MessageCircle, Shield, Star, Users, Zap } from "lucide-react";
+import ProblemsModal from "../ProblemsModal";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
@@ -14,6 +15,7 @@ export default function HeroSection() {
     testsToday: number;
     canTakeTest: boolean;
   } | null>(null);
+  const [isProblemsModalOpen, setIsProblemsModalOpen] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -224,8 +226,25 @@ export default function HeroSection() {
               </Button>
             </Link>
           )}
+
+          <Button
+            onClick={() => setIsProblemsModalOpen(true)}
+            size="lg"
+            variant="outline"
+            className="w-full sm:w-auto relative border-2 border-white/30 text-white hover:bg-white/10 text-lg sm:text-xl px-6 sm:px-8 py-3 rounded-full font-bold transition-all duration-300 bg-transparent min-h-[48px]"
+          >
+            <span className="relative flex items-center justify-center gap-2">
+              <AlertCircle className="h-5 w-5 shrink-0" />
+              What Problems We Solve
+            </span>
+          </Button>
         </div>
       </div>
+
+      <ProblemsModal 
+        isOpen={isProblemsModalOpen} 
+        onClose={() => setIsProblemsModalOpen(false)} 
+      />
 
       {/* Responsive styles */}
       {/* @ts-expect-error styled-jsx types */}
