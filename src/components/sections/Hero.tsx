@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { getTestAttemptsRemaining } from "@/lib/test-helpers";
-import { AlertCircle, MessageCircle, Shield, Star, Users, Zap } from "lucide-react";
+import { AlertCircle, MessageCircle, Shield, Star, Users, Zap, Smartphone } from "lucide-react";
 import ProblemsModal from "../ProblemsModal";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -190,11 +190,27 @@ export default function HeroSection() {
             </div>
           </a>
 
+          {/* Download App Link - responsive */}
+          <a
+            href="https://play.google.com/store/apps/details?id=com.sachin.studentsahayak"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Download our Android App"
+            className="group w-full sm:w-auto"
+          >
+            <div className="w-full sm:w-80 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-4 md:py-5 font-bold text-center flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-indigo-700 min-h-[48px]">
+              <Smartphone className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
+              <span className="text-sm sm:text-base md:text-lg">
+                Get our Android App
+              </span>
+            </div>
+          </a>
+
           <Link to="/take-test" className="w-full sm:w-auto">
             <Button
               size="lg"
               disabled={
-                isAuthenticated && testAttempts && testAttempts.remaining === 0
+                !!(isAuthenticated && testAttempts && testAttempts.remaining === 0)
               }
               className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xl sm:text-2xl px-10 sm:px-12 py-4 sm:py-6 rounded-full font-black shadow-[0_10px_40px_-10px_rgba(219,39,119,0.5)] hover:shadow-[0_20px_50px_-10px_rgba(219,39,119,0.7)] transform hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-white/20 animate-pulse-subtle min-h-[56px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >

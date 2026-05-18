@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { Smartphone } from "lucide-react";
 
 export default function FooterSection() {
   return (
@@ -22,6 +23,22 @@ export default function FooterSection() {
             Build Habits, Shape Future - Your Partner in UPSC & SSC Exam
             Preparation
           </p>
+
+          {/* App Download Link */}
+          <div className="flex justify-center mb-8">
+            <a
+              href="https://play.google.com/store/apps/details?id=com.sachin.studentsahayak"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download our Android App"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 border border-gray-700 hover:border-blue-500 rounded-full transition-all duration-300 group"
+            >
+              <Smartphone className="h-5 w-5 text-gray-400 group-hover:text-blue-400" />
+              <span className="text-gray-300 font-medium group-hover:text-white">
+                Get our Android App
+              </span>
+            </a>
+          </div>
 
           {/* New: Policy Links */}
           <nav

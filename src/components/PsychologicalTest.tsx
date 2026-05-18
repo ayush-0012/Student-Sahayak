@@ -11,7 +11,7 @@ import { axiosInstance } from "@/utils/axiosInstance";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 interface Answer {

@@ -20,6 +20,7 @@ export default function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
+    phoneNumber: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,6 +40,17 @@ export default function RegisterPage() {
     }
     if (formData.fullName.trim().length < 2) {
       toast.error("Full name must be at least 2 characters long");
+      return false;
+    }
+
+    // Phone Number validation
+    if (!formData.phoneNumber.trim()) {
+      toast.error("Please enter your phone number");
+      return false;
+    }
+    const phoneRegex = /^\+?[0-9]{10,15}$/;
+    if (!phoneRegex.test(formData.phoneNumber.trim())) {
+      toast.error("Please enter a valid phone number");
       return false;
     }
 
@@ -100,6 +112,7 @@ export default function RegisterPage() {
         uid: userCredential.user.uid,
         fullName: formData.fullName.trim(),
         email: formData.email.trim().toLowerCase(),
+        phoneNumber: formData.phoneNumber.trim(),
         emailVerified: false,
       };
 
@@ -237,6 +250,22 @@ export default function RegisterPage() {
                 required
                 disabled={isLoading}
                 value={formData.email}
+                onChange={handleInputChange}
+                className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
+              />
+            </div>
+            <div>
+              <Label htmlFor="phoneNumber" className="text-white">
+                Phone Number
+              </Label>
+              <Input
+                id="phoneNumber"
+                name="phoneNumber"
+                type="tel"
+                placeholder="+1234567890"
+                required
+                disabled={isLoading}
+                value={formData.phoneNumber}
                 onChange={handleInputChange}
                 className="mt-1 bg-gray-800 text-white border-gray-700 focus:border-yellow-400 focus:ring-yellow-400 disabled:opacity-50"
               />

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { axiosInstance } from "@/utils/axiosInstance";
 import { CheckCircle, Loader2, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router";
 import { toast } from "react-toastify";
 
 export default function VerifyEmailPage() {
