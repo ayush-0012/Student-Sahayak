@@ -62,9 +62,8 @@ export default function HeroSection() {
       <div className="container mx-auto px-3 sm:px-4 py-12 sm:py-16 md:py-20 relative z-10 lg:mt-14">
         {/* Two-column layout - responsive */}
         <div
-          className={`grid grid-cols-1 md:grid-cols-1 gap-6 sm:gap-8 lg:gap-12 items-start transition-all duration-1000${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
+          className={`grid grid-cols-1 md:grid-cols-1 gap-6 sm:gap-8 lg:gap-12 items-start transition-all duration-1000${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+            }`}
         >
           {/* LEFT: Title + image + paragraph */}
           <div className="text-center md:text-left">
@@ -172,69 +171,80 @@ export default function HeroSection() {
         </div>
 
         {/* Registration and primary CTAs - responsive layout */}
-        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap gap-4 justify-center items-center px-2">
-          {/* Contact on WhatsApp - responsive */}
-          <a
-            href="https://wa.me/919588533265"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contact us on WhatsApp"
-            className="w-full sm:w-auto bg-green-500 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-400 text-base md:text-lg"
-          >
-            <MessageCircle className="h-5 w-5 flex-shrink-0" />
-            <span>Contact us on WhatsApp</span>
-            <span className="sr-only">{"WhatsApp number 95885 33265"}</span>
-          </a>
+        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center gap-4 px-2">
+          {/* Top Row CTAs */}
+          <div className="w-full max-w-xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Download App Link - responsive */}
+            <a
+              href="https://play.google.com/store/apps/details?id=com.sachin.studentsahayak"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Download our Android App"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg h-12 md:h-14 px-4 lg:px-8 font-bold flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-500 hover:to-indigo-500 text-base md:text-lg"
+            >
+              <Smartphone className="h-5 w-5 flex-shrink-0" />
+              <span className="truncate">Get our Android App</span>
+            </a>
 
-          {/* Download App Link - responsive */}
-          <a
-            href="https://play.google.com/store/apps/details?id=com.sachin.studentsahayak"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download our Android App"
-            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-500 hover:to-indigo-500 text-base md:text-lg"
-          >
-            <Smartphone className="h-5 w-5 flex-shrink-0" />
-            <span>Get our Android App</span>
-          </a>
-
-          {/* Take a Test */}
-          <Link to="/take-test" className="w-full sm:w-auto flex">
+            {/* What Problems We Solve */}
             <Button
-              disabled={
-                !!(isAuthenticated && testAttempts && testAttempts.remaining === 0)
-              }
-              className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              onClick={() => setIsProblemsModalOpen(true)}
+              variant="outline"
+              className="w-full border-2 border-white/40 text-white hover:bg-white/10 rounded-full h-12 md:h-14 px-4 lg:px-8 font-bold text-base md:text-lg transition-all duration-300 bg-transparent shadow-lg"
             >
               <div className="flex items-center justify-center gap-2">
-                <Zap className="h-5 w-5 fill-yellow-300 text-yellow-300 animate-pulse" />
-                <span>Take a Test</span>
-                {isAuthenticated && testAttempts && (
-                  <span className="ml-1 text-sm md:text-base font-bold">
-                    ({testAttempts.remaining}/2)
-                  </span>
-                )}
+                <AlertCircle className="h-5 w-5 shrink-0" />
+                <span className="truncate">What Problems We Solve</span>
               </div>
             </Button>
-          </Link>
+          </div>
 
-          {/* What Problems We Solve */}
-          <Button
-            onClick={() => setIsProblemsModalOpen(true)}
-            variant="outline"
-            className="w-full sm:w-auto relative border-2 border-white/30 text-white hover:bg-white/10 rounded-full h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transition-all duration-300 bg-transparent"
-          >
-            <div className="flex items-center justify-center gap-2">
-              <AlertCircle className="h-5 w-5 shrink-0" />
-              <span>What Problems We Solve</span>
-            </div>
-          </Button>
+          {/* Bottom Row CTA */}
+          <div className="flex justify-center w-full mt-2">
+            {/* Take a Test */}
+            <Link to="/take-test" className="w-full sm:w-auto flex">
+              <Button
+                disabled={
+                  !!(
+                    isAuthenticated &&
+                    testAttempts &&
+                    testAttempts.remaining === 0
+                  )
+                }
+                className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Zap className="h-5 w-5 fill-yellow-300 text-yellow-300 animate-pulse" />
+                  <span>Take a Test</span>
+                  {isAuthenticated && testAttempts && (
+                    <span className="ml-1 text-sm md:text-base font-bold">
+                      ({testAttempts.remaining}/2)
+                    </span>
+                  )}
+                </div>
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
 
-      <ProblemsModal 
-        isOpen={isProblemsModalOpen} 
-        onClose={() => setIsProblemsModalOpen(false)} 
+      {/* Floating WhatsApp CTA */}
+      <a
+        href="https://wa.me/919588533265"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
+        className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 bg-green-500 text-white rounded-full shadow-2xl h-14 md:h-16 px-6 md:px-8 font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 hover:bg-green-400 text-lg md:text-xl border-4 border-white/20 hover:border-white/40"
+      >
+        <MessageCircle className="h-6 w-6 sm:h-8 sm:w-8 flex-shrink-0" />
+        <span className="hidden sm:inline">WhatsApp Us</span>
+        <span className="inline sm:hidden">Chat</span>
+        <span className="sr-only">{"WhatsApp number 95885 33265"}</span>
+      </a>
+
+      <ProblemsModal
+        isOpen={isProblemsModalOpen}
+        onClose={() => setIsProblemsModalOpen(false)}
       />
 
       {/* Responsive styles */}
