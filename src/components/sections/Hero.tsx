@@ -172,22 +172,18 @@ export default function HeroSection() {
         </div>
 
         {/* Registration and primary CTAs - responsive layout */}
-        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center px-2">
+        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap gap-4 justify-center items-center px-2">
           {/* Contact on WhatsApp - responsive */}
           <a
             href="https://wa.me/919588533265"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Contact us on WhatsApp"
-            className="group w-full sm:w-auto"
+            className="w-full sm:w-auto bg-green-500 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5 hover:bg-green-400 text-base md:text-lg"
           >
-            <div className="w-full sm:w-80 bg-green-500 text-white rounded-full shadow-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-4 md:py-5 font-bold text-center flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:text-green-500 min-h-[48px]">
-              <MessageCircle className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
-              <span className="text-sm sm:text-base md:text-lg">
-                Contact us on WhatsApp
-              </span>
-              <span className="sr-only">{"WhatsApp number 95885 33265"}</span>
-            </div>
+            <MessageCircle className="h-5 w-5 flex-shrink-0" />
+            <span>Contact us on WhatsApp</span>
+            <span className="sr-only">{"WhatsApp number 95885 33265"}</span>
           </a>
 
           {/* Download App Link - responsive */}
@@ -196,63 +192,42 @@ export default function HeroSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Download our Android App"
-            className="group w-full sm:w-auto"
+            className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold flex items-center justify-center gap-2 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-500 hover:to-indigo-500 text-base md:text-lg"
           >
-            <div className="w-full sm:w-80 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full shadow-2xl px-4 sm:px-5 md:px-6 py-3 sm:py-4 md:py-5 font-bold text-center flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-indigo-700 min-h-[48px]">
-              <Smartphone className="h-5 w-5 sm:h-6 sm:w-6 flex-shrink-0" />
-              <span className="text-sm sm:text-base md:text-lg">
-                Get our Android App
-              </span>
-            </div>
+            <Smartphone className="h-5 w-5 flex-shrink-0" />
+            <span>Get our Android App</span>
           </a>
 
-          <Link to="/take-test" className="w-full sm:w-auto">
+          {/* Take a Test */}
+          <Link to="/take-test" className="w-full sm:w-auto flex">
             <Button
-              size="lg"
               disabled={
                 !!(isAuthenticated && testAttempts && testAttempts.remaining === 0)
               }
-              className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white text-xl sm:text-2xl px-10 sm:px-12 py-4 sm:py-6 rounded-full font-black shadow-[0_10px_40px_-10px_rgba(219,39,119,0.5)] hover:shadow-[0_20px_50px_-10px_rgba(219,39,119,0.7)] transform hover:scale-110 active:scale-95 transition-all duration-300 ring-4 ring-white/20 animate-pulse-subtle min-h-[56px] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="relative flex items-center justify-center gap-3">
-                <Zap className="h-7 w-7 fill-yellow-300 text-yellow-300 animate-pulse" />
-                Take a Test
+              <div className="flex items-center justify-center gap-2">
+                <Zap className="h-5 w-5 fill-yellow-300 text-yellow-300 animate-pulse" />
+                <span>Take a Test</span>
                 {isAuthenticated && testAttempts && (
-                  <span className="ml-2 text-lg font-bold">
+                  <span className="ml-1 text-sm md:text-base font-bold">
                     ({testAttempts.remaining}/2)
                   </span>
                 )}
-              </span>
+              </div>
             </Button>
           </Link>
 
-          {!isAuthenticated && (
-            <Link
-              to="/register"
-              className="w-full sm:w-auto opacity-90 hover:opacity-100 transition-opacity"
-            >
-              <Button
-                size="lg"
-                className="w-full sm:w-auto relative border-2 border-yellow-400/50 text-yellow-300 hover:bg-yellow-400/10 text-lg sm:text-xl px-6 sm:px-8 py-3 rounded-full font-bold transition-all duration-300 bg-transparent group overflow-hidden min-h-[48px]"
-              >
-                <span className="relative flex items-center justify-center gap-2">
-                  <Users className="h-5 w-5 shrink-0" />
-                  Register
-                </span>
-              </Button>
-            </Link>
-          )}
-
+          {/* What Problems We Solve */}
           <Button
             onClick={() => setIsProblemsModalOpen(true)}
-            size="lg"
             variant="outline"
-            className="w-full sm:w-auto relative border-2 border-white/30 text-white hover:bg-white/10 text-lg sm:text-xl px-6 sm:px-8 py-3 rounded-full font-bold transition-all duration-300 bg-transparent min-h-[48px]"
+            className="w-full sm:w-auto relative border-2 border-white/30 text-white hover:bg-white/10 rounded-full h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transition-all duration-300 bg-transparent"
           >
-            <span className="relative flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               <AlertCircle className="h-5 w-5 shrink-0" />
-              What Problems We Solve
-            </span>
+              <span>What Problems We Solve</span>
+            </div>
           </Button>
         </div>
       </div>

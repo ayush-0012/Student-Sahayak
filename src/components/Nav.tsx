@@ -110,9 +110,9 @@ function Nav() {
               ) : (
                 <Button
                   onClick={() => navigate("/login")}
-                  className="ml-4 bg-yellow-400 text-black hover:bg-yellow-500 font-bold"
+                  className="ml-4 bg-yellow-400 text-black hover:bg-yellow-500 font-bold rounded-full px-5"
                 >
-                  Login
+                  Sign In / Sign Up
                 </Button>
               )}
             </div>
@@ -175,6 +175,26 @@ function Nav() {
                   >
                     Contact
                   </a> */}
+                  
+                  {/* Mobile Auth Buttons */}
+                  {!isAuthenticated && (
+                    <div className="pt-2 mt-2 border-t border-red-700/50 flex flex-col space-y-3">
+                      <button
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          navigate("/login");
+                        }}
+                        className="text-center bg-yellow-400 text-black hover:bg-yellow-500 px-3 py-3 rounded-full font-bold transition-all duration-300 shadow-lg"
+                      >
+                        Sign In / Sign Up
+                      </button>
+                    </div>
+                  )}
+                  {isAuthenticated && (
+                    <div className="pt-2 mt-2 border-t border-red-700/50 flex justify-center">
+                      <UserProfile />
+                    </div>
+                  )}
                 </div>
               </div>
             )}
