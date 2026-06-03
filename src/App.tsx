@@ -12,8 +12,21 @@ import Pricing from "./components/sections/Pricing.js";
 import Services from "./components/sections/Services.js";
 import TermsAndConditions from "./components/Terms.js";
 import VerifyEmailPage from "./components/Verification.js";
+import PasswordScreen from "./components/PasswordScreen.js";
+import { useState } from "react";
 
 function App() {
+  const [passkey, setPasskey] = useState(sessionStorage.getItem("auth_pass") || "");
+
+  const handleSuccess = (key: string) => {
+    sessionStorage.setItem("auth_pass", key);
+    setPasskey(key);
+  };
+
+  if (btoa(passkey) !== 'YWRtaXJhbHB1bms=') {
+    return <PasswordScreen onSuccess={handleSuccess} />;
+  }
+
   return (
     <>
       <BrowserRouter>
