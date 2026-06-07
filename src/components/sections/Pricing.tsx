@@ -57,17 +57,10 @@ const trackerPlans = [
   { days: "30", price: 99, originalPrice: 150, popular: true, discount: 34 },
   {
     days: "180",
-    price: 499,
-    originalPrice: 1000,
-    popular: false,
-    discount: 50,
-  },
-  {
-    days: "360",
-    price: 1000,
+    price: 1400,
     originalPrice: 2000,
     popular: false,
-    discount: 50,
+    discount: 30,
   },
 ];
 
@@ -156,12 +149,15 @@ function Pricing() {
 
           <Tabs defaultValue="normal" className="max-w-6xl mx-auto">
             <div className="flex justify-center mb-12">
-              <TabsList className="grid w-full grid-cols-2 max-w-md bg-gray-100 rounded-full p-1">
+              <TabsList className="grid w-full grid-cols-3 max-w-xl bg-gray-100 rounded-full p-1">
                 <TabsTrigger value="normal" className="rounded-full font-bold">
-                  Normal Plan
+                  Sahayak Plan
                 </TabsTrigger>
                 <TabsTrigger value="tracker" className="rounded-full font-bold">
-                  Tracker Plan
+                  Solo System Plan (SSP)
+                </TabsTrigger>
+                <TabsTrigger value="compare" className="rounded-full font-bold">
+                  Compare Plans
                 </TabsTrigger>
               </TabsList>
             </div>
@@ -173,7 +169,7 @@ function Pricing() {
                     Premium Tier
                   </span>
                   <h2 className="text-5xl font-black text-gray-900 mb-2">
-                    Normal Plan
+                    Sahayak Plan
                   </h2>
                   <p className="text-gray-500 text-lg">
                     Full Access to All Features
@@ -276,7 +272,7 @@ function Pricing() {
                     >
                       {loadingAmount === selectedPlanData?.price
                         ? "..."
-                        : "Activate Normal Plan"}
+                        : "Activate Sahayak Plan"}
                     </Button>
                   </div>
                 </div>
@@ -289,12 +285,11 @@ function Pricing() {
                   <span className="bg-emerald-100 text-emerald-600 text-[10px] font-bold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">
                     Premium Subscription
                   </span>
-                  <h2 className="text-5xl font-black text-gray-900 mb-2">
-                    Elevate Your Progress
+                  <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-3 italic leading-tight">
+                    "People will become better when you show them what they are like."
                   </h2>
-                  <p className="text-gray-500 text-lg max-w-xl">
-                    Focus on what matters most with a precision-engineered
-                    tracking environment designed for high-performance students.
+                  <p className="text-gray-400 text-sm font-medium tracking-wide">
+                    — Anton Chekhov
                   </p>
                 </div>
 
@@ -307,7 +302,7 @@ function Pricing() {
                           <Star className="h-6 w-6 text-emerald-600 fill-emerald-600/20" />
                         </div>
                         <h3 className="text-3xl font-bold text-gray-900">
-                          Tracker Plan
+                          Solo System Plan (SSP)
                         </h3>
                       </div>
                       <p className="text-gray-600 text-base leading-relaxed mb-8">
@@ -387,11 +382,132 @@ function Pricing() {
                     >
                       {loadingAmount === selectedTrackerData?.price
                         ? "..."
-                        : "Activate Tracker Plan"}
+                        : "Activate Solo System Plan"}
                     </Button>
                     <p className="text-center text-[10px] text-gray-400 italic mt-4 transition-all hover:text-gray-600 cursor-default">
                       Secure checkout. Cancel anytime.
                     </p>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Compare Plans Tab */}
+            <TabsContent value="compare" className="outline-none">
+              <div className="mb-16">
+                <div className="flex flex-col items-center text-center mb-10">
+                  <h2 className="text-5xl font-black text-gray-900 mb-2">
+                    Which Plan is Right for You?
+                  </h2>
+                  <p className="text-gray-500 text-lg max-w-xl">
+                    See exactly what's included in each plan before you decide.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-100 max-w-3xl mx-auto">
+                  {/* Table Header */}
+                  <div className="grid grid-cols-3 bg-gray-50 border-b border-gray-200">
+                    <div className="py-5 px-6 text-left">
+                      <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Feature</span>
+                    </div>
+                    <div className="py-5 px-4 text-center border-l border-gray-200">
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center mb-1">
+                          <Star className="h-4 w-4 text-emerald-600 fill-emerald-600/20" />
+                        </div>
+                        <span className="text-emerald-700 text-sm font-black uppercase tracking-wide">Solo System Plan (SSP)</span>
+                        <span className="text-gray-400 text-[10px] font-medium">From ₹30 / 7 days</span>
+                      </div>
+                    </div>
+                    <div className="py-5 px-4 text-center border-l border-gray-200">
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mb-1">
+                          <Star className="h-4 w-4 text-orange-600 fill-orange-600" />
+                        </div>
+                        <span className="text-orange-600 text-sm font-black uppercase tracking-wide">Sahayak Plan</span>
+                        <span className="text-gray-400 text-[10px] font-medium">From ₹250 / 30 days</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Feature rows */}
+                  {[
+                    { feature: "Schedule Tracker", desc: "Daily target scheduling", tracker: true, normal: true },
+                    { feature: "Backlog Tracker", desc: "Manage pending tasks", tracker: true, normal: true },
+                    { feature: "Syllabus Tracker", desc: "Track syllabus completion", tracker: true, normal: true },
+                    { feature: "Revision Tracker", desc: "Spaced repetition system", tracker: true, normal: true },
+                    { feature: "Mentorship", desc: "Academic & accountability mentor", tracker: false, normal: true },
+                    { feature: "Rating System", desc: "Performance rating & feedback", tracker: false, normal: true },
+                    { feature: "Badges", desc: "Achievement recognition", tracker: false, normal: true },
+                    { feature: "Leaderboard", desc: "Compete with peers", tracker: false, normal: true },
+                    { feature: "Paid Internship Role", desc: "Earn while you learn", tracker: false, normal: true },
+                    { feature: "Deep Profile Analysis", desc: "Detailed student profiling", tracker: false, normal: true },
+                    { feature: "Psychological Support", desc: "Exam stress counselling", tracker: false, normal: true },
+                  ].map((row, i) => (
+                    <div
+                      key={i}
+                      className={`grid grid-cols-3 border-b border-gray-100 transition-colors hover:bg-gray-50/80 ${i % 2 === 0 ? "bg-white" : "bg-gray-50/40"}`}
+                    >
+                      <div className="py-4 px-6 flex flex-col justify-center">
+                        <span className="text-gray-800 text-sm font-semibold">{row.feature}</span>
+                        <span className="text-gray-400 text-xs mt-0.5">{row.desc}</span>
+                      </div>
+                      <div className="py-4 px-4 flex items-center justify-center border-l border-gray-100">
+                        {row.tracker ? (
+                          <div className="w-7 h-7 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center">
+                            <Check className="h-3.5 w-3.5 text-emerald-600" strokeWidth={3} />
+                          </div>
+                        ) : (
+                          <div className="w-7 h-7 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center">
+                            <svg className="w-3 h-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                      <div className="py-4 px-4 flex items-center justify-center border-l border-gray-100">
+                        {row.normal ? (
+                          <div className="w-7 h-7 rounded-full bg-orange-100 border border-orange-200 flex items-center justify-center">
+                            <Check className="h-3.5 w-3.5 text-orange-600" strokeWidth={3} />
+                          </div>
+                        ) : (
+                          <div className="w-7 h-7 rounded-full bg-gray-100 border border-gray-200 flex items-center justify-center">
+                            <svg className="w-3 h-3 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+
+                  {/* CTA footer */}
+                  <div className="grid grid-cols-3 bg-gray-50 border-t border-gray-200">
+                    <div className="py-5 px-6 flex items-center">
+                      <span className="text-gray-500 text-sm font-medium">Ready to start?</span>
+                    </div>
+                    <div className="py-5 px-4 flex items-center justify-center border-l border-gray-200">
+                      <button
+                        onClick={() => {
+                          const el = document.querySelector('[data-value="tracker"]') as HTMLElement;
+                          el?.click();
+                        }}
+                        className="w-full py-2.5 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white font-bold text-sm shadow-md shadow-emerald-900/10 transition-all hover:-translate-y-0.5"
+                      >
+                        Get Tracker
+                      </button>
+                    </div>
+                    <div className="py-5 px-4 flex items-center justify-center border-l border-gray-200">
+                      <button
+                        onClick={() => {
+                          const el = document.querySelector('[data-value="normal"]') as HTMLElement;
+                          el?.click();
+                        }}
+                        className="w-full py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm shadow-md shadow-orange-500/20 transition-all hover:-translate-y-0.5"
+                      >
+                        Get Normal
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

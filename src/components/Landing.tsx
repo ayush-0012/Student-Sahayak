@@ -1,6 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
+import HallOfFame from "./sections/HallOfFame";
 import Hero from "./sections/Hero";
 import Mission from "./sections/Mission";
 import VideoSection from "./sections/Video";
@@ -10,6 +11,9 @@ export default function StudentSahayakLanding() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <Hero />
+
+      {/* 1% Outcompetitors Wall */}
+      <HallOfFame />
 
       {/* Stats Section (we can use this in future)*/}
       {/* <section className="bg-gray-900 py-16">
