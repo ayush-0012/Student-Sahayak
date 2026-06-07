@@ -148,16 +148,19 @@ function Pricing() {
           </div>
 
           <Tabs defaultValue="normal" className="max-w-6xl mx-auto">
-            <div className="flex justify-center mb-12">
+            <div className="flex justify-center mb-12 px-2">
               <TabsList className="grid w-full grid-cols-3 max-w-xl bg-gray-100 rounded-full p-1">
-                <TabsTrigger value="normal" className="rounded-full font-bold">
-                  Sahayak Plan
+                <TabsTrigger value="normal" className="rounded-full font-bold text-xs sm:text-sm">
+                  <span className="sm:hidden">Sahayak</span>
+                  <span className="hidden sm:inline">Sahayak Plan</span>
                 </TabsTrigger>
-                <TabsTrigger value="tracker" className="rounded-full font-bold">
-                  Solo System Plan (SSP)
+                <TabsTrigger value="tracker" className="rounded-full font-bold text-xs sm:text-sm">
+                  <span className="sm:hidden">SSP</span>
+                  <span className="hidden sm:inline">Solo System Plan (SSP)</span>
                 </TabsTrigger>
-                <TabsTrigger value="compare" className="rounded-full font-bold">
-                  Compare Plans
+                <TabsTrigger value="compare" className="rounded-full font-bold text-xs sm:text-sm">
+                  <span className="sm:hidden">Compare</span>
+                  <span className="hidden sm:inline">Compare Plans</span>
                 </TabsTrigger>
               </TabsList>
             </div>
