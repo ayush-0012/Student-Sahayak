@@ -10,7 +10,7 @@ export default function VideoSection() {
               <Youtube className="h-8 w-8 text-white" />
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white">
-              Watch our youtube video for more details
+              How to use the app
             </h2>
           </div>
           {/* <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -25,7 +25,7 @@ export default function VideoSection() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/AuEMN3gE-Fo"
+                src="https://www.youtube.com/embed/KLDdSyt6DiE?si=XwDjqjh7h8tFfHg4"
                 title="CRACK ANY EXAM WITH US| DAILY TARGET TRACKING| BUILD CONSISTENCY WITH US."
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

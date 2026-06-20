@@ -11,6 +11,9 @@ export default function StudentSahayakLanding() {
     <main className="min-h-screen">
       {/* Hero Section */}
       <Hero />
+      
+      {/* Video Section */}
+      <VideoSection />
 
       {/* 1% Outcompetitors Wall */}
       {/* <HallOfFame /> */}
@@ -41,8 +44,6 @@ export default function StudentSahayakLanding() {
 
       {/* Contact Section */}
       <Contact />
-      {/* Video Section  */}
-      <VideoSection />
       {/* Footer */}
       <Footer />
       <ToastContainer />

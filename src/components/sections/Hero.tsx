@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { getTestAttemptsRemaining } from "@/lib/test-helpers";
-import { AlertCircle, MessageCircle, Shield, Star, Users, Zap, Smartphone } from "lucide-react";
+import { AlertCircle, MessageCircle, Shield, Star, Users, Zap, Smartphone, Award } from "lucide-react";
 import ProblemsModal from "../ProblemsModal";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
@@ -200,7 +200,7 @@ export default function HeroSection() {
           </div>
 
           {/* Bottom Row CTA */}
-          <div className="flex justify-center w-full mt-2">
+          <div className="flex flex-col sm:flex-row justify-center w-full mt-2 gap-4">
             {/* Take a Test */}
             <Link to="/take-test" className="w-full sm:w-auto flex">
               <Button
@@ -221,6 +221,19 @@ export default function HeroSection() {
                       ({testAttempts.remaining}/2)
                     </span>
                   )}
+                </div>
+              </Button>
+            </Link>
+
+            {/* Leaderboard Button */}
+            <Link to="/hall-of-fame" className="w-full sm:w-auto flex">
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto relative border-2 border-amber-400/40 text-white hover:bg-amber-400/10 rounded-full h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transform hover:scale-105 transition-all duration-300 shadow-lg bg-black/40"
+              >
+                <div className="flex items-center justify-center gap-2">
+                  <Award className="h-5 w-5 text-amber-400" />
+                  <span>1% Outcompetitors Wall</span>
                 </div>
               </Button>
             </Link>
