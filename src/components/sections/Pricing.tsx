@@ -31,21 +31,21 @@ const trackerPlanFeatures = [
 const normalPlans = [
   {
     days: "30",
-    price: 250,
+    price: 299,
     originalPrice: 500,
     popular: false,
-    discount: 50,
+    discount: 40,
   },
   {
     days: "90",
-    price: 700,
+    price: 799,
     originalPrice: 1500,
     popular: true,
-    discount: 53,
+    discount: 47,
   },
   {
     days: "180",
-    price: 1400,
+    price: 1399,
     originalPrice: 3000,
     popular: false,
     discount: 53,
@@ -57,10 +57,17 @@ const trackerPlans = [
   { days: "30", price: 99, originalPrice: 150, popular: true, discount: 34 },
   {
     days: "180",
-    price: 1400,
+    price: 499,
     originalPrice: 2000,
     popular: false,
-    discount: 30,
+    discount: 75,
+  },
+  {
+    days: "360",
+    price: 1000,
+    originalPrice: 3500,
+    popular: false,
+    discount: 71,
   },
 ];
 
@@ -142,8 +149,11 @@ function Pricing() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Fee Structure
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Choose the plan that works best for your academic journey
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto flex flex-col items-center gap-3">
+              <span>Choose the plan that works best for your academic journey</span>
+              <span className="inline-flex items-center bg-orange-50 border border-orange-200 text-orange-700 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm">
+                (It hardly costs ₹2-3 per day)
+              </span>
             </p>
           </div>
 
