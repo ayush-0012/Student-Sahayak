@@ -152,7 +152,7 @@ function Pricing() {
             <p className="text-xl text-gray-600 max-w-2xl mx-auto flex flex-col items-center gap-3">
               <span>Choose the plan that works best for your academic journey</span>
               <span className="inline-flex items-center bg-orange-50 border border-orange-200 text-orange-700 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm">
-                (It hardly costs ₹2-3 per day)
+                It hardly costs ₹2-3 per day
               </span>
             </p>
           </div>
