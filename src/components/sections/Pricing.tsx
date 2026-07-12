@@ -149,11 +149,8 @@ function Pricing() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Fee Structure
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto flex flex-col items-center gap-3">
-              <span>Choose the plan that works best for your academic journey</span>
-              <span className="inline-flex items-center bg-orange-50 border border-orange-200 text-orange-700 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm">
-                It hardly costs ₹2-3 per day
-              </span>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Choose the plan that works best for your academic journey
             </p>
           </div>
 
@@ -257,9 +254,12 @@ function Pricing() {
                                 {plan.days} Days
                               </span>
                             </div>
-                            <div className="text-right">
+                            <div className="text-right flex flex-col items-end">
                               <div className="text-2xl font-black text-gray-900">
                                 ₹{plan.price}
+                              </div>
+                              <div className="text-xs font-black text-orange-700 bg-orange-100 px-2.5 py-1 rounded-lg mt-1 mb-0.5 shadow-sm border border-orange-200">
+                                ₹{(plan.price / parseInt(plan.days)).toFixed(1)}/day
                               </div>
                               {plan.originalPrice && (
                                 <div className="text-xs text-gray-400 line-through">
@@ -372,9 +372,12 @@ function Pricing() {
                                 </span>
                               </span>
                             </div>
-                            <div className="text-right">
+                            <div className="text-right flex flex-col items-end">
                               <div className="text-2xl font-black text-gray-900">
                                 ₹{plan.price}
+                              </div>
+                              <div className="text-xs font-black text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-lg mt-1 shadow-sm border border-emerald-200">
+                                ₹{(plan.price / parseInt(plan.days)).toFixed(1)}/day
                               </div>
                             </div>
                           </div>
