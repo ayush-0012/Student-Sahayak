@@ -91,6 +91,12 @@ function Nav() {
               >
                 Challenge
               </a>
+              <a
+                href="/referral"
+                className="text-amber-400 hover:text-amber-300 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-bold flex items-center gap-1.5"
+              >
+                🔥 Consistency Circle
+              </a>
               {/* <a
                 href="/revision"
                 className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
@@ -161,6 +167,13 @@ function Nav() {
                     className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
                   >
                     Challenge
+                  </a>
+                  <a
+                    href="/referral"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-amber-400 hover:text-amber-300 hover:bg-white/10 px-3 py-3 rounded-lg transition-all duration-300 font-bold transform hover:translate-x-2"
+                  >
+                    🔥 Consistency Circle
                   </a>
                   <a
                     href="/revision"
