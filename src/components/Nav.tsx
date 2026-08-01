@@ -97,6 +97,12 @@ function Nav() {
               >
                 🔥 Consistency Circle
               </a>
+              <a
+                href="/internship"
+                className="text-green-400 hover:text-green-300 hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-bold flex items-center gap-1.5"
+              >
+                💼 Internship
+              </a>
               {/* <a
                 href="/revision"
                 className="text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-all duration-300 font-medium"
@@ -174,6 +180,13 @@ function Nav() {
                     className="text-amber-400 hover:text-amber-300 hover:bg-white/10 px-3 py-3 rounded-lg transition-all duration-300 font-bold transform hover:translate-x-2"
                   >
                     🔥 Consistency Circle
+                  </a>
+                  <a
+                    href="/internship"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-green-400 hover:text-green-300 hover:bg-white/10 px-3 py-3 rounded-lg transition-all duration-300 font-bold transform hover:translate-x-2"
+                  >
+                    💼 Internship
                   </a>
                   <a
                     href="/revision"

@@ -5,7 +5,6 @@ import ProblemsModal from "../ProblemsModal";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
-import { ReactTyped } from "react-typed";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -69,16 +68,9 @@ export default function HeroSection() {
           <div className="text-center md:text-left">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[0.9] sm:leading-[0.95] tracking-tight">
               <span className="relative inline-block">
-                <ReactTyped
-                  strings={["STUDENT", "STUDENT<br/>SAHAYAK"]}
-                  typeSpeed={100}
-                  backSpeed={50}
-                  backDelay={2000}
-                  loop={false}
-                  showCursor={true}
-                  cursorChar="|"
-                  className="inline-block"
-                />
+                <span>
+                  STUDENT<br />SAHAYAK
+                </span>
                 <span className="absolute inset-0 bg-gradient-to-r from-pink-400 to-yellow-400 bg-clip-text text-transparent opacity-50 blur-sm -z-10">
                   STUDENT SAHAYAK
                 </span>

@@ -12,6 +12,7 @@ import HallOfFame from "./components/sections/HallOfFame.js";
 import Pricing from "./components/sections/Pricing.js";
 import Services from "./components/sections/Services.js";
 import ReferralSystem from "./components/sections/ReferralSystem.js";
+import InternshipPage from "./components/InternshipPage.js";
 import TermsAndConditions from "./components/Terms.js";
 import VerifyEmailPage from "./components/Verification.js";
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/challenge" element={<ChallengeSection />} />
           <Route path="/hall-of-fame" element={<HallOfFame />} />
           <Route path="/referral" element={<ReferralSystem />} />
+          <Route path="/internship" element={<InternshipPage />} />
           {/* <Route path="/revision" element={<RevisionSection />} /> */}
           <Route path="/take-test" element={<PsychologicalTest />} />
           {/* <Route path="/contact" element={<ContactSection />} /> */}
