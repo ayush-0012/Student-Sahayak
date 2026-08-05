@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { getTestAttemptsRemaining } from "@/lib/test-helpers";
-import { AlertCircle, MessageCircle, Shield, Star, Users, Zap, Smartphone, Award } from "lucide-react";
-import ProblemsModal from "../ProblemsModal";
+import { AlertCircle, Award, MessageCircle, Shield, Smartphone, Star, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { toast } from "react-toastify";
+import ProblemsModal from "../ProblemsModal";
 
 export default function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -99,9 +99,9 @@ export default function HeroSection() {
           </div>
 
           {/* RIGHT: WhatsApp contact + inclusive highlight - responsive */}
-          <div className="flex flex-col items-center gap-4 sm:gap-5 md:gap-6 lg:ml-36 mt-6 sm:mt-8 md:mt-0">
+          <div className="flex w-full flex-col items-center gap-4 sm:gap-5 md:gap-6 mt-6 sm:mt-8 md:mt-0">
             {/* Inclusive highlight (above registration) - responsive */}
-            <div className="relative">
+            <div className="relative w-fit max-w-full">
               <div className="absolute -inset-0.5 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-500 rounded-xl sm:rounded-2xl blur opacity-60"></div>
               <div className="relative bg-black/40 border border-white/20 rounded-xl sm:rounded-2xl p-4 sm:p-5 text-white">
                 <div className="flex items-start gap-3">
@@ -163,9 +163,8 @@ export default function HeroSection() {
         </div>
 
         {/* Registration and primary CTAs - responsive layout */}
-        <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col items-center gap-4 px-2">
-          {/* Top Row CTAs */}
-          <div className="w-full max-w-xl grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="mt-6 sm:mt-8 md:mt-10 flex justify-center px-2">
+          <div className="grid w-full max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
             {/* Download App Link - responsive */}
             <a
               href="https://play.google.com/store/apps/details?id=com.sachin.studentsahayak"
@@ -189,12 +188,9 @@ export default function HeroSection() {
                 <span className="truncate">What Problems We Solve</span>
               </div>
             </Button>
-          </div>
 
-          {/* Bottom Row CTA */}
-          <div className="flex flex-col sm:flex-row justify-center w-full mt-2 gap-4">
             {/* Take a Test */}
-            <Link to="/take-test" className="w-full sm:w-auto flex">
+            <Link to="/take-test" className="flex w-full">
               <Button
                 disabled={
                   !!(
@@ -203,7 +199,7 @@ export default function HeroSection() {
                     testAttempts.remaining === 0
                   )
                 }
-                className="w-full sm:w-auto relative bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow-lg h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="relative h-12 w-full rounded-full bg-gradient-to-r from-purple-600 to-pink-500 px-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50 md:h-14 md:px-8 md:text-lg"
               >
                 <div className="flex items-center justify-center gap-2">
                   <Zap className="h-5 w-5 fill-yellow-300 text-yellow-300 animate-pulse" />
@@ -218,14 +214,14 @@ export default function HeroSection() {
             </Link>
 
             {/* Leaderboard Button */}
-            <Link to="/hall-of-fame" className="w-full sm:w-auto flex">
+            <Link to="/hall-of-fame" className="flex w-full">
               <Button
                 variant="outline"
-                className="w-full sm:w-auto relative border-2 border-amber-400/40 text-white hover:bg-amber-400/10 rounded-full h-12 md:h-14 px-6 md:px-8 font-bold text-base md:text-lg transform hover:scale-105 transition-all duration-300 shadow-lg bg-black/40"
+                className="relative h-12 w-full rounded-full border-2 border-amber-400/40 bg-black/40 px-4 text-base font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-amber-400/10 md:h-14 md:px-8 md:text-lg"
               >
                 <div className="flex items-center justify-center gap-2">
                   <Award className="h-5 w-5 text-amber-400" />
-                  <span>1% Outcompetitors Wall</span>
+                  <span className="truncate">1% Outcompetitors Wall</span>
                 </div>
               </Button>
             </Link>
