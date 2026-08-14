@@ -5,6 +5,7 @@ import Footer from "./sections/Footer";
 import Hero from "./sections/Hero";
 import Mission from "./sections/Mission";
 import VideoSection from "./sections/Video";
+import FAQ from "./sections/FAQ";
 
 export default function StudentSahayakLanding() {
   return (
@@ -41,6 +42,9 @@ export default function StudentSahayakLanding() {
 
       {/* Our Purpose Section */}
       <Mission />
+
+      {/* FAQ Section */}
+      <FAQ />
 
       {/* Contact Section */}
       <Contact />
