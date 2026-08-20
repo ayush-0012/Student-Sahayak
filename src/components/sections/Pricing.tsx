@@ -54,20 +54,20 @@ const normalPlans = [
 
 const trackerPlans = [
   // { days: "7", price: 30, originalPrice: 50, popular: false, discount: 40 },
-  { days: "30", price: 99, originalPrice: 150, popular: true, discount: 34 },
+  { days: "30", price: 49, originalPrice: 150, popular: true, discount: 67 },
   {
     days: "180",
-    price: 499,
+    price: 250,
     originalPrice: 2000,
     popular: false,
-    discount: 75,
+    discount: 87,
   },
   {
     days: "360",
-    price: 1000,
+    price: 450,
     originalPrice: 3500,
     popular: false,
-    discount: 71,
+    discount: 87,
   },
 ];
 
@@ -432,7 +432,7 @@ function Pricing() {
                           <Star className="h-4 w-4 text-emerald-600 fill-emerald-600/20" />
                         </div>
                         <span className="text-emerald-700 text-sm font-black uppercase tracking-wide">Solo System Plan (SSP)</span>
-                        <span className="text-gray-400 text-[10px] font-medium">From ₹99 / 30 days</span>
+                        <span className="text-gray-400 text-[10px] font-medium">From ₹49 / 30 days</span>
                       </div>
                     </div>
                     <div className="py-5 px-4 text-center border-l border-gray-200">
