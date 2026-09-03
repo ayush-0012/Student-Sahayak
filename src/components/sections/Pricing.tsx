@@ -31,24 +31,24 @@ const trackerPlanFeatures = [
 const normalPlans = [
   {
     days: "30",
-    price: 299,
+    price: 250,
     originalPrice: 500,
     popular: false,
-    discount: 40,
+    discount: 50,
   },
   {
     days: "90",
-    price: 799,
+    price: 700,
     originalPrice: 1500,
     popular: true,
-    discount: 47,
+    discount: 53,
   },
   {
     days: "180",
-    price: 1399,
+    price: 1250,
     originalPrice: 3000,
     popular: false,
-    discount: 53,
+    discount: 58,
   },
 ];
 

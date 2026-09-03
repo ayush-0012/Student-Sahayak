@@ -15,6 +15,7 @@ import ReferralSystem from "./components/sections/ReferralSystem.js";
 import InternshipPage from "./components/InternshipPage.js";
 import TermsAndConditions from "./components/Terms.js";
 import VerifyEmailPage from "./components/Verification.js";
+import RevisionSection from "./components/sections/Revision.js";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
           <Route path="/hall-of-fame" element={<HallOfFame />} />
           <Route path="/referral" element={<ReferralSystem />} />
           <Route path="/internship" element={<InternshipPage />} />
-          {/* <Route path="/revision" element={<RevisionSection />} /> */}
+          <Route path="/revision" element={<RevisionSection />} />
           <Route path="/take-test" element={<PsychologicalTest />} />
           {/* <Route path="/contact" element={<ContactSection />} /> */}
         </Routes>
