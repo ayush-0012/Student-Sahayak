@@ -54,7 +54,7 @@ const normalPlans = [
 
 const trackerPlans = [
   // { days: "7", price: 30, originalPrice: 50, popular: false, discount: 40 },
-  { days: "30", price: 49, originalPrice: 150, popular: true, discount: 67 },
+  { days: "30", price: 59, originalPrice: 150, popular: true, discount: 67 },
   {
     days: "180",
     price: 250,
