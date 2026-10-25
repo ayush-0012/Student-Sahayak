@@ -13,11 +13,11 @@ export interface Plan {
 export const allPlans: Plan[] = [
   {
     id: "normal-30",
-    name: "Normal Plan - 30 Days",
+    name: "Sahayak Plan - 1 Month",
     description:
       "Full access to all mentoring features including accountability, psychological, and academic support",
     type: "normal",
-    price: 250,
+    price: 500,
     duration: "30 Days",
     features: [
       "Schedule system",
@@ -38,11 +38,11 @@ export const allPlans: Plan[] = [
   },
   {
     id: "normal-90",
-    name: "Normal Plan - 90 Days",
+    name: "Sahayak Plan - 3 Months",
     description:
       "Extended 90-day full access with continuous mentoring across all dimensions",
     type: "normal",
-    price: 700,
+    price: 1200,
     duration: "90 Days",
     features: [
       "Schedule system",
@@ -63,11 +63,11 @@ export const allPlans: Plan[] = [
   },
   {
     id: "normal-180",
-    name: "Normal Plan - 180 Days",
+    name: "Sahayak Plan - 6 Months",
     description:
       "Full 6-month comprehensive journey with complete mentoring ecosystem",
     type: "normal",
-    price: 1400,
+    price: 2500,
     duration: "180 Days",
     features: [
       "Schedule system",
@@ -88,11 +88,11 @@ export const allPlans: Plan[] = [
   },
   {
     id: "tracker-30",
-    name: "Tracker Plan - 30 Days",
+    name: "Solo Plan - 1 Month",
     description:
       "Focused tracking system to master your syllabus with surgical precision",
     type: "tracker",
-    price: 99,
+    price: 69,
     duration: "30 Days",
     features: [
       "Schedule System",
@@ -105,11 +105,11 @@ export const allPlans: Plan[] = [
   },
   {
     id: "tracker-180",
-    name: "Tracker Plan - 180 Days",
+    name: "Solo Plan - 6 Months",
     description:
       "6-month precision tracking to rebuild your preparation system",
     type: "tracker",
-    price: 499,
+    price: 299,
     duration: "180 Days",
     features: [
       "Schedule System",
@@ -118,6 +118,23 @@ export const allPlans: Plan[] = [
       "Backlog Tracker",
     ],
     besFor: "Budget-conscious students wanting long-term tracking",
+    icon: "📊",
+  },
+  {
+    id: "tracker-365",
+    name: "Solo Plan - 1 Year",
+    description:
+      "A full year of precision tracking to maintain consistent preparation",
+    type: "tracker",
+    price: 499,
+    duration: "365 Days",
+    features: [
+      "Schedule System",
+      "Revision Tracker",
+      "Syllabus Tracker",
+      "Backlog Tracker",
+    ],
+    besFor: "Students wanting year-round tracking without mentoring",
     icon: "📊",
   },
   {

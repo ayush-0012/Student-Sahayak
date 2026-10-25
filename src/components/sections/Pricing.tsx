@@ -29,46 +29,15 @@ const trackerPlanFeatures = [
 ];
 
 const normalPlans = [
-  {
-    days: "30",
-    price: 250,
-    originalPrice: 500,
-    popular: false,
-    discount: 50,
-  },
-  {
-    days: "90",
-    price: 700,
-    originalPrice: 1500,
-    popular: true,
-    discount: 53,
-  },
-  {
-    days: "180",
-    price: 1250,
-    originalPrice: 3000,
-    popular: false,
-    discount: 58,
-  },
+  { days: "30", duration: "1 Month", price: 500, originalPrice: 500, popular: false },
+  { days: "90", duration: "3 Months", price: 1200, originalPrice: 1500, popular: true },
+  { days: "180", duration: "6 Months", price: 2500, originalPrice: 3000, popular: false },
 ];
 
 const trackerPlans = [
-  // { days: "7", price: 30, originalPrice: 50, popular: false, discount: 40 },
-  { days: "30", price: 59, originalPrice: 150, popular: true, discount: 67 },
-  {
-    days: "180",
-    price: 250,
-    originalPrice: 2000,
-    popular: false,
-    discount: 87,
-  },
-  {
-    days: "360",
-    price: 450,
-    originalPrice: 3500,
-    popular: false,
-    discount: 87,
-  },
+  { days: "30", duration: "1 Month", price: 69, popular: true },
+  { days: "180", duration: "6 Months", price: 299, popular: false },
+  { days: "365", duration: "1 Year", price: 499, popular: false },
 ];
 
 function Pricing() {
@@ -251,7 +220,7 @@ function Pricing() {
                               <span
                                 className={`text-lg font-bold ${selectedNormalDuration === plan.days ? "text-gray-900" : "text-gray-600"}`}
                               >
-                                {plan.days} Days
+                                {plan.duration}
                               </span>
                             </div>
                             <div className="text-right flex flex-col items-end">
@@ -261,7 +230,7 @@ function Pricing() {
                               <div className="text-xs font-black text-orange-700 bg-orange-100 px-2.5 py-1 rounded-lg mt-1 mb-0.5 shadow-sm border border-orange-200">
                                 ₹{(plan.price / parseInt(plan.days)).toFixed(1)}/day
                               </div>
-                              {plan.originalPrice && (
+                              {plan.originalPrice > plan.price && (
                                 <div className="text-xs text-gray-400 line-through">
                                   ₹{plan.originalPrice}
                                 </div>
@@ -366,10 +335,7 @@ function Pricing() {
                               <span
                                 className={`text-xl font-bold ${selectedTrackerDuration === plan.days ? "text-emerald-700" : "text-gray-600"}`}
                               >
-                                {plan.days}{" "}
-                                <span className="text-sm font-medium ml-1">
-                                  Days
-                                </span>
+                                {plan.duration}
                               </span>
                             </div>
                             <div className="text-right flex flex-col items-end">
